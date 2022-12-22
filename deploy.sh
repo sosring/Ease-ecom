@@ -2,7 +2,7 @@ git add .
 
 git commit -m "updating files"
 
-git push
+git push -u origin master
 
 npm run build
 
