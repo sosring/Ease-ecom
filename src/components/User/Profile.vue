@@ -4,11 +4,14 @@
    class="profile-container">
     
     <header>
-      <span>
-        <i class="fas fa-chevron-left"
-         @click="$router.go(-1)"></i>
+      <span @click="$router.go(-1)">
+        <i class="fas fa-chevron-left"></i>
         <p>{{ greetings }}</p>
       </span>
+
+     <div class="profile-img">
+      <img :src="useAuth.user.img">
+     </div>
     </header>
 
     <main>
@@ -66,7 +69,7 @@
   })
 
   const greetings = computed(() => {
-    let name = 'Unknown';
+    let name;
 
     if(useAuth.user.isAnonymous === false) {
       name = useAuth.user.name 
@@ -91,12 +94,38 @@
   }
 
   .profile-container {
+    max-width: 700px;
+    margin: 1rem auto;
 
     header {
      margin-bottom: 1rem;
+     display: grid;
+
       span {
        font-size: 1.2rem;
        padding: .8rem 0;
+      }
+
+      .profile-img {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        margin: .8rem .5rem;
+
+        @include screen-md {
+          margin: .8rem 0; 
+          height: 150px;
+          width: 150px;
+        }
+
+        img {
+          position: absolute;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
       }
     }
 

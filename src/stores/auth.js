@@ -10,7 +10,7 @@ import { auth } from '@/js/firebase'
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
     user: {} 
-  }),
+ }),
 
   actions: {
 
@@ -27,6 +27,7 @@ export const useAuthStore = defineStore('authStore', {
             emailVerified: user.emailVerified, 
             creationTime : user.metadata.creationTime
           }
+
           console.log(this.user)
         } else {
           console.log('user sign out')
@@ -60,9 +61,10 @@ export const useAuthStore = defineStore('authStore', {
     demoUser (){
       signInAnonymously(auth)
       .then(() => {
+       this.updateUserInfo('unknown')
       })
       .catch((err) => {
-       console.log(err.message)
+       alert(err.message)
       });
     },
 
@@ -87,7 +89,8 @@ export const useAuthStore = defineStore('authStore', {
 
     // Updating user info 
 
-    updateUserInfo (name , img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU') {
+    updateUserInfo (name, 
+      img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU') {
       updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: img
