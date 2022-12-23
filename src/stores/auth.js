@@ -28,6 +28,7 @@ export const useAuthStore = defineStore('authStore', {
             emailVerified: user.emailVerified, 
             creationTime : user.metadata.creationTime
           }
+          console.log(user)
         } else {
           this.clearUser()
         }

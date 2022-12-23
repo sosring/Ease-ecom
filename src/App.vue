@@ -28,7 +28,10 @@
   }
 
   .main-container {
-    margin-top: 3rem;
+    width: 100%;
     padding: .5rem;
+
+    position: fixed;
+    top: 10%;
   }
 </style>

@@ -81,18 +81,14 @@
       font-size: .8rem;
     }
   }
-.profile-container {
-    width: 100%;
+
+ .profile-container {
+    max-width: 800px;
     padding: 1rem;
     overflow: hidden;
-
-    position: fixed;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0);
+    margin: 1rem auto;
 
     @include screen-md {
-      width: 800px;
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
     }
  
@@ -110,6 +106,7 @@
         height: 120px;
         width: 120px;
         border-radius: 50%;
+
         overflow: hidden;
         position: relative;
 

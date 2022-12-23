@@ -150,14 +150,9 @@
 
   .form-container {
     height: auto;
-    width: 100%;
+    max-width: 1400px;
 
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    margin-top: 1rem;
+    margin: 1rem auto;
     overflow: hidden;
     @include flexCenter(none, none, column);
 
@@ -177,7 +172,6 @@
 
     @include screen-md {
 
-      width: 1400px;
       height: 700px;
       width: 90%;
       margin-top: 2rem;
