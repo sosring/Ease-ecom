@@ -129,13 +129,10 @@
 
   const submitForm = () => {
     const credentials = {
-      fullName : `${props.firstname} ${props.lastname}`,
+      firstname: props.firstname,
+      lastname: props.lastname,
       email: props.email, 
       password: props.password
-    }
-
-    if(credentials.fullName === '' || credentials.email === '' || credentials.password === ''){
-      alert('Please complete the form.')
     }
 
     register.value ? useAuth.registerNewUser(credentials) : useAuth.signInEmailUser(credentials)

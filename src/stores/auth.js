@@ -40,10 +40,10 @@ export const useAuthStore = defineStore('authStore', {
       .then((userCredential) => {
         const user = userCredential.user;
 
-        this.setNameImg(credentials.fullName)
+        this.setNameImg(credentials.firstname, credentials.lastname)
       })
       .catch((err) => {
-        alert('Already used email please sign in instead.')
+        alert(err.message)
       });
     },
    
@@ -53,8 +53,8 @@ export const useAuthStore = defineStore('authStore', {
       .then((userCredential) => {
         const user = userCredential.user;
       })
-      .catch((error) => {
-        console.log(err.message)
+      .catch((err) => {
+        alert(err.message)
       });
     },
 
@@ -62,7 +62,7 @@ export const useAuthStore = defineStore('authStore', {
 
       signInAnonymously(auth)
       .then(() => {
-       this.setNameImg('Unknown')
+       this.setNameImg()
       })
       .catch((err) => {
        alert(err.message)
@@ -77,8 +77,9 @@ export const useAuthStore = defineStore('authStore', {
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           const user = result.user;
-        }).catch((err) => {
-          console.log(err.message)
+        })
+        .catch((err) => {
+          alert(err.message)
         });
     },
 
@@ -93,18 +94,19 @@ export const useAuthStore = defineStore('authStore', {
 
       deleteUser(auth.currentUser)
       .then(() => {
-      }).catch((error) => {
-        alert('unable to delete user!')
+      })
+      .catch((err) => {
+        alert(err.message)
       });
     },
 
     // Updating user info 
 
-    setNameImg (name) {
+    setNameImg (firstname = 'Unknown', lastname) {
       const img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU'
 
       updateProfile(auth.currentUser, {
-        displayName: name,
+        displayName: `${firstname} ${lastname}`,
         photoURL: img 
       })
 
@@ -130,8 +132,8 @@ export const useAuthStore = defineStore('authStore', {
     changePassword (newPassword) {
 
       updatePassword(auth.currentUser, newPassword).then(() => {
-      }).catch((error) => {
-        alert('unable to make changes!')
+      }).catch((err) => {
+        alert(err.message)
       });
     }
 

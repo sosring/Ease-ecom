@@ -61,7 +61,7 @@
     </button>
 
     <button class="deactivate-btn"
-     @click="useAuth.deactivatedUser">
+     @click="useAuth.deactivateUser">
       Deactived Account
     </button>
 
