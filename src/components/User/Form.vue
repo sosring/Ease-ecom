@@ -1,7 +1,6 @@
 <template>
 
-  <form class="form-container"
-   @submit.prevent="submitForm">
+  <div class="form-container">
 
    <div class="form-design">
     <img src="/annie-spratt-1.jpg">
@@ -12,7 +11,8 @@
       <h1>{{ formInfo }}</h1> 
     </header>
 
-    <div class="form-input-grid">
+    <form class="form-input-grid"
+     @submit.prevent="submitForm">
 
      <div v-if="register">
       <label>FIRST NAME</label> 
@@ -74,25 +74,26 @@
       </p>
      </span>
 
-    </div>
+    </form>
 
-    <section class="auth-btns"
-     @click="useAuth.signInGoogle">
-     <button class="google-btn btns">
+    <div class="auth-btns">
+
+     <button class="google-btn btns"
+       @click="useAuth.signInGoogle">
       <i class="fab fa-google"></i> Google
      </button>
 
      <button class="demo-btn btns"
-      @click="useAuth.demo">
-      <i class="fas fa-person"></i> Demo
+      @click="useAuth.demoUser">
+      <i class="fas fa-user"></i> Demo
      </button>
-    </section>
+    </div>
 
     <div>
     </div>
    </div>
 
-  </form>
+  </div>
 </template>
 
 <script setup>
@@ -197,17 +198,6 @@
         font-size: 1rem;
         font-weight: 800;
       }
-
-      .btns {
-        padding: .9rem 0;
-        border-radius: 4px;
-        transition: all .15s ease-in;
-
-        &:active {
-          transform: translate(0, 5%)
-        }
-      }
-
 
       @include screen-md {
         margin: 3rem auto; 

@@ -21,12 +21,14 @@ export const useAuthStore = defineStore('authStore', {
           this.user = {
             id : user.uid,
             email : user.email,
-            photo : user.photoURL,
+            img : user.photoURL,
             name : user.displayName,
+            isAnonymous: user.isAnonymous,  
+            emailVerified: user.emailVerified, 
             creationTime : user.metadata.creationTime
           }
+          console.log(this.user)
         } else {
-
           console.log('user sign out')
           this.clearUser()
         }
@@ -41,7 +43,7 @@ export const useAuthStore = defineStore('authStore', {
         this.updateUserInfo(credentials.fullName)
       })
       .catch((err) => {
-        console.log(err.message)
+        alert('Already used email please sign in instead.')
       });
     },
    
@@ -49,21 +51,13 @@ export const useAuthStore = defineStore('authStore', {
       signInWithEmailAndPassword(auth, credentials.email, credentials.password)
       .then((userCredential) => {
         const user = userCredential.user;
-
-        console.log(user)
       })
       .catch((error) => {
         console.log(err.message)
       });
     },
 
-    signOutUser (){
-     signOut(auth).then(() => {
-     }).catch((error) => {
-     });
-    },
-
-    demo (){
+    demoUser (){
       signInAnonymously(auth)
       .then(() => {
       })
@@ -85,9 +79,15 @@ export const useAuthStore = defineStore('authStore', {
         });
     },
 
+    signOutUser (){
+     signOut(auth).then(() => {
+     }).catch((error) => {
+     });
+    },
+
     // Updating user info 
 
-    updateUserInfo (name,  img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU') {
+    updateUserInfo (name , img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU') {
       updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: img

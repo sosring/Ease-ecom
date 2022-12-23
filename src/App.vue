@@ -26,7 +26,7 @@
   @import './src/styles/main';
 
   .main {
-    margin-top: 4rem;
+    margin-top: 3rem;
     padding: .5rem;
   }
 </style>

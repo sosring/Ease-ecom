@@ -6,7 +6,8 @@
    v-model:email="credentials.email"
    v-model:password="credentials.password"/>
 
-  <Profile />
+  <Profile v-if="useAuth.user.id"
+   />
 
 </template>
 
@@ -20,8 +21,8 @@
   const useAuth = useAuthStore()
 
   const credentials = reactive({
-    firstname: 'sosring',
-    lastname: 'langthasa',
+    firstname: '',
+    lastname: '',
     email: '',
     password: ''
   })  

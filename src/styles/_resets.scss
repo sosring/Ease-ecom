@@ -22,6 +22,11 @@ button {
   cursor: pointer;
 }
 
+span {
+  display: flex;
+  align-items: center;
+}
+
 i {
   cursor: pointer;
 }
@@ -42,4 +47,14 @@ input {
 
 .disabled {
   cursor: not-allowed;
+}
+
+.btns {
+  padding: .9rem 0;
+  border-radius: 4px;
+  transition: all .15s ease-in;
+
+  &:active {
+    transform: translate(0, 5%)
+  }
 }
