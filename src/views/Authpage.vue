@@ -82,17 +82,18 @@
     }
   }
 .profile-container {
+    width: 100%;
     padding: 1rem;
     overflow: hidden;
 
-    @include screen-md {
-      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
-      width: 800px;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
 
-      position: fixed;
-      top: 10%;
-      left: 50%;
-      transform: translate(-50%, 0);
+    @include screen-md {
+      width: 800px;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
     }
  
     header {

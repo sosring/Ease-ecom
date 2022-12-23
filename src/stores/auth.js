@@ -120,13 +120,15 @@ export const useAuthStore = defineStore('authStore', {
 
     updateUserProfile (userChanges) {
 
+      const { firstname, lastname, email } = userChanges
+
       updateProfile(auth.currentUser, {
-        displayName: userChanges.fullName,
-        email: userChanges.email
+        displayName: `${firstname} ${lastname}`,
+        email: email
       })
 
-      this.user.name = userChanges.fullName
-      this.user.email = userChanges.email
+      this.user.name = `${firstname} ${lastname}`
+      this.user.email = email
     },
 
     changePassword (newPassword) {

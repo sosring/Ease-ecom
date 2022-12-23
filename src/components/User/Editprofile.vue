@@ -88,8 +88,14 @@
   const submitForm = () => {
 
     const userChanges = {
-       fullName: `${userInfo.firstname} ${userInfo.lastname}`,
+       firstname: userInfo.firstname,
+       lastname: userInfo.lastname,
        email: userInfo.email
+    }
+
+    if(userChanges.firstname === '' || userChanges.lastname.lastname === '' || userChanges.email === ''){
+      alert('Please complete the form!')
+      return 
     }
 
     useAuth.updateUserProfile(userChanges)

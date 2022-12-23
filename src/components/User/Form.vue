@@ -136,9 +136,7 @@
       password: props.password
     }
 
-    const { firstname, lastname } = credentials;
-
-    if(firstname === '' && lastname === '' ){
+    if(credentials.firstname === '' || credentials.lastname === ''){
       alert('Please add your name!')
       return 
     }
@@ -152,7 +150,12 @@
 
   .form-container {
     height: auto;
-    max-width: 1400px;
+    width: 100%;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     margin-top: 1rem;
     overflow: hidden;
@@ -174,11 +177,7 @@
 
     @include screen-md {
 
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
+      width: 1400px;
       height: 700px;
       width: 90%;
       margin-top: 2rem;
