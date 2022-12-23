@@ -79,6 +79,10 @@
         background: lighten($brown, 30);
         border-radius: 6px;
 
+        @include screen-sm {
+          font-size: 1rem;
+        }
+
         .cart {
           color: darken($indigo, 20)
         }
@@ -95,5 +99,21 @@
       padding: .8rem 0;
       font-family: $oswald;
     }
+
+    span p:hover {
+      text-decoration: underline;
+    }
+
+    @include screen-sm {
+
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      span p {
+        font-size: 1rem;
+      }
+    }
+    
    }
 </style>

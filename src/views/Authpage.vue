@@ -90,6 +90,7 @@
 
     @include screen-md {
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+      border-radius: 6px; 
     }
  
     header {
@@ -100,6 +101,10 @@
       span {
        font-size: 1.2rem;
        padding: .8rem 0;
+
+       @include screen-sm {
+         font-size: 1.4rem;
+       }
       }
 
       .profile-img {

@@ -45,11 +45,13 @@
        type="password">
      </div>
 
+   <div class="submit-wrapper">
     <input 
      class="submit-btn btns" 
      type='submit' 
      value="SUBMIT">
-   </form>
+    </div>
+  </form>
 
 
    <div class="other-neccessary-btns">
@@ -134,29 +136,6 @@
           margin-right: .5rem;
         }
       }
-
-      .profile-img {
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-        position: relative;
-        overflow: hidden;
-        margin: .8rem .5rem; 
-
-        @include screen-md {
-          margin: .8rem 0; 
-          height: 150px;
-          width: 150px;
-        }
-
-        img {
-          position: absolute;
-          object-fit: cover;
-          height: 100%;
-          width: 100%;
-        }
-      }
-      
     }
 
     .form-update {
@@ -169,6 +148,10 @@
           color: $text-light;
           font-weight: 700;
           font-size: .7rem;
+
+          @include screen-sm {
+            font-size: .9rem;
+          }
         }
       }
 
@@ -177,13 +160,25 @@
         color: $text-dark;
         padding: .5rem 0; 
         border-bottom: $brown 1px solid;
+
+        @include screen-sm {
+          font-size: 1rem;
+        }
       }
+
+      .submit-wrapper {
+        text-align: end;
 
       .submit-btn {
         text-align: end;
         color: darken($indigo, 20);
         font-size: 1rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
+     }
     }
  }
 
@@ -191,15 +186,14 @@
    button {
     display: block;
     margin: .5rem 0;
+    font-size: .9rem;
    }
 
   .deactivate-btn {
-    font-size: .9rem;
     color: darken($pink, 5);
   }
 
   .password-btn {
-    font-size: .9rem;
     color: darken($text-light, 10);
   }
  }
