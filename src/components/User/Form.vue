@@ -4,7 +4,7 @@
    @submit.prevent="submitForm">
 
    <div class="form-design">
-    <img src="../../../annie-spratt-1.jpg">
+    <img src="/annie-spratt-1.jpg">
    </div>
     
    <div class="form-input-container">
@@ -14,13 +14,47 @@
 
     <div class="form-input-grid">
 
-     <div v-for="detail in formDetails">
-      <label>{{ detail.label }}</label> 
+     <div v-if="register">
+      <label>FIRST NAME</label> 
 
-      <input :key="detail.label"
+      <input 
+       :value="firstname"
+       @input="$emit('update:firstname', $event.target.value)"
        class="form-inputs"
-       :type="detail.type"
-       :placeholder="detail.placeholder">
+       type="text"
+       placeholder="John">
+     </div>
+
+     <div v-if="register">
+      <label>LAST NAME</label> 
+
+      <input 
+       :value="lastname"
+       @input="$emit('update:lastname', $event.target.value)"
+       class="form-inputs"
+       type="text"
+       placeholder="Doe">
+     </div>
+     <div>
+      <label>EMAIL</label> 
+
+      <input 
+       :value="email"
+       @input="$emit('update:email', $event.target.value)"
+       class="form-inputs"
+       type="email"
+       placeholder="eg - johndoe@gmail.com">
+     </div>
+
+     <div>
+      <label>PASSWORD</label> 
+
+      <input 
+       :value="password"
+       @input="$emit('update:password', $event.target.value)"
+       class="form-inputs"
+       type="password"
+       placeholder="eg - 8*jfaVnci">
      </div>
 
     <input class="form-submit-btn btns"
@@ -68,32 +102,42 @@
   const useAuth = useAuthStore()
 
   const props = defineProps({
-    formDetails: {
-      type: Array,
-      required: true,
-    }
+    firstname: {
+      type: String,
+      default: ''
+    },
+    lastname: {
+      type: String,
+      default: ''
+    },
+    email: {
+      type: String,
+      default: ''
+    },
+    password: {
+      type: String,
+      default: ''
+    },
   })
 
   const register = ref(true)
+
   const formInfo = computed(() => {
    return register.value ? 'Sign Up' : 'Sign In'
   })
 
-  const credentials = reactive({
-    firstname: '',
-    lastname: '',
-    password: '',
-    confirmPass: ''
-  }) 
-
-  const fullName = computed(() => credentials.firstname + credentials.lastname)
-
   const submitForm = () => {
-    if(register){
-      useAuth.registerNewUser()
+    const credentials = {
+      fullName : `${props.firstname} ${props.lastname}`,
+      email: props.email, 
+      password: props.password
     }
-      
-    useAuth.signInEmailuser()
+
+    if(credentials.fullName === '' || credentials.email === '' || credentials.password === ''){
+      alert('Please complete the form.')
+    }
+
+    register.value ? useAuth.registerNewUser(credentials) : useAuth.signInEmailUser(credentials)
   }
 </script>
 
@@ -215,14 +259,14 @@
 
     .form-submit-btn {
       color: $white;
-      background: darken($brown, 5);
+      background: darken($brown, 10);
       transition: all .15s;
 
       margin: 1rem 0;
       width: 100%;
 
       &:hover {
-        background: darken($brown, 8);
+        background: darken($brown, 7);
         box-shadow: 0 0px 8px 0 rgba(0,0,0,0.1)
       }
     }

@@ -2,8 +2,8 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { GoogleAuthProvider, signInWithPopup, 
 onAuthStateChanged, signOut, signInAnonymously,
-createUserWithEmailAndPassword, 
-signInWithEmailAndPassword } 
+createUserWithEmailAndPassword, updateProfile,
+signInWithEmailAndPassword  } 
 from "firebase/auth";
 import { auth } from '@/js/firebase'
 
@@ -26,7 +26,9 @@ export const useAuthStore = defineStore('authStore', {
             creationTime : user.metadata.creationTime
           }
         } else {
-          console.log('sign out')
+
+          console.log('user sign out')
+          this.clearUser()
         }
       });
     },
@@ -35,16 +37,19 @@ export const useAuthStore = defineStore('authStore', {
       createUserWithEmailAndPassword(auth, credentials.email, credentials.password)
       .then((userCredential) => {
         const user = userCredential.user;
+
+        this.updateUserInfo(credentials.fullName)
       })
       .catch((err) => {
         console.log(err.message)
       });
     },
    
-    signInEmailUser (credetials) {
+    signInEmailUser (credentials) {
       signInWithEmailAndPassword(auth, credentials.email, credentials.password)
       .then((userCredential) => {
         const user = userCredential.user;
+
         console.log(user)
       })
       .catch((error) => {
@@ -67,7 +72,7 @@ export const useAuthStore = defineStore('authStore', {
       });
     },
 
-    signInGoogle (){
+    signInGoogle () {
       const provider = new GoogleAuthProvider();
 
       signInWithPopup(auth, provider)
@@ -75,10 +80,22 @@ export const useAuthStore = defineStore('authStore', {
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           const user = result.user;
-          console.log(user)
         }).catch((err) => {
           console.log(err.message)
         });
+    },
+
+    // Updating user info 
+
+    updateUserInfo (name,  img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU') {
+      updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: img
+      })
+    },
+
+    clearUser () {
+      this.user = {}
     }
   }
 })

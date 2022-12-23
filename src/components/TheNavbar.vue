@@ -78,6 +78,7 @@
     font-weight: 600;
     background: $bg-light;
     border-bottom: 1px solid $border;
+    z-index: 2;
 
     position: fixed;
     top: 0;
