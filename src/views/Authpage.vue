@@ -16,9 +16,10 @@
         <p>{{ editUserProfile ? 'Edit Profile' : greetings }}</p>
       </span>
 
-     <div class="profile-img">
-      <img :src="useAuth.user.img">
-     </div>
+       <div v-if="!editUserProfile"
+        class="profile-img">
+        <img :src="useAuth.user.img">
+       </div>
     </header>
 
    <Profile
@@ -79,12 +80,19 @@
   }
 
   .profile-container {
-    max-width: 700px;
-    margin: 1rem auto;
+    max-width: 800px;
+    padding: 1rem;
+    margin: 1.5rem auto;
 
+
+    @include screen-md {
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+    }
+ 
     header {
-     margin-bottom: 1rem;
      display: grid;
+     align-items: start;
+     margin-bottom: 1rem;
 
       span {
        font-size: 1.2rem;
@@ -92,17 +100,16 @@
       }
 
       .profile-img {
-        height: 100px;
-        width: 100px;
+        height: 120px;
+        width: 120px;
         border-radius: 50%;
-        position: relative;
         overflow: hidden;
-        margin: .8rem .5rem;
+        position: relative;
 
         @include screen-md {
           margin: .8rem 0; 
-          height: 150px;
-          width: 150px;
+          height: 180px;
+          width: 180px;
         }
 
         img {

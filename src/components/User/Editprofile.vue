@@ -29,6 +29,22 @@
        type="text">
      </div>
 
+     <div v-if="setNewPassword">
+      <label>OLD PASSWORD</label>
+      <input 
+       v-model="userInfo.password"
+       class="form-inputs" 
+       type="password">
+     </div>
+
+     <div v-if="setNewPassword">
+      <label>New PASSWORD</label>
+      <input 
+       v-model="userInfo.confirmation"
+       class="form-inputs" 
+       type="password">
+     </div>
+
     <input 
      class="submit-btn btns" 
      type='submit' 
@@ -36,10 +52,19 @@
    </form>
 
 
-   <div>
-    <button @click="useAuth.deactivatedUser">
+   <div class="other-neccessary-btns">
+
+    <button 
+     @click="changePassword"
+     class="password-btn">
+      {{ setNewPassword ? 'CANCEL' : 'Change password' }}
+    </button>
+
+    <button class="deactivate-btn"
+     @click="useAuth.deactivatedUser">
       Deactived Account
     </button>
+
    </div>
   </div>
 </template>
@@ -55,7 +80,9 @@
   const userInfo = reactive({
     firstname: useAuth.user.name.split(' ')[0],
     lastname: useAuth.user.name.split(' ')[1],
-    email: useAuth.user.email
+    email: useAuth.user.email,
+    password: '',
+    confirmation: ''
   })
 
   const submitForm = () => {
@@ -64,8 +91,16 @@
        fullName: `${userInfo.firstname} ${userInfo.lastname}`,
        email: userInfo.email
     }
+
     useAuth.updateUserProfile(userChanges)
     emits('update:editProfile' , false)
+  }
+
+  const setNewPassword = ref(false)
+
+  const changePassword = () => {
+    setNewPassword.value = !setNewPassword.value
+    console.log(userInfo.password)
   }
 </script>
 
@@ -119,7 +154,6 @@
     }
 
     .form-update {
-      padding: .8rem;
       display: grid;
 
       div {
@@ -135,16 +169,32 @@
       .form-inputs {
         width: 100%;
         color: $text-dark;
-        padding: .5rem; 
-        margin-top: .5rem;
+        padding: .5rem 0; 
         border-bottom: $brown 1px solid;
       }
 
       .submit-btn {
-        text-align: center;
+        text-align: end;
         color: darken($indigo, 20);
-        @include fontStyle($source, 1.1rem);
+        font-size: 1rem;
       }
     }
+ }
+
+ .other-neccessary-btns {
+   button {
+    display: block;
+    margin: .5rem 0;
+   }
+
+  .deactivate-btn {
+    font-size: .9rem;
+    color: darken($pink, 5);
+  }
+
+  .password-btn {
+    font-size: .9rem;
+    color: darken($text-light, 10);
+  }
  }
 </style>

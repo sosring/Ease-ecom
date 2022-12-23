@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 import { GoogleAuthProvider, signInWithPopup, 
 onAuthStateChanged, signOut, signInAnonymously,
 createUserWithEmailAndPassword, updateProfile,
-signInWithEmailAndPassword, deleteUser  } 
+signInWithEmailAndPassword, deleteUser, 
+updatePassword  } 
 from "firebase/auth";
 import { auth } from '@/js/firebase'
 
@@ -124,6 +125,15 @@ export const useAuthStore = defineStore('authStore', {
 
       this.user.name = userChanges.fullName
       this.user.email = userChanges.email
+    },
+
+    changePassword (newPassword) {
+
+      updatePassword(auth.currentUser, newPassword).then(() => {
+      }).catch((error) => {
+        alert('unable to make changes!')
+      });
     }
+
   }
 })
