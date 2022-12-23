@@ -9,7 +9,7 @@
       <label>FIRST NAME</label>
       <input 
        v-model="userInfo.firstname"
-       class="form-inputs" 
+       class="form-inputs capitalize" 
        type="text">
      </div>
 
@@ -17,7 +17,7 @@
       <label>LAST NAME</label>
       <input 
        v-model="userInfo.lastname"
-       class="form-inputs" 
+       class="form-inputs capitalize" 
        type="text">
      </div>
 

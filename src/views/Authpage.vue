@@ -1,6 +1,5 @@
 <template>
 
-<div>
   <Form v-if="!useAuth.user.id" 
    v-model:firstname="credentials.firstname"
    v-model:lastname="credentials.lastname"
@@ -13,7 +12,9 @@
     <header>
       <span @click="previousRoute">
         <i class="fas fa-chevron-left"></i>
-        <p>{{ editUserProfile ? 'Edit Profile' : greetings }}</p>
+        <p class="capitalize">
+          {{ editUserProfile ? 'Edit Profile' : greetings }}
+        </p>
       </span>
 
        <div v-if="!editUserProfile"
@@ -22,6 +23,7 @@
        </div>
     </header>
 
+  <div>
    <Profile
     v-if="!editUserProfile"
     v-model:editProfile="editUserProfile"/>
@@ -30,7 +32,8 @@
     v-if="editUserProfile"
     v-model:editProfile="editUserProfile"/>
   </div>
-</div>
+
+ </div>
 
 </template>
 
@@ -78,15 +81,18 @@
       font-size: .8rem;
     }
   }
-
-  .profile-container {
-    max-width: 800px;
+.profile-container {
     padding: 1rem;
-    margin: 1.5rem auto;
-
+    overflow: hidden;
 
     @include screen-md {
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+      width: 800px;
+
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, 0);
     }
  
     header {

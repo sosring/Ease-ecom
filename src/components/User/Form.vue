@@ -20,7 +20,7 @@
       <input 
        :value="firstname"
        @input="$emit('update:firstname', $event.target.value)"
-       class="form-inputs"
+       class="form-inputs capitalize"
        type="text"
        placeholder="John">
      </div>
@@ -31,7 +31,7 @@
       <input 
        :value="lastname"
        @input="$emit('update:lastname', $event.target.value)"
-       class="form-inputs"
+       class="form-inputs capitalize"
        type="text"
        placeholder="Doe">
      </div>
@@ -148,8 +148,8 @@
   .form-container {
     height: auto;
     max-width: 1400px;
-    margin: 0 auto;
 
+    margin-top: 1rem;
     overflow: hidden;
     @include flexCenter(none, none, column);
 
@@ -168,9 +168,15 @@
     }
 
     @include screen-md {
+
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
       height: 700px;
       width: 90%;
-      margin: 3rem auto;
+      margin-top: 2rem;
       border-radius: 8px;
       @include flexCenter(none, none, row);
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),

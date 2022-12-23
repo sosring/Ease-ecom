@@ -1,15 +1,12 @@
 <template>
 
-  <div class="app">
-
   <header>
     <Navbar />
   </header>
 
-  <main class="main">
+  <main class="main-container">
    <RouterView />
   </main>
-  </div>
 </template>
 
 <script setup>
@@ -22,10 +19,15 @@
   onMounted(() => useAuth.init() )
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import './src/styles/main';
 
-  .main {
+  #app {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .main-container {
     margin-top: 3rem;
     padding: .5rem;
   }
