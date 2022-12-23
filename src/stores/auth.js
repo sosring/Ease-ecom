@@ -27,16 +27,14 @@ export const useAuthStore = defineStore('authStore', {
             emailVerified: user.emailVerified, 
             creationTime : user.metadata.creationTime
           }
-
-          console.log(this.user)
         } else {
-          console.log('user sign out')
           this.clearUser()
         }
       });
     },
 
     registerNewUser (credentials) {
+
       createUserWithEmailAndPassword(auth, credentials.email, credentials.password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -49,6 +47,7 @@ export const useAuthStore = defineStore('authStore', {
     },
    
     signInEmailUser (credentials) {
+
       signInWithEmailAndPassword(auth, credentials.email, credentials.password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -59,6 +58,7 @@ export const useAuthStore = defineStore('authStore', {
     },
 
     demoUser (){
+
       signInAnonymously(auth)
       .then(() => {
        this.setNameImg('Unknown')
@@ -82,15 +82,15 @@ export const useAuthStore = defineStore('authStore', {
     },
 
     signOutUser (){
+
      signOut(auth).then(() => {
      }).catch((error) => {
      });
     },
 
-    DeactivateUser () {
-      const user = auth.currentUser;
+    deactivateUser () {
 
-      deleteUser(user)
+      deleteUser(auth.currentUser)
       .then(() => {
       }).catch((error) => {
         alert('unable to delete user!')
@@ -113,6 +113,17 @@ export const useAuthStore = defineStore('authStore', {
 
     clearUser () {
       this.user = {}
+    },
+
+    updateUserProfile (userChanges) {
+
+      updateProfile(auth.currentUser, {
+        displayName: userChanges.fullName,
+        email: userChanges.email
+      })
+
+      this.user.name = userChanges.fullName
+      this.user.email = userChanges.email
     }
   }
 })

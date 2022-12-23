@@ -26,7 +26,7 @@
     </RouterLink>
 
     <button class="cart-btn">
-      CART
+      Cart
       <i class="fas fa-shopping-cart">
       </i>
     </button>
@@ -66,7 +66,7 @@
 
   const routes = [
     { name: 'Home', path: 'home' },
-    { name: 'PROFILE', path: 'auth' }
+    { name: 'Profile', path: 'auth' }
   ] 
 </script>
 
@@ -148,19 +148,18 @@
     }
 
     .cart-btn {
-      background: $brown;
       color: $white;
-      border-radius: 4px;
       padding: .7rem 0; 
+      border-radius: 4px;
+      background: $brown;
 
-      font-family: $oswald;
       transition: all .15s;
 
       @include screen-sm {
         border: $brown 1px solid;
         color: $brown;
         background: transparent;
-        padding: .5rem 1rem;
+        padding: .8rem 1rem;
         font-size: 1rem;
 
         &:hover{

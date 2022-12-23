@@ -26,12 +26,6 @@
       <p>Theme</p>
     </span>
 
-    <span @click="useAuth.clearUser" 
-     v-if="useAuth.user.isAnonymous">
-      <i class="fas fa-sign-in"></i>
-      <p>Sign up</p>
-    </span>
-    
     <span @click="signOutUser">
       <i class="fas fa-sign-out"></i>
       <p>Logout</p>
@@ -53,7 +47,7 @@
   const signOutUser = () => {
 
     if(useAuth.user.isAnonymous){
-      useAuth.DeactivateUser()
+      useAuth.deactivateUser()
       return
     }
     useAuth.signOutUser()

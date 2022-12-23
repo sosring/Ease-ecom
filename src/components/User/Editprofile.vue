@@ -8,7 +8,7 @@
      <div>
       <label>FIRST NAME</label>
       <input 
-       :value="userInfo.firstname"
+       v-model="userInfo.firstname"
        class="form-inputs" 
        type="text">
      </div>
@@ -16,7 +16,7 @@
      <div>
       <label>LAST NAME</label>
       <input 
-       :value="userInfo.lastname"
+       v-model="userInfo.lastname"
        class="form-inputs" 
        type="text">
      </div>
@@ -31,9 +31,16 @@
 
     <input 
      class="submit-btn btns" 
-     type='sumit' value="SUBMIT">
+     type='submit' 
+     value="SUBMIT">
    </form>
-   
+
+
+   <div>
+    <button @click="useAuth.deactivatedUser">
+      Deactived Account
+    </button>
+   </div>
   </div>
 </template>
 
@@ -43,7 +50,7 @@
 
   const useAuth = useAuthStore()
 
-  const props = defineProps(['condition'])
+  const emits = defineEmits(['editProfile'])
 
   const userInfo = reactive({
     firstname: useAuth.user.name.split(' ')[0],
@@ -51,7 +58,15 @@
     email: useAuth.user.email
   })
 
-  const submitForm = () => console.log(userInfo)
+  const submitForm = () => {
+
+    const userChanges = {
+       fullName: `${userInfo.firstname} ${userInfo.lastname}`,
+       email: userInfo.email
+    }
+    useAuth.updateUserProfile(userChanges)
+    emits('update:editProfile' , false)
+  }
 </script>
 
 <style lang="scss" scoped>

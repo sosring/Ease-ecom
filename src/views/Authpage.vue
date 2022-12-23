@@ -7,7 +7,6 @@
    v-model:email="credentials.email"
    v-model:password="credentials.password"/>
 
-
   <div v-if="useAuth.user.id" 
    class="profile-container">
     
@@ -26,16 +25,16 @@
     v-if="!editUserProfile"
     v-model:editProfile="editUserProfile"/>
 
-    <Editprofile 
-     v-if="editUserProfile"
-     v-model:editProfile="editUserProfile"/>
+   <Editprofile 
+    v-if="editUserProfile"
+    v-model:editProfile="editUserProfile"/>
   </div>
 </div>
 
 </template>
 
 <script setup>
-  import { ref, computed, reactive } from 'vue'
+  import { ref, computed, reactive, watch } from 'vue'
   import { useRouter } from 'vue-router'
   import Form from '@/components/User/Form.vue'
   import Profile from '@/components/User/Profile.vue'
@@ -62,7 +61,6 @@
       editUserProfile.value = false 
       return 
     }
-
     router.go(-1)
   }
 </script>
