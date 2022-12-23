@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { GoogleAuthProvider, signInWithPopup, 
 onAuthStateChanged, signOut, signInAnonymously,
 createUserWithEmailAndPassword, updateProfile,
-signInWithEmailAndPassword  } 
+signInWithEmailAndPassword, deleteUser  } 
 from "firebase/auth";
 import { auth } from '@/js/firebase'
 
@@ -41,7 +41,7 @@ export const useAuthStore = defineStore('authStore', {
       .then((userCredential) => {
         const user = userCredential.user;
 
-        this.updateUserInfo(credentials.fullName)
+        this.setNameImg(credentials.fullName)
       })
       .catch((err) => {
         alert('Already used email please sign in instead.')
@@ -61,7 +61,7 @@ export const useAuthStore = defineStore('authStore', {
     demoUser (){
       signInAnonymously(auth)
       .then(() => {
-       this.updateUserInfo('unknown')
+       this.setNameImg('Unknown')
       })
       .catch((err) => {
        alert(err.message)
@@ -87,14 +87,28 @@ export const useAuthStore = defineStore('authStore', {
      });
     },
 
+    DeactivateUser () {
+      const user = auth.currentUser;
+
+      deleteUser(user)
+      .then(() => {
+      }).catch((error) => {
+        alert('unable to delete user!')
+      });
+    },
+
     // Updating user info 
 
-    updateUserInfo (name, 
-      img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU') {
+    setNameImg (name) {
+      const img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU'
+
       updateProfile(auth.currentUser, {
         displayName: name,
-        photoURL: img
+        photoURL: img 
       })
+
+      this.user.name = name;
+      this.user.img = img
     },
 
     clearUser () {

@@ -2,26 +2,13 @@
 
   <div class="edit-profile-container">
 
-  <header>
-    <span 
-     @click="$emit('update:condition', false)">
-      <i class="fas fa-chevron-left">
-       </i>
-      <p>Edit Profile</p>
-    </span>
-
-     <div class="profile-img">
-      <img :src="useAuth.user.img">
-     </div>
-     {{useAuth.user.img}}
-  </header>
-
    <form class="form-update"
-    @submit.prevent="">
+    @submit.prevent="submitForm">
      
      <div>
       <label>FIRST NAME</label>
       <input 
+       :value="userInfo.firstname"
        class="form-inputs" 
        type="text">
      </div>
@@ -29,6 +16,7 @@
      <div>
       <label>LAST NAME</label>
       <input 
+       :value="userInfo.lastname"
        class="form-inputs" 
        type="text">
      </div>
@@ -42,7 +30,7 @@
      </div>
 
     <input 
-     class="submit-btn" 
+     class="submit-btn btns" 
      type='sumit' value="SUBMIT">
    </form>
    
@@ -58,9 +46,12 @@
   const props = defineProps(['condition'])
 
   const userInfo = reactive({
-    email: ''
+    firstname: useAuth.user.name.split(' ')[0],
+    lastname: useAuth.user.name.split(' ')[1],
+    email: useAuth.user.email
   })
-  userInfo.email = useAuth.user.email
+
+  const submitForm = () => console.log(userInfo)
 </script>
 
 <style lang="scss" scoped>
@@ -130,20 +121,14 @@
         width: 100%;
         color: $text-dark;
         padding: .5rem; 
-        border-radius: 4px;
         margin-top: .5rem;
         border-bottom: $brown 1px solid;
-
-        &:focus {
-          outline: none;
-        }
       }
 
       .submit-btn {
         text-align: center;
         color: darken($indigo, 20);
         @include fontStyle($source, 1.1rem);
-        margin: 1rem 0;
       }
     }
  }

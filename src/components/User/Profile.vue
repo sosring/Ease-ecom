@@ -1,131 +1,75 @@
 <template>
 
-  <div v-if="!editUserProfile" 
-   class="profile-container">
-    
-    <header>
-      <span @click="$router.go(-1)">
-        <i class="fas fa-chevron-left"></i>
-        <p>{{ greetings }}</p>
-      </span>
+<main>
+  <div class="primary-grid">
+   <span>
+      <i class="cart fas fa-shopping-cart"></i>
+      <p>CartList</p>
+    </span>
 
-     <div class="profile-img">
-      <img :src="useAuth.user.img">
-     </div>
-    </header>
-
-    <main>
-      <div class="primary-grid">
-        <span>
-          <i class="cart fas fa-shopping-cart"></i>
-          <p>CartList</p>
-        </span>
-
-        <span>
-          <i class="heart fas fa-heart"></i>
-          <p>WishList</p>
-        </span>
-      </div>
-
-      <div class="secoundary-grid">
-        <h3>Account Settings</h3>
-
-        <span @click="editUserProfile = !editUserProfile">
-          <i class="fas fa-user"></i>
-          <p>Edit Profile</p>
-        </span>
-
-        <span>
-          <i class="fas fa-circle-half-stroke"></i>
-          <p>Theme</p>
-        </span>
-        
-        <span @click="useAuth.signOutUser">
-          <i class="fas fa-sign-out"></i>
-          <p>Logout</p>
-        </span>
-
-      </div>
-    </main>
+    <span>
+      <i class="heart fas fa-heart"></i>
+      <p>WishList</p>
+    </span>
   </div>
 
-  <Editprofile 
-   v-model:condition="editUserProfile"
-   v-if="editUserProfile" />
+  <div class="secoundary-grid">
+    <h3>Account Settings</h3>
+
+    <span @click="$emit('update:editProfile', true)">
+      <i class="fas fa-user"></i>
+      <p>Edit Profile</p>
+    </span>
+
+    <span>
+      <i class="fas fa-circle-half-stroke"></i>
+      <p>Theme</p>
+    </span>
+
+    <span @click="useAuth.clearUser" 
+     v-if="useAuth.user.isAnonymous">
+      <i class="fas fa-sign-in"></i>
+      <p>Sign up</p>
+    </span>
+    
+    <span @click="signOutUser">
+      <i class="fas fa-sign-out"></i>
+      <p>Logout</p>
+    </span>
+
+  </div>
+</main>
 
 </template>
 
 <script setup>
   import { ref, computed, watch } from 'vue'
   import { useAuthStore } from '@/stores/auth'
-  import { useDateFormat } from '@vueuse/core'
-  import Editprofile from '@/components/User/Editprofile.vue'
 
   const useAuth = useAuthStore()
 
-  const formatted = computed(() => {
-    const format = useDateFormat(useAuth.user.creationTime, 'DD-MM-YY')
-    return format.value
-  })
+  const props = defineProps(['editProfile'])
 
-  const greetings = computed(() => {
-    let name;
+  const signOutUser = () => {
 
-    if(useAuth.user.isAnonymous === false) {
-      name = useAuth.user.name 
+    if(useAuth.user.isAnonymous){
+      useAuth.DeactivateUser()
+      return
     }
-    return `Hey! ${name}`
-  })
-
-  const editUserProfile = ref(false) 
+    useAuth.signOutUser()
+  }
 </script>
 
 <style lang="scss" scoped>
   @import '@/styles/main';
 
-  span {
-   padding: .8rem;
-   cursor: pointer;
+    span {
+     padding: .8rem;
+     cursor: pointer;
 
-    i{
-      margin-right: .5rem;
-      font-size: .8rem;
-    }
-  }
-
-  .profile-container {
-    max-width: 700px;
-    margin: 1rem auto;
-
-    header {
-     margin-bottom: 1rem;
-     display: grid;
-
-      span {
-       font-size: 1.2rem;
-       padding: .8rem 0;
-      }
-
-      .profile-img {
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-        position: relative;
-        overflow: hidden;
-        margin: .8rem .5rem;
-
-        @include screen-md {
-          margin: .8rem 0; 
-          height: 150px;
-          width: 150px;
-        }
-
-        img {
-          position: absolute;
-          object-fit: cover;
-          height: 100%;
-          width: 100%;
-        }
+      i{
+        margin-right: .5rem;
+        font-size: .8rem;
       }
     }
 
@@ -158,5 +102,4 @@
       font-family: $oswald;
     }
    }
-  }
 </style>

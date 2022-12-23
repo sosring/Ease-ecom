@@ -251,6 +251,7 @@
       color: $white;
       background: darken($brown, 10);
       transition: all .15s;
+      cursor: pointer;
 
       margin: 1rem 0;
       width: 100%;
