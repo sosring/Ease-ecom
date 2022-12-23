@@ -57,7 +57,7 @@
     <button 
      @click="changePassword"
      class="password-btn">
-      {{ setNewPassword ? 'CANCEL' : 'Change password' }}
+      {{ setNewPassword ? 'Cancel' : 'Change password' }}
     </button>
 
     <button class="deactivate-btn"

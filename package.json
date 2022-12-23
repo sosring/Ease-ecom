@@ -6,7 +6,8 @@
     "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "sh deploy.sh"
+    "deploy": "sh deploy.sh",
+    "push": "sh gitpush.sh"
   },
   "dependencies": {
     "@vueuse/core": "^9.8.2",
