@@ -187,6 +187,10 @@
     display: block;
     margin: .5rem 0;
     font-size: .9rem;
+
+     &:hover {
+       text-decoration: underline;
+     }
    }
 
   .deactivate-btn {
