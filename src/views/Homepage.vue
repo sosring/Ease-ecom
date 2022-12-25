@@ -1,7 +1,8 @@
 <template>
 
   <section class="product-banner">
-    <div class="banner-tag">
+    <div class="banner-tag"
+     v-motion-slide-visible-once-top>
       <h1>Take the stress <br>
       out of fashion.</h1> <br>
 
@@ -9,17 +10,21 @@
 
       <button class="product-btn btns">
        View products
-      </button>
+      </button> 
     </div>
   </section>
 
-  <section class="product slider">
-    <h3></h3> 
+  <section class="product-slider">
+
+    <h3>Take off your shirt!</h3> 
   </section>
 </template>
 
 <script setup>
+  import { ref, onMounted } from 'vue'
+  import { useProductStore } from '@/stores/product'
 
+  const productStore = useProductStore() 
 </script>
 
 <style lang="scss" scoped>
@@ -60,8 +65,7 @@
     }
 
     p {
-      @include fontStyle($roboto, 1.1em);
-      font-weight: 700;
+      @include fontStyle('arial', 1.1em);
       letter-spacing: 3px;
     }
 

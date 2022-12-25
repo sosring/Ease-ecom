@@ -13,11 +13,17 @@
   import { onMounted } from 'vue'
   import Navbar from './components/TheNavbar.vue'
   import { useAuthStore } from '@/stores/auth'
+  import { useProductStore } from '@/stores/product'
   import { vAutoAnimate } from '@formkit/auto-animate'
 
   const useAuth = useAuthStore()
+  const productStore = useProductStore() 
 
-  onMounted(() => useAuth.init() )
+
+  onMounted(() => {
+    useAuth.init()
+    productStore.fetchProductData()
+  })
 </script>
 
 <style lang="scss">
@@ -30,6 +36,8 @@
 
   .main-container {
     width: 100%;
+    height: 100%;
+    overflow: scroll;
 
     position: fixed;
     top: 6%;
