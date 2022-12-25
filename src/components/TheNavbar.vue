@@ -3,13 +3,14 @@
   <nav class="nav-container">
 
   <div class="inner-nav-cont"
-   ref="NavbarRef">
+   ref="NavbarRef" v-auto-animate>
 
   <div class="primary-nav">
     <h1 
      @click="$router.push({ name: 'home' })">
      Ease
     </h1>
+
 
     <i @click="toggleNav"
      class="fas fa-bars"
@@ -39,6 +40,7 @@
 <script setup>
   import { ref,  } from 'vue'
   import { onClickOutside } from '@vueuse/core'
+  import { vAutoAnimate } from '@formkit/auto-animate'
 
   const showNav = ref(null)
   const screenWidth = ref(null)
@@ -90,10 +92,10 @@
   }
 
   .inner-nav-cont {
-    padding: .7rem .5rem; 
+    padding: .7rem; 
     @include flexCenter(none, space-between, column);
 
-    max-width: 1140px;
+    max-width: 1540px;
     margin: 0 auto;
 
     @include screen-sm {
@@ -112,6 +114,7 @@
 
       i{
         display: inline-block;
+        font-size: 1.1rem;
 
         @include screen-sm {
          display: none;

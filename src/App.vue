@@ -14,6 +14,7 @@
   import Navbar from './components/TheNavbar.vue'
   import { useAuthStore } from '@/stores/auth'
 
+
   const useAuth = useAuthStore()
 
   onMounted(() => useAuth.init() )

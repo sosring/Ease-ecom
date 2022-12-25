@@ -1,5 +1,7 @@
 <template>
 
+<div v-auto-animate>
+
   <Form v-if="!useAuth.user.id" 
    v-model:firstname="credentials.firstname"
    v-model:lastname="credentials.lastname"
@@ -25,21 +27,25 @@
 
   <div>
    <Profile
+    key="profile"
     v-if="!editUserProfile"
     v-model:editProfile="editUserProfile"/>
 
    <Editprofile 
+    key="editProfile"
     v-if="editUserProfile"
     v-model:editProfile="editUserProfile"/>
   </div>
 
  </div>
+</div>
 
 </template>
 
 <script setup>
   import { ref, computed, reactive, watch } from 'vue'
   import { useRouter } from 'vue-router'
+  import { vAutoAnimate } from '@formkit/auto-animate'
   import Form from '@/components/User/Form.vue'
   import Profile from '@/components/User/Profile.vue'
   import Editprofile from '@/components/User/Editprofile.vue'

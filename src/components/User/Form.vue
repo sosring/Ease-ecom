@@ -3,7 +3,7 @@
   <div class="form-container">
 
    <div class="form-design">
-    <img src="/annie-spratt-1.jpg">
+    <img src="/assets/annie-spratt-1.jpg">
    </div>
     
    <div class="form-input-container">
@@ -12,7 +12,8 @@
     </header>
 
     <form class="form-input-grid"
-     @submit.prevent="submitForm">
+     @submit.prevent="submitForm"
+     v-auto-animate>
 
      <div v-if="register">
       <label>FIRST NAME</label> 
@@ -99,6 +100,8 @@
 <script setup>
   import { ref, reactive, computed } from 'vue' 
   import { useAuthStore } from '@/stores/auth'
+  import { vAutoAnimate } from '@formkit/auto-animate'
+
 
   const useAuth = useAuthStore()
 
@@ -136,9 +139,11 @@
       password: props.password
     }
 
-    if(credentials.firstname === '' || credentials.lastname === ''){
-      alert('Please add your name!')
-      return 
+    if(register.value){
+      if(credentials.firstname === '' || credentials.lastname === ''){
+        alert('Please complete the form before submiting!')
+        return 
+      }
     }
 
     register.value ? useAuth.registerNewUser(credentials) : useAuth.signInEmailUser(credentials)
@@ -214,11 +219,13 @@
           font-size: 1.1rem;
         }
       }
+
       span {
         display: flex;
         justify-content: center;
         color: $text-light;
         font-size: 1rem;
+        cursor: pointer;
 
         :nth-child(1){
           margin-right: .5rem;
@@ -232,7 +239,6 @@
           grid-column: 1 / span 2;
         }
       }
-
 
       .form-inputs {
         width: 100%;

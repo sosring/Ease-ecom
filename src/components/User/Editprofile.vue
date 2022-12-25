@@ -29,22 +29,6 @@
        type="text">
      </div>
 
-     <div v-if="setNewPassword">
-      <label>OLD PASSWORD</label>
-      <input 
-       v-model="userInfo.password"
-       class="form-inputs" 
-       type="password">
-     </div>
-
-     <div v-if="setNewPassword">
-      <label>New PASSWORD</label>
-      <input 
-       v-model="userInfo.confirmation"
-       class="form-inputs" 
-       type="password">
-     </div>
-
    <div class="submit-wrapper">
     <input 
      class="submit-btn btns" 
@@ -56,10 +40,9 @@
 
    <div class="other-neccessary-btns">
 
-    <button 
-     @click="changePassword"
-     class="password-btn">
-      {{ setNewPassword ? 'Cancel' : 'Change password' }}
+    <button class="password-btn"
+     @click="resetPassword">
+      Change password
     </button>
 
     <button class="deactivate-btn"
@@ -77,38 +60,33 @@
 
   const useAuth = useAuthStore()
 
-  const emits = defineEmits(['editProfile'])
+  const emits = defineEmits(['update:editProfile'])
 
   const userInfo = reactive({
     firstname: useAuth.user.name.split(' ')[0],
     lastname: useAuth.user.name.split(' ')[1],
-    email: useAuth.user.email,
-    password: '',
-    confirmation: ''
+    email: useAuth.user.email
   })
 
   const submitForm = () => {
 
-    const userChanges = {
+    const credentials = {
        firstname: userInfo.firstname,
        lastname: userInfo.lastname,
-       email: userInfo.email
+       email: userInfo.email,
     }
 
-    if(userChanges.firstname === '' || userChanges.lastname.lastname === '' || userChanges.email === ''){
+    if(credentials.firstname === '' || credentials.lastname.lastname === '' || credentials.email === ''){
       alert('Please complete the form!')
       return 
     }
 
-    useAuth.updateUserProfile(userChanges)
+    useAuth.updateUserProfile(credentials)
     emits('update:editProfile' , false)
   }
 
-  const setNewPassword = ref(false)
-
-  const changePassword = () => {
-    setNewPassword.value = !setNewPassword.value
-    console.log(userInfo.password)
+  const resetPassword = () => {
+    useAuth.changePassword(userInfo.email)
   }
 </script>
 

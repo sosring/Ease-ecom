@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithPopup,
 onAuthStateChanged, signOut, signInAnonymously,
 createUserWithEmailAndPassword, updateProfile,
 signInWithEmailAndPassword, deleteUser, 
-updatePassword  } 
+ sendEmailVerification, sendPasswordResetEmail } 
 from "firebase/auth";
 import { auth } from '@/js/firebase'
 
@@ -28,7 +28,6 @@ export const useAuthStore = defineStore('authStore', {
             emailVerified: user.emailVerified, 
             creationTime : user.metadata.creationTime
           }
-          console.log(user)
         } else {
           this.clearUser()
         }
@@ -111,7 +110,7 @@ export const useAuthStore = defineStore('authStore', {
         photoURL: img 
       })
 
-      this.user.name = name;
+      this.user.name = `${firstname} ${lastname}`;
       this.user.img = img
     },
 
@@ -119,9 +118,9 @@ export const useAuthStore = defineStore('authStore', {
       this.user = {}
     },
 
-    updateUserProfile (userChanges) {
+    updateUserProfile (credentials) {
 
-      const { firstname, lastname, email } = userChanges
+      const { firstname, lastname, email, confirmation } = credentials 
 
       updateProfile(auth.currentUser, {
         displayName: `${firstname} ${lastname}`,
@@ -132,13 +131,15 @@ export const useAuthStore = defineStore('authStore', {
       this.user.email = email
     },
 
-    changePassword (newPassword) {
+   changePassword (email) {
 
-      updatePassword(auth.currentUser, newPassword).then(() => {
-      }).catch((err) => {
-        alert(err.message)
-      });
-    }
-
+    sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert('password reset email send!')
+    })
+    .catch((err) => {
+      alert(err.message)
+    });
   }
-})
+
+}})
