@@ -2,7 +2,7 @@
 
   <section class="product-banner">
     <div class="banner-tag"
-     v-motion-slide-visible-once-top>
+     v-motion-slide-visible-once-bottom>
       <h1>Take the stress <br>
       out of fashion.</h1> <br>
 
