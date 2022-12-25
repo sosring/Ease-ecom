@@ -59,7 +59,7 @@
       letter-spacing: 3px;
     }
 
-    @include screen-sm {
+    @include screen-md {
       font-size: 40px;
     }
   }
