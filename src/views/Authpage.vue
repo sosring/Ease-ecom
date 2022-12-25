@@ -25,7 +25,7 @@
        </div>
     </header>
 
-  <div>
+  <div class="user-wrapper">
    <Profile
     key="profile"
     v-if="!editUserProfile"

@@ -1,18 +1,21 @@
 <template>
 
-  <section>
+  <section class="product-banner">
+    <div class="banner-tag">
+      <h1>Take the stress <br>
+      out of fashion.</h1> <br>
 
-    <div class="product-banner">
+      <p>Best fashion deals with ease.</p><br>
 
-      <div class="banner-tag">
-        <h1>Take the stress <br>
-        out of fashion.</h1> <br>
-
-        <p>Best fashion deals with ease.</p>
-      </div>
+      <button class="product-btn btns">
+       View products
+      </button>
     </div>
   </section>
 
+  <section class="product slider">
+    <h3></h3> 
+  </section>
 </template>
 
 <script setup>
@@ -39,10 +42,13 @@
 
   .banner-tag {
     color: $pink;
+    z-index: 1;
 
     text-align: center;
     padding: 2rem;
-    font-size: 28px;
+    font-size: 24px;
+    @include screen-md { font-size: 28px; }
+    @include screen-md { font-size: 40px; }
 
     h1, p {
       text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
@@ -54,13 +60,26 @@
     }
 
     p {
-      @include fontStyle($roboto, 1.2em);
+      @include fontStyle($roboto, 1.1em);
       font-weight: 700;
       letter-spacing: 3px;
     }
 
-    @include screen-md {
-      font-size: 40px;
+    .product-btn {
+      color: $pink;
+      border: $pink 1px solid; 
+      font-size: .9rem;
+
+      background-color: rgba(0, 0, 0, 0.2);
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      padding: .9rem 1rem; 
+      border-radius: 0;
     }
   }
 </style>

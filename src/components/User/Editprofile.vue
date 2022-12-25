@@ -9,7 +9,7 @@
       <label>FIRST NAME</label>
       <input 
        v-model="userInfo.firstname"
-       class="form-inputs capitalize" 
+       class="inputs capitalize" 
        type="text">
      </div>
 
@@ -17,7 +17,7 @@
       <label>LAST NAME</label>
       <input 
        v-model="userInfo.lastname"
-       class="form-inputs capitalize" 
+       class="inputs capitalize" 
        type="text">
      </div>
 
@@ -25,7 +25,7 @@
       <label>EMAIL</label>
       <input 
        v-model="userInfo.email"
-       class="form-inputs" 
+       class="inputs" 
        type="text">
      </div>
 
@@ -94,9 +94,9 @@
  @import '@/styles/main';
   
  .edit-profile-container {
-    padding: .8rem 0;
     max-width: 700px;
     margin: 1rem auto;
+    padding: .8rem 0;
 
     header {
       cursor: pointer;
@@ -133,7 +133,7 @@
         }
       }
 
-      .form-inputs {
+      .inputs {
         width: 100%;
         color: $text-dark;
         padding: .5rem 0; 

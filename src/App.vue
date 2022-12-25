@@ -13,7 +13,7 @@
   import { onMounted } from 'vue'
   import Navbar from './components/TheNavbar.vue'
   import { useAuthStore } from '@/stores/auth'
-
+  import { vAutoAnimate } from '@formkit/auto-animate'
 
   const useAuth = useAuthStore()
 
@@ -32,6 +32,10 @@
     width: 100%;
 
     position: fixed;
-    top: 7%;
+    top: 6%;
+
+    @include screen-md {
+      top: 8%;
+    }
   }
 </style>
