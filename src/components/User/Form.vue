@@ -239,19 +239,6 @@
           grid-column: 1 / span 2;
         }
       }
-
-      .form-inputs {
-        width: 100%;
-        color: $text-light;
-        padding: .7rem 1rem; 
-        border-radius: 4px;
-        border: $brown 1px solid;
-
-        &:focus {
-          background: lighten($brown, 30%);
-          outline: none;
-        }
-      }
     }
 
   .form-input-grid {

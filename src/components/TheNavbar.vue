@@ -1,16 +1,16 @@
 <template>
 
-  <nav class="nav-container">
+  <nav class="nav-container"
+   ref="NavbarRef">
 
   <div class="inner-nav-cont"
-   ref="NavbarRef" v-auto-animate>
+   v-auto-animate>
 
   <div class="primary-nav">
     <h1 
      @click="$router.push({ name: 'home' })">
      Ease
     </h1>
-
 
     <i @click="toggleNav"
      class="fas fa-bars"
@@ -21,15 +21,22 @@
   <div v-if="showNav"
    class="secoundary-nav">
 
-    <RouterLink v-for="route in routes" 
+    <input 
+     type="text"
+     @keyup.enter="toggleNav"
+     class="form-inputs"
+     placeholder="search products">
+
+    <RouterLink 
+     @click="toggleNav"
+     v-for="route in routes" 
      :to="{ name: route.path }">
        {{ route.name }}
     </RouterLink>
 
     <button class="cart-btn">
-      Cart
-      <i class="fas fa-shopping-cart">
-      </i>
+      <p>Cart</p>
+      <i class="fas fa-shopping-cart"></i>
     </button>
   </div>
 
@@ -52,12 +59,9 @@
     screenWidth.value <= 600 ? showNav.value = !showNav.value : showNav.value 
   } 
 
-  onClickOutside(() =>  NavbarRef, () => {
+  onClickOutside( NavbarRef, () => {
     screenWidth.value <= 600 ? showNav.value = false : showNav.value
-  },
-  { 
-   ignore: [NavBtnRef] 
-  } )
+  }, { ignore: [NavBtnRef] })
 
   const checkScreen = () => {
     screenWidth.value = window.innerWidth
@@ -78,9 +82,12 @@
   .nav-container {
     font-size: 16px;
     font-weight: 600;
-    background: $bg-light;
     border-bottom: 1px solid $border;
     z-index: 2;
+
+    background: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 
     position: fixed;
     top: 0;
@@ -94,6 +101,7 @@
   .inner-nav-cont {
     padding: .7rem; 
     @include flexCenter(none, space-between, column);
+
 
     max-width: 1540px;
     margin: 0 auto;
@@ -123,9 +131,18 @@
     }
 
     .secoundary-nav {
-      display: grid;
+      height: 100vh;
       text-align: end;
       margin: 1rem 0 0;
+      @include flexCenter(end, start, column);
+
+      .form-inputs {
+        margin: 0 0 1rem;
+
+        @include screen-sm {
+          margin: 0 1rem 0 0;
+        }
+      }
 
       a {
         margin: 0 0 1rem;
@@ -141,8 +158,9 @@
       }
 
       @include screen-sm {
-        @include flexCenter(center, none, row);
         margin: 0;
+        height: auto;
+        @include flexCenter(center, none, row);
 
         a{
           margin: 0 1rem 0 0;
@@ -151,12 +169,18 @@
     }
 
     .cart-btn {
+      display: flex;
+
       color: $white;
-      padding: .7rem 0; 
+      padding: .8rem 1rem; 
       border-radius: 4px;
       background: $brown;
 
       transition: all .15s;
+
+      p {
+        margin: 0 .5rem 0 0;
+      }
 
       @include screen-sm {
         border: $brown 1px solid;
