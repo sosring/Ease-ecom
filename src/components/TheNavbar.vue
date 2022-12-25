@@ -85,9 +85,7 @@
     border-bottom: 1px solid $border;
     z-index: 2;
 
-    background: rgba(255, 255, 255, 0.4);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    background: $bg-light;
 
     position: fixed;
     top: 0;
@@ -131,7 +129,6 @@
     }
 
     .secoundary-nav {
-      height: 100vh;
       text-align: end;
       margin: 1rem 0 0;
       @include flexCenter(end, start, column);
@@ -159,7 +156,6 @@
 
       @include screen-sm {
         margin: 0;
-        height: auto;
         @include flexCenter(center, none, row);
 
         a{

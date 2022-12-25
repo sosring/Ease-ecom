@@ -30,9 +30,8 @@
 
   .main-container {
     width: 100%;
-    padding: .5rem;
 
     position: fixed;
-    top: 10%;
+    top: 7%;
   }
 </style>
