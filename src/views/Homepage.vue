@@ -56,6 +56,7 @@
     p {
       @include fontStyle($roboto, 1.2em);
       font-weight: 700;
+      letter-spacing: 3px;
     }
 
     @include screen-sm {
