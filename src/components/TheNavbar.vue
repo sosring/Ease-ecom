@@ -25,7 +25,7 @@
      type="text"
      @keyup.enter="toggleNav"
      class="form-inputs"
-     placeholder="search products">
+     placeholder="Search products">
 
     <RouterLink 
      @click="toggleNav"
