@@ -138,6 +138,10 @@
         font-size: 1.1rem;
         color: $text-light;
 
+        &:active{
+          transform: translate(0, 5%);
+        }
+
         @include screen-md {
          display: none;
         }
