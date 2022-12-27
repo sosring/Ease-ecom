@@ -7,27 +7,26 @@
    v-auto-animate>
 
   <div class="primary-nav">
-    <h1 
-     @click="redirect">
+    <h1 @click="redirect">
      Ease
     </h1>
+
+   <span 
+    class="mobile-nav-btns">
+    <i class="fas 
+     fa-shopping-cart"
+     ref="NavBtnRef">
+    </i> 
 
     <i @click="toggleNav"
      class="fas fa-bars"
      ref="NavBtnRef">
     </i> 
+   </span>
   </div>
   
   <div v-if="showNav"
    class="secoundary-nav">
-
-  <span class="search-input">
-   <input 
-    type="text"
-    placeholder="Search products">
-
-    <i class="fas fa-magnifying-glass"></i>
-  </span>
 
     <RouterLink 
      @click="toggleNav"
@@ -84,7 +83,7 @@
   ] 
 
   const redirect = () => {
-    toggleNav();
+    toggleNav()
     router.push({ name: 'home' })
   }
 </script>
@@ -131,14 +130,19 @@
         font-style: italic;
       }
 
+     .mobile-nav-btns {
+      gap: 1rem;
+
       i{
         display: inline-block;
         font-size: 1.1rem;
+        color: $text-light;
 
         @include screen-md {
          display: none;
         }
       }
+     }
     }
 
     .secoundary-nav {
@@ -146,38 +150,6 @@
       gap: 1rem;
       margin: 1rem 0 0;
       @include flexCenter(end, start, column);
-
-     .search-input {
-       width: 100%;
-       color: $text-light;
-       border-radius: 4px;
-       border: $brown 1px solid;
-
-       position: relative;
-
-       input {
-        width: 100%;
-        height: 100%;
-        padding: .7rem 1rem;
-
-        &:focus {
-          background: lighten($brown, 30%);
-          outline: none;
-        }
-       }
-
-        i {
-         z-index: 1;
-         cursor: pointer;
-
-         position: absolute;
-         right: 5%;
-        }
-
-        @include screen-md {
-          width: 350px
-        }
-      }
 
       a {
         color: $text-light;
@@ -204,33 +176,30 @@
     }
 
     .cart-btn {
-      display: flex;
+      display: none;
 
       color: $white;
       padding: .7rem 1rem; 
       border-radius: 4px;
-      background: $brown;
+
+      color: $brown;
+      border: $brown 1px solid;
+      font-size: 1rem;
 
       transition: all .15s;
 
-      p {
-        margin: 0 .5rem 0 0;
+      &:hover{
+        background: $brown;
+        color: $white;
       }
 
-      @include screen-sm {
-        border: $brown 1px solid;
-        color: $brown;
-        background: transparent;
-        font-size: 1rem;
+      &:active{
+        transform: translate(0, 5%);
+      }
 
-        &:hover{
-          background: $brown;
-          color: $white;
-        }
-
-        &:active{
-          transform: translate(0, 5%);
-        }
+      @include screen-md {
+        display: flex;
+        gap: .5rem;
       }
     }
   }

@@ -208,7 +208,7 @@
 
       label {
         display: block;
-        margin: 1rem 0;
+        margin: .5rem 0;
 
         color: $brown;
         font-size: 1rem;
@@ -228,7 +228,6 @@
       }
 
       span {
-        display: flex;
         justify-content: center;
         color: $text-light;
         font-size: 1rem;
@@ -238,6 +237,7 @@
           color: darken($indigo, 20);
           cursor: pointer;
         }
+
         @include screen-base {
           grid-column: 1 / span 2;
         }
