@@ -8,7 +8,7 @@
 
   <div class="primary-nav">
     <h1 
-     @click="$router.push({ name: 'home' })">
+     @click="redirect">
      Ease
     </h1>
 
@@ -21,11 +21,13 @@
   <div v-if="showNav"
    class="secoundary-nav">
 
-    <input 
-     type="text"
-     @keyup.enter="toggleNav"
-     class="form-inputs"
-     placeholder="Search products">
+  <span class="search-input">
+   <input 
+    type="text"
+    placeholder="Search products">
+
+    <i class="fas fa-magnifying-glass"></i>
+  </span>
 
     <RouterLink 
      @click="toggleNav"
@@ -49,7 +51,9 @@
   import { onClickOutside } from '@vueuse/core'
   import { vAutoAnimate } from '@formkit/auto-animate'
   import { useAuthStore } from '@/stores/auth'
+  import { useRouter } from 'vue-router'
 
+  const router = useRouter()
   const useAuth = useAuthStore()
 
   const showNav = ref(null)
@@ -78,6 +82,11 @@
     { name: 'Product', path: 'products' },
     { name:  'Profile'   , path: 'auth' }
   ] 
+
+  const redirect = () => {
+    toggleNav();
+    router.push({ name: 'home' })
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -137,6 +146,38 @@
       gap: 1rem;
       margin: 1rem 0 0;
       @include flexCenter(end, start, column);
+
+     .search-input {
+       width: 100%;
+       color: $text-light;
+       border-radius: 4px;
+       border: $brown 1px solid;
+
+       position: relative;
+
+       input {
+        width: 100%;
+        height: 100%;
+        padding: .7rem 1rem;
+
+        &:focus {
+          background: lighten($brown, 30%);
+          outline: none;
+        }
+       }
+
+        i {
+         z-index: 1;
+         cursor: pointer;
+
+         position: absolute;
+         right: 5%;
+        }
+
+        @include screen-md {
+          width: 350px
+        }
+      }
 
       a {
         color: $text-light;

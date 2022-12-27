@@ -267,6 +267,7 @@
       z-index: 1;
       position: absolute;
       right: 3%;
+      cursor: pointer
     }
   }
 
