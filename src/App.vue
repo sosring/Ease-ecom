@@ -46,6 +46,9 @@
     height: 100%;
     overflow-y: scroll;
 
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+
     position: fixed;
     top: 6%;
 

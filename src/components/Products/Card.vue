@@ -2,7 +2,7 @@
 
   <div class="product-card-cont">
 
-   <div class="image-cont" v-auto-animate>
+   <div class="image-cont">
     <img :src="`/assets/${product.images[1]}.png`">
 
     <button class="overview-btn">
@@ -30,7 +30,6 @@
 
 <script setup>
   import { ref, computed } from 'vue'
-  import { vAutoAnimate } from '@formkit/auto-animate'
     
   const props = defineProps({
     product: {
@@ -56,13 +55,15 @@
 
   .product-card-cont {
     height: 550px;
-    width: 375px;
+    width: 100%;
+
+    @include screen-base {
+      height: 650px;
+      width: 450px
+    }
+
     flex: none;
-  
-   @include screen-md {
-     height: 650px;
-     width: 450px;
-   }
+    scroll-snap-align: start;
 
     line-height: 1.3;
     color: $text-light;
@@ -76,6 +77,7 @@
       width: 100%;
 
       position: relative;
+      border-radius: 4px;
 
       img {
         height: 100%;
@@ -97,7 +99,6 @@
         backdrop-filter: blur(5px);
 
         padding: .7rem;
-        font-size: 18px;
         transition: opacity .2s ease-out , background-color .15s ease;
 
 
@@ -114,6 +115,11 @@
   .product-details {
      height: 20%;
      @include flexCenter(none, center, column);
+     font-size: .7rem;
+
+     @include screen-sm {
+       font-size: .8rem;
+     }
 
      padding: .7rem;
      font-family: monospace;

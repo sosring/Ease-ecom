@@ -8,9 +8,9 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue' 
+  import { ref, computed } from 'vue' 
   import Card from '@/components/Products/Card.vue'
-
+  
   const props = defineProps({
     products: {
       type: Array
@@ -26,10 +26,13 @@
     margin: 2rem auto;
 
     display: flex;
-    overflow: scroll;
     gap: 1rem;
+    padding: 0 .5rem;
 
-    height: 100%;
-    width: 100%;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
   }
 </style>
