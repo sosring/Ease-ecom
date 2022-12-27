@@ -1,11 +1,9 @@
 <template>
 
-  <div class="slider-container"
-   v-for="product in products">
-    
-    <div></div>
-    <div></div>
-    <div></div>
+  <div class="slider-container">
+
+    <Card v-for="product in products"
+     :product="product"/>
   </div>
 </template>
 
@@ -25,12 +23,13 @@
   @import '@/styles/main';  
 
   .slider-container {
-    height: 400px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin: 2rem auto;
 
-    div {
-     background: black
-    }
+    display: flex;
+    overflow: scroll;
+    gap: 1rem;
+
+    height: 100%;
+    width: 100%;
   }
 </style>

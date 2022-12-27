@@ -17,7 +17,7 @@
   </div>
 
   <Slider 
-   :products="womenFiltered"/>
+   :products="menFiltered"/>
 
   <div class="about">
    <div class="about-title">
@@ -46,8 +46,8 @@
 
   const productStore = useProductStore() 
 
-  const womenFiltered = computed(() => {
-    return productStore.products.filter(product => product.gender === 'women').slice(0, 3)
+  const menFiltered = computed(() => {
+    return productStore.products.filter(product => product.gender === 'men').slice(0, 4)
   })
 </script>
 

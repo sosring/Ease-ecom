@@ -153,6 +153,7 @@
       text-align: end;
       gap: 1rem;
       margin: 1rem 0 0;
+
       @include flexCenter(end, start, column);
 
       a {
@@ -173,9 +174,6 @@
 
       @include screen-md {
         @include flexCenter(center, none, row);
-
-        a{
-        }
       }
     }
 
