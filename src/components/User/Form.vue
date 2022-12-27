@@ -50,13 +50,18 @@
      <div>
       <label>PASSWORD</label> 
 
-      <input 
-       :value="password"
-       @input="$emit('update:password', $event.target.value)"
-       class="form-inputs"
-       type="password"
-       placeholder="eg - 8*jfaVnci">
-     </div>
+      <span class="password-input">
+        <input 
+         :value="password"
+         @input="$emit('update:password', $event.target.value)"
+         :type="hidePassword ? 'password' : 'text'"
+         placeholder="eg - 8*jfaVnci">
+
+         <i @click="hidePassword = !hidePassword"
+          :class="hidePassword ? 'fas fa-eye' : 'fas fa-eye-slash'">
+         </i>
+       </span>
+    </div>
 
     <input class="form-submit-btn btns"
      type="submit" value="SUBMIT">
@@ -126,6 +131,7 @@
   })
 
   const register = ref(true)
+  const hidePassword = ref(true)
 
   const formInfo = computed(() => {
    return register.value ? 'Sign Up' : 'Sign In'
@@ -238,6 +244,32 @@
       }
     }
 
+  .password-input {
+    width: 100%;
+    color: $text-light;
+    border-radius: 4px;
+    border: $brown 1px solid;
+
+    position: relative;
+
+    input {
+      width: 100%;
+      height: 100%;
+      padding: .7rem 1rem; 
+
+      &:focus {
+        background: lighten($brown, 30%);
+        outline: none;
+      }
+    }
+
+    i {
+      z-index: 1;
+      position: absolute;
+      right: 3%;
+    }
+  }
+
   .form-input-grid {
      gap: .5rem;
 
@@ -275,7 +307,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 1rem 0;
-    gap: 1rem;
+    grid-gap: 1rem;
 
     .google-btn{
       color: $white;
