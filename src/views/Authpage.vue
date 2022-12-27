@@ -1,8 +1,7 @@
 <template>
 
 <div v-auto-animate>
-
-  <Form v-if="!useAuth.user.id" 
+<Form v-if="!useAuth.user.id" 
    v-model:firstname="credentials.firstname"
    v-model:lastname="credentials.lastname"
    v-model:email="credentials.email"

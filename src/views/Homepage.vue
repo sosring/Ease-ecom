@@ -1,8 +1,8 @@
 <template>
 
   <section class="product-banner">
-    <div class="banner-tag"
-     v-motion-slide-visible-once-bottom>
+    <div class="banner-tag">
+
       <h1>Take the stress <br>
       out of fashion.</h1> <br>
 
@@ -14,15 +14,29 @@
     </div>
   </section>
 
-  <section class="product-slider">
+  <Slider />
 
-    <h3>Take off your shirt!</h3> 
+  <section class="about">
+   <div class="about-title">
+      <h3>MADE FOR THE <br> MORDERN CLOTHINGS</h3>
+   </div>
+
+   <div class="about-desc">
+    <p> Clothes are meant to be fun, but sometimes 
+    it can be difficult to find something that is both 
+    flattering and trendy. In this short story, a young woman 
+    finds the perfect outfit to add some spice to her life.
+    </p>
+   </div> 
   </section>
+
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, computed } from 'vue'
   import { useProductStore } from '@/stores/product'
+  import { vAutoAnimate } from '@formkit/auto-animate'
+  import Slider from '@/components/Products/Slider.vue'
 
   const productStore = useProductStore() 
 </script>
@@ -84,6 +98,53 @@
 
       padding: .9rem 1rem; 
       border-radius: 0;
+    }
+  }
+
+  .product-slider {
+    display: flex;
+    overflow: scroll;
+  }
+
+  .about {
+    max-width: 1450px;
+    font-weight: 500;
+    font-size: 16px;
+
+    display: grid;
+    gap: 1rem;
+    
+    padding: 2rem 1rem;
+    margin: .5rem auto;
+
+    .about-title {
+      @include fontStyle($roboto, 1.2em);
+      text-align: center;
+      letter-spacing: 3px;
+    }
+    
+    .about-desc {
+      line-height: 1.2;
+      @include fontStyle($work, .8em);
+    }
+
+    @include screen-base {
+      font-size: 18px;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      div {
+        @include flexCenter(center, center, row)
+      }
+      
+      .about-title {
+        border-right: 2px $border solid;
+      }
+    }
+
+    @include screen-md {
+      font-size: 22px;
+      height: 200px;
     }
   }
 </style>

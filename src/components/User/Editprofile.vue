@@ -41,7 +41,7 @@
    <div class="other-neccessary-btns">
 
     <button class="password-btn"
-     @click="resetPassword">
+     @click="passwordReset">
       Change password
     </button>
 
@@ -84,10 +84,6 @@
     useAuth.updateUserProfile(credentials)
     emits('update:editProfile' , false)
   }
-
-  const resetPassword = () => {
-    useAuth.changePassword(userInfo.email)
-  }
 </script>
 
 <style lang="scss" scoped>
@@ -98,29 +94,11 @@
     margin: 1rem auto;
     padding: .8rem 0;
 
-    header {
-      cursor: pointer;
-      display: grid;
-
-      span {
-        margin-bottom: 1rem;
-
-        p {
-         font-size: 1.1rem;
-         font-weight: 700;
-        }
-
-        i{
-          margin-right: .5rem;
-        }
-      }
-    }
-
     .form-update {
       display: grid;
+      gap: 2rem;
 
       div {
-        margin: 1rem 0;
 
         label {
           color: $text-light;

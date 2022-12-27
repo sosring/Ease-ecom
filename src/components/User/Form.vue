@@ -61,17 +61,18 @@
     <input class="form-submit-btn btns"
      type="submit" value="SUBMIT">
 
+
      <span v-if="register"> 
-      <p>Already have an account </p>
-      <p @click="register = !register">
-       Sign in ?
+      <p>Already have an account 
+      <b @click="register = !register">
+       Sign in ?</b>
       </p>
      </span>
 
      <span v-if="!register"> 
-      <p>Create a new account</p>
-      <p @click="register = !register">
-       Sign up ?
+      <p>Create a new account
+      <b @click="register = !register">
+       Sign up ? </b>
       </p>
      </span>
 
@@ -227,11 +228,7 @@
         font-size: 1rem;
         cursor: pointer;
 
-        :nth-child(1){
-          margin-right: .5rem;
-        }
-        :nth-child(2){
-          font-weight: 700;
+        b {
           color: darken($indigo, 20);
           cursor: pointer;
         }
@@ -278,10 +275,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 1rem 0;
+    gap: 1rem;
 
     .google-btn{
       color: $white;
-      margin-right: .5rem;
       background: darken($indigo, 10);
 
       &:hover {
@@ -292,7 +289,6 @@
     .demo-btn{
       background: lighten($text-dark, 10);
       color: $white;
-      margin-left: .5rem;
       
       &:hover {
         background: lighten($text-dark, 5);

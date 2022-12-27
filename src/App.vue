@@ -5,7 +5,15 @@
   </header>
 
   <main class="main-container">
-   <RouterView />
+
+   <router-view v-slot="{ Component, route }">
+     <transition name="fade" mode="out-in">
+       <div :key="route.name">  
+       <component :is="Component"></component>
+       </div>
+     </transition>
+   </router-view>
+
   </main>
 </template>
 
@@ -14,7 +22,6 @@
   import Navbar from './components/TheNavbar.vue'
   import { useAuthStore } from '@/stores/auth'
   import { useProductStore } from '@/stores/product'
-  import { vAutoAnimate } from '@formkit/auto-animate'
 
   const useAuth = useAuthStore()
   const productStore = useProductStore() 
@@ -46,4 +53,15 @@
       top: 8%;
     }
   }
+
+ /* route */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

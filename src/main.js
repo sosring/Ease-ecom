@@ -7,12 +7,11 @@ import router from './router'
 
 
 
-const app = createApp(App)
 const pinia = createPinia()
 pinia.use(({store}) => { store.router = markRaw(router) })
 
-app.use(pinia)
-app.use(router)
-app.use(MotionPlugin)
-
-app.mount('#app')
+createApp(App)
+  .use(pinia)
+  .use(router)
+  .use(MotionPlugin)
+  .mount('#app')

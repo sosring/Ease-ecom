@@ -26,6 +26,5 @@ export const useProductStore = defineStore('productStore', {
         this.products = products
       });
     }
-
   }
 })

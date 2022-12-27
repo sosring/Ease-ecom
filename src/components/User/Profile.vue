@@ -70,7 +70,7 @@
     .primary-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      gap: .5rem;
 
       margin-bottom: 1rem;
 

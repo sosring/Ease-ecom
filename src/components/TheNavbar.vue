@@ -134,19 +134,11 @@
 
     .secoundary-nav {
       text-align: end;
+      gap: 1rem;
       margin: 1rem 0 0;
       @include flexCenter(end, start, column);
 
-      .form-inputs {
-        margin: 0 0 1rem;
-
-        @include screen-md {
-          margin: 0 1rem 0 0;
-        }
-      }
-
       a {
-        margin: 0 0 1rem;
         color: $text-light;
 
         &.router-link-exact-active {
@@ -160,10 +152,12 @@
 
       @include screen-md {
         margin: 0;
+      }
+
+      @include screen-md {
         @include flexCenter(center, none, row);
 
         a{
-          margin: 0 1rem 0 0;
         }
       }
     }

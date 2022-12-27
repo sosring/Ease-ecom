@@ -4,13 +4,13 @@ import { GoogleAuthProvider, signInWithPopup,
 onAuthStateChanged, signOut, signInAnonymously,
 createUserWithEmailAndPassword, updateProfile,
 signInWithEmailAndPassword, deleteUser, 
- sendEmailVerification, sendPasswordResetEmail } 
+sendEmailVerification, sendPasswordResetEmail } 
 from "firebase/auth";
 import { auth } from '@/js/firebase'
 
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
-    user: {} 
+    user: {}
  }),
 
   actions: {
@@ -18,7 +18,6 @@ export const useAuthStore = defineStore('authStore', {
     init(){
       onAuthStateChanged(auth, (user) => {
         if (user) {
-
           this.user = {
             id : user.uid,
             email : user.email,
@@ -34,16 +33,18 @@ export const useAuthStore = defineStore('authStore', {
       });
     },
 
+
     registerNewUser (credentials) {
 
       createUserWithEmailAndPassword(auth, credentials.email, credentials.password)
       .then((userCredential) => {
-        const user = userCredential.user;
 
-        this.setNameImg(credentials.firstname, credentials.lastname)
-      })
-      .catch((err) => {
-        alert(err.message)
+         const user = userCredential.user;
+
+         this.setName(credentials.firstname, credentials.lastname)
+       })
+       .catch((err) => {
+         console.log(err)
       });
     },
    
@@ -51,10 +52,8 @@ export const useAuthStore = defineStore('authStore', {
 
       signInWithEmailAndPassword(auth, credentials.email, credentials.password)
       .then((userCredential) => {
-        const user = userCredential.user;
       })
       .catch((err) => {
-        alert(err.message)
       });
     },
 
@@ -62,7 +61,7 @@ export const useAuthStore = defineStore('authStore', {
 
       signInAnonymously(auth)
       .then(() => {
-       this.setNameImg()
+       this.setName()
       })
       .catch((err) => {
        alert(err.message)
@@ -73,20 +72,22 @@ export const useAuthStore = defineStore('authStore', {
       const provider = new GoogleAuthProvider();
 
       signInWithPopup(auth, provider)
-        .then((result) => {
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-          const user = result.user;
-        })
-        .catch((err) => {
-          alert(err.message)
-        });
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+      })
+       .catch((err) => {
+         alert(err.message)
+      });
     },
 
     signOutUser (){
 
      signOut(auth).then(() => {
-     }).catch((error) => {
+      console.log('user sign out')
+     }).catch((err) => {
+       console.log(err.meassage)
      });
     },
 
@@ -102,15 +103,17 @@ export const useAuthStore = defineStore('authStore', {
 
     // Updating user info 
 
-    setNameImg (firstname = 'Unknown', lastname) {
+    setName (firstname = 'Unknown', lastname = '') {
       const img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6xSz0eMW7GmpKukczOHvPWWGDqaBCqWA-Mw&usqp=CAU'
+      const firstName = firstname.split(' ').join('')
+      const lastName = lastname.split(' ').join('')
 
       updateProfile(auth.currentUser, {
-        displayName: `${firstname} ${lastname}`,
+        displayName: `${firstName} ${lastName}`,
         photoURL: img 
       })
 
-      this.user.name = `${firstname} ${lastname}`;
+      this.user.name = `${firstName} ${lastName}`;
       this.user.img = img
     },
 
@@ -130,16 +133,5 @@ export const useAuthStore = defineStore('authStore', {
       this.user.name = `${firstname} ${lastname}`
       this.user.email = email
     },
-
-   changePassword (email) {
-
-    sendPasswordResetEmail(auth, email)
-    .then(() => {
-      alert('password reset email send!')
-    })
-    .catch((err) => {
-      alert(err.message)
-    });
-  }
 
 }})
