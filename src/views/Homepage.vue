@@ -1,22 +1,25 @@
 <template>
 
-  <section class="product-banner">
-    <div class="banner-tag">
+  <div class="product-banner">
+    <div class="banner-tag" v-motion-slide-bottom>
 
       <h1>Take the stress <br>
       out of fashion.</h1> <br>
 
       <p>Best fashion deals with ease.</p><br>
 
-      <button class="product-btn btns">
+      <button
+       @click="$router.push({ name: 'products' })"
+       class="product-btn btns">
        View products
       </button> 
     </div>
-  </section>
+  </div>
 
-  <Slider />
+  <Slider 
+   :products="womenFiltered"/>
 
-  <section class="about">
+  <div class="about">
    <div class="about-title">
       <h3>MADE FOR THE <br> MORDERN CLOTHINGS</h3>
    </div>
@@ -28,7 +31,10 @@
     finds the perfect outfit to add some spice to her life.
     </p>
    </div> 
-  </section>
+  </div>
+
+  <footer class="homepage-footer">
+  </footer>
 
 </template>
 
@@ -39,6 +45,10 @@
   import Slider from '@/components/Products/Slider.vue'
 
   const productStore = useProductStore() 
+
+  const womenFiltered = computed(() => {
+    return productStore.products.filter(product => product.gender === 'women').slice(0, 3)
+  })
 </script>
 
 <style lang="scss" scoped>
@@ -146,5 +156,9 @@
       font-size: 22px;
       height: 200px;
     }
+  }
+
+  .homepage-footer {
+    height: 500px
   }
 </style>

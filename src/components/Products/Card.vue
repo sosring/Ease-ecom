@@ -1,21 +1,22 @@
 <template>
 
-  <div class="slider-container">
+  <div class="product-card-cont">
   </div>
 </template>
 
 <script setup>
-  import { computed } from 'vue' 
-  import Card from '@/components/Products/Card.vue'
-
+  import { computed } from 'vue'
+    
   const props = defineProps({
-    products: {
-      type: Array
+    product: {
+      type: Object
     }
   });
-
 </script>
 
 <style lang="scss" scoped>
   @import '@/styles/main';  
+
+  .product-card-cont {
+  }
 </style>
