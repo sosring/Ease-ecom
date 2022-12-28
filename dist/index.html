@@ -2,13 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ease</title>
     
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-994990e1.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADuElEQVRYR+1XaSilURh+7iVrKUtzJylbZPtBikIiJPKHEEqKRPMDIWquSc0YW5YwV1lCyU6ULUqRpUhkScmW5DKWH9ZkGfO9r7kXTc2/684Pp97kO+c779OznPsdEQCxUFKhPgklEUoklCrHo7D5T6FkQn2nZl+E+qrKjv/YW0oACM0HNQGQEwCiRF3jUd0A2HDqZOAdwDsDzww0NDSgpKQER0dHCA4OhrW1NW5vbzE8PIyFhQWVxVSZgsTERBQVFUFbWxt6enq4u7uDpqYmHh4e4Onpibm5OZWAUAKws7PD2toaRCIR2traEB8fj/DwcDQ3NyMhIQHEkCqGEkBMTAxaWlpweHiIi4sLWFhYQENDA7OzswgKCsLZ2Zkq+j97wNXVFfPz8zg9PeXmpqamTP/W1tarxi4uLrC1tcXJyQnc3NxQVVWFy8tL5RofHx84Oztje3sb/f39eHx8OueMjY3h5+fHvhoYGMD9/T0/f3UStra2Ijo6GgcHB5DL5QgJCWFGaBgZGYHmAwMDcX5+zkAtLS1RU1OD5ORkXlNaWoqUlBTs7e3xnEK6yMhI1NfXs7+0tLSQn58PqZS+AF4ASEtLQ3FxMVZXVzE4OMgNZDIZm1EsFmNiYgJeXl6citjYWFRWVoJkI8Dt7e3Q0dFh6Qg4sUl/09PTMT09zTL29fWhsbERQ0NDqK2tRVJS0jMABwcHrKyscCN3d/e/HB8WFoaenh7s7u6C1l5fX2N8fBze3t6cmJubG04MRdjQ0JBZo9QQuKamJkRERKCrq4sl2NnZQWhoKLOkZIAiSKhokPYkwcuhkKaiogLEFI3l5WVQcohSKysrprW7u5vZIPMqaCbzGhgYoLe3F9XV1RgbG2NfREVFYWRk5MkDpFFHRwdvXFhYiNzcXDYL6V5QUAACSPEkibKzs+Hv74/R0VHeSCKRoLOzE76+vvzc3Nyc9aY5GxsbbG5u8rt0uJF85IPMzEykpqbCzMzsCYC+vj4WFxf5BRpXV1fsckUS6CT08PBgjaemprjZ/v4+n5a0VldXl+Uj39TV1SEuLo6loPcnJyfh6OjIidrY2OBn5BfyD8mqTIGJiQkyMjJYV4oMUTczM8NGJG1pY4rY8fExs0Ia0hyZrLy8HFlZWQgICODN19fXkZeXxxTb29ujrKwMTk5OnB4yJEm5tLT0dwxfCf9G/7x/Eb0z8F8w8OvPb8Ib+f5VG76Y0Ln7UR3dqTcByBHqm5oA5BAAup5/Foqu58TEW1zP6SPjh1AFvwFY9rcb7FFz/gAAAABJRU5ErkJggg==">
+    <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABVElEQVQ4T82TIY/CQBSEvxJyR7D8BRRJEQiSokBhUKBwNQSDI0GcOEjIEdIGAzgEBgGqqg7+ABUEEAgMuAoQKAqCXrvJJSdOAGfYZHZXzMzL230jAZ8ePjy8e3hkXTzyl+Rt/uXtEeUv7sU3cJ8UC9mLGLRaLSKRCNFolMFgwHg8vrsr0cJwOCSVSjGbzTifz1Sr1ccMarUamUyGfr+PaZokEgkqlQqhUIhms8n1eqVerzOfz5lMJjQaDfb7PZqmIYXDYXexWNBut5lOpziOw3q9JpfLMRqNSKfTlEolFEVhtVohyzLH45Hb7YaqqkjxeNxdLpfEYjG22y26rpNMJoXBbrcTZz6fJ5vN0uv16Ha7FAoFYebzpEAg4PoP5xNs28YwDFFxs9kQDAY5nU54RTgcDnQ6HYrFohBalkW5XH6VObj7z/4g+nPgPJHEHysRpn/F+Rty6oUt+WOeFgAAAABJRU5ErkJggg==">
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiIiwic2hvcnRfbmFtZSI6IiIsImljb25zIjpbeyJzcmMiOiIvYW5kcm9pZC1jaHJvbWUtMTkyeDE5Mi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiIvYW5kcm9pZC1jaHJvbWUtNTEyeDUxMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dLCJ0aGVtZV9jb2xvciI6IiNmZmZmZmYiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIn0=">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script type="module" crossorigin src="/assets/index-8099aa61.js"></script>
-    <link rel="stylesheet" href="/assets/index-108be335.css">
+    <script type="module" crossorigin src="/assets/index-c2d3ccca.js"></script>
+    <link rel="stylesheet" href="/assets/index-935ff909.css">
   </head>
   <body>
     <div id="app"></div>

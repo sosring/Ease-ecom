@@ -2,10 +2,11 @@
 
   <div class="product-card-cont"
    :key="product.id" 
-   :id="product.id">
+   :id="product.id" 
+   v-motion-slide-visible-once-bottom>
 
    <div class="image-cont">
-    <img :src="`assets/${product.images[1]}.png`">
+    <img src="/src/assets/MenA1.jpg">
 
     <button class="overview-btn">
      Quick view
@@ -82,7 +83,7 @@
         width: 100%;
 
         object-fit: cover;
-        position: absolute
+        position: absolute;
       }
 
       .overview-btn {

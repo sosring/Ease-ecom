@@ -3,7 +3,7 @@
   <div class="form-container">
 
    <div class="form-design">
-    <img src="/assets/annie-spratt-1.jpg">
+    <img src="/src/assets/annie-spratt-1.jpg">
    </div>
     
    <div class="form-input-container">

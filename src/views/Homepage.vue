@@ -33,8 +33,8 @@
    </div> 
   </div>
 
-  <footer class="homepage-footer">
-  </footer>
+  <Slider 
+   :products="womenFiltered" />
 
 </template>
 
@@ -43,12 +43,18 @@
   import { useProductStore } from '@/stores/product'
   import { vAutoAnimate } from '@formkit/auto-animate'
   import Slider from '@/components/Products/Slider.vue'
-
+   
   const productStore = useProductStore() 
 
   const menFiltered = computed(() => {
     return productStore.products.filter(product => product.gender === 'men').slice(0, 4)
   })
+
+  const womenFiltered = computed(() => {
+    return productStore.products.filter(product => product.gender === 'women').slice(0, 4)
+  })
+
+  const dummyIcon = ["instagram", "facebook", "pinterest"] 
 </script>
 
 <style lang="scss" scoped>
@@ -56,7 +62,7 @@
 
   .product-banner {
     min-height: 450px;
-    background: url('assets/banner01.png')  no-repeat center;
+    background: url('/src/assets/banner01.jpg')  no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -125,7 +131,7 @@
     gap: 1rem;
     
     padding: 2rem 1rem;
-    margin: .5rem auto;
+    margin: 3rem auto;
 
     .about-title {
       @include fontStyle($roboto, 1.2em);
@@ -156,9 +162,5 @@
       font-size: 22px;
       height: 200px;
     }
-  }
-
-  .homepage-footer {
-    height: 500px
   }
 </style>
