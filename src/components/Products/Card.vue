@@ -1,26 +1,27 @@
 <template>
 
-  <div class="product-card-cont">
+  <div class="product-card-cont"
+   :key="product.id" 
+   :id="product.id">
 
    <div class="image-cont">
-    <img :src="`/assets/${product.images[1]}.png`">
+    <img :src="`assets/${product.images[1]}.png`">
 
     <button class="overview-btn">
      Quick view
     </button>
    </div>
 
-
    <div class="product-details">
      <h3>{{ product.title }}</h3>
      <p>{{ product.brand }}</p>
 
     <span class="product-price">
-     <p :class="{ 'discounted': discounted }">
+     <p :class="{ 'discounted': product.discount }">
       ₹ {{ product.price }}
      </p>
 
-     <p v-if="discounted">
+     <p v-if="product.discount">
       ₹ {{ discountedPrice }}
      </p>
     </span>
@@ -37,13 +38,10 @@
     }
   });
 
-  const discounted = ref(false)
-
-  const discountedPrice = computed(() => {
+  const discountedPrice = computed(() => { 
 
     if(props.product.discount !== null){
       const discount = Number(props.product.price / props.product.discount)
-      discounted.value = true
 
       return Number(props.product.price - discount)
     }
