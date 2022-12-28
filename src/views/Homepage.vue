@@ -33,13 +33,16 @@
    </div> 
   </div>
 
+  <Slider 
+   :products="womenFiltered"/>
+
   <footer class="homepage-footer">
   </footer>
 
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
   import { useProductStore } from '@/stores/product'
   import { vAutoAnimate } from '@formkit/auto-animate'
   import Slider from '@/components/Products/Slider.vue'
@@ -48,6 +51,10 @@
 
   const menFiltered = computed(() => {
     return productStore.products.filter(product => product.gender === 'men').slice(0, 4)
+  })
+
+  const womenFiltered = computed(() => {
+    return productStore.products.filter(product => product.gender === 'women').slice(0, 4)
   })
 </script>
 

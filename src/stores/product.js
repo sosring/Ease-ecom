@@ -15,10 +15,9 @@ export const useProductStore = defineStore('productStore', {
   }),
 
   actions: {
-      
+
     async fetchProductData () {
       try {
-
         onSnapshot(queryCollection, (querySnapshot) => {
           const products = []
           querySnapshot.forEach((doc) => {

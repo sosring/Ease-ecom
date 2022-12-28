@@ -7,7 +7,9 @@
    <div class="image-cont">
     <img :src="`assets/${product.images[1]}.png`">
 
-    <button class="overview-btn">
+    <button 
+     @click="showQuickView = !showQuickView"
+     class="overview-btn">
      Quick view
     </button>
    </div>
@@ -27,16 +29,26 @@
     </span>
    </div>
   </div>
+
+  <Quickview 
+   v-if="showQuickView"
+   v-model:condition="showQuickView"
+   :product="product"
+   :discountedPrice="discountedPrice"/>
+
 </template>
 
 <script setup>
   import { ref, computed } from 'vue'
+  import Quickview from '@/components/Products/Quickview.vue'
     
   const props = defineProps({
     product: {
       type: Object
     }
   });
+
+  const showQuickView = ref(false)
 
   const discountedPrice = computed(() => { 
 
@@ -46,6 +58,7 @@
       return Number(props.product.price - discount)
     }
   })
+
 </script>
 
 <style lang="scss" scoped>
@@ -105,9 +118,11 @@
         }
       }
 
-      &:hover .overview-btn {
-        opacity: 1;
-      }
+     @include screen-md {
+       &:hover .overview-btn {
+         opacity: 1;
+       }
+     }
    }
 
   .product-details {

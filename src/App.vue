@@ -26,7 +26,6 @@
   const useAuth = useAuthStore()
   const productStore = useProductStore() 
 
-
   onMounted(() => {
     useAuth.init()
     productStore.fetchProductData()

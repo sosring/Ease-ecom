@@ -1,9 +1,10 @@
 <template>
 
+
   <div class="slider-container">
 
-    <Card v-for="product in products"
-     :product="product" />
+   <Card v-for="product in products"
+    :product="product" />
   </div>
 </template>
 
