@@ -16,6 +16,10 @@
     </div>
   </div>
 
+  <back-to-top bottom="50px" right="50px">
+    <button type="button" class="btn btn-info btn-to-top"></button>
+  </back-to-top>
+
   <Slider 
    :products="menFiltered"/>
 
@@ -46,6 +50,7 @@
   import { useProductStore } from '@/stores/product'
   import { vAutoAnimate } from '@formkit/auto-animate'
   import Slider from '@/components/Products/Slider.vue'
+  import BackToTop from 'vue-backtotop'
 
   const productStore = useProductStore() 
 
@@ -168,4 +173,13 @@
   .homepage-footer {
     height: 500px
   }
+
+  .btn-to-top {
+  width: 60px;
+  height: 60px;
+  padding: 10px 16px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 22px;
+}
 </style>

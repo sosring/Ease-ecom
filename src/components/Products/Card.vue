@@ -74,7 +74,6 @@
     }
 
     flex: none;
-    scroll-snap-align: start;
 
     line-height: 1.3;
     color: $text-light;
@@ -118,11 +117,9 @@
         }
       }
 
-     @include screen-md {
-       &:hover .overview-btn {
-         opacity: 1;
-       }
-     }
+      &:hover .overview-btn {
+        opacity: 1;
+      }
    }
 
   .product-details {

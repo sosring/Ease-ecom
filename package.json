@@ -19,6 +19,8 @@
     "pinia": "^2.0.28",
     "sass-loader": "^13.2.0",
     "vue": "^3.2.45",
+    "vue-backtotop": "^1.6.1",
+    "vue-carousel": "^0.18.0",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

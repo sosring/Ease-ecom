@@ -3,18 +3,16 @@
   <section class="quickview-wrapper"
    :key="product.id">
 
-    <div class="quick-view-cont"
-     v-motion-slide-visible-bottom>
+    <div ref="overviewRef"
+     class="quick-view-cont" 
+     v-motion-slide-bottom>
 
       <i @click="$emit('update:condition', false )"
        class="close fas fa-times">
       </i>
 
-      <div class="product-images">
-       <span v-for="image in product.images">
-        <img :src="`/assets/${image}.png`">
-       </span>
-      </div>
+     <Carousel 
+      :images="product.images"/>
 
       <div class="product-content">
        <div class="contents">
@@ -22,7 +20,7 @@
         <h2 v-html="product.brand"></h2>
         
         <span class="price">
-          <p> ₹ {{ discountedPrice }} </p>
+          <p v-if="discountedPrice"> ₹ {{ discountedPrice }} </p>
           <p :class="{ 'discounted': product.discount }">
            ₹ {{ product.price }}
           </p>
@@ -39,10 +37,17 @@
       </div>
     </div>
   </section>
+
 </template>
 
 <script setup>
-  
+  import { ref, onMounted } from 'vue'
+  import Carousel from '@/components/Carousel/Carousel.vue'
+  import { onClickOutside } from '@vueuse/core'
+
+
+  const emits = defineEmits(['update:condition'])
+
   const props = defineProps({
     product: {
       type: Object
@@ -55,7 +60,17 @@
     }
   });
 
-  const emits = defineEmits(['update:emits'])
+  const overviewRef = ref('')
+
+  onClickOutside(overviewRef, () => emits('update:condition', false))
+  
+  const handleKey = e => {
+    if(e.key === 'Escape'){
+      emits('update:condition', false)
+    }
+  }
+
+  onMounted(() => document.addEventListener('keyup', handleKey))
 </script>
 
 <style lang="scss" scoped>
@@ -76,57 +91,61 @@
   }
 
   .quick-view-cont {
-    height: 60%;
-    width: 70%;
+    height: 80%;
+    width: 90%;
+    position: relative;
 
     background: $bg-light;
     border-radius: 2px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
     0 6px 20px 0 rgba(0,0,0,0.19);
-    padding: 1rem;
+    padding: .5rem;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    @include screen-md {
+      height: 70%;
+      width: 90%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: none;
+    }
+
+    @include screen-xl {
+      width: 70%;
+    }
 
     .close {
       position: absolute;
-      right: 2%;
-      top: 4%;
+      right: 3%;
+      top: 2%;
       font-size: 1.2rem;
-    }
-  }
-
-  .product-images {
-    display: flex;
-    overflow-x: scroll;
-    gap: .5rem;
-
-    span {
-      flex: none;
-      height: 70%;
-      width: 320px;
-      background: black;
-
-      position: relative;
-
-      img {
-       position: absolute;
-       object-fit: cover;
-        height: 100%;
-        width: 100%;
-      }
+      z-index: 1;
     }
   }
 
   .product-content {
     padding: 1rem;
     display: grid;
+    font-size: 14px;
+      
+    @include screen-sm {
+      font-size: 16px;
+    }
+
+    @include screen-md {
+      font-size: 18px;
+    }
 
     .contents {
-      line-height: 3rem;
+      line-height: 2rem;
+
+      @include screen-md {
+        line-height: 3rem;
+      }
 
       h1 {
-        font-size: 1.4rem;
+        font-size: 1.4em;
         font-family: $oswald;
         letter-spacing: 2px;
       }
@@ -144,7 +163,7 @@
       }
 
       .desc {
-        line-height: 1.4;
+        line-height: 1.5;
       }
     }
 

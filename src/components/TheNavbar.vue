@@ -83,7 +83,7 @@
   ] 
 
   const redirect = () => {
-    toggleNav()
+    showNav.value = false
     router.push({ name: 'home' })
   }
 </script>

@@ -5,8 +5,6 @@ import { MotionPlugin } from '@vueuse/motion'
 import App from './App.vue'
 import router from './router'
 
-
-
 const pinia = createPinia()
 pinia.use(({store}) => { store.router = markRaw(router) })
 

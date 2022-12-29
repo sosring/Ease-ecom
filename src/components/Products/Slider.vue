@@ -26,6 +26,7 @@
     margin: 2rem auto;
 
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 0 .5rem;
 
