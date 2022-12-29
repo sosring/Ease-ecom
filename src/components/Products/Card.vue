@@ -98,7 +98,9 @@
       }
 
       .overview-btn {
-        opacity: 0;
+        @include screen-md { opacity: 0; }
+
+        font-size: .9rem;
 
         position: absolute;
         top: 50%;

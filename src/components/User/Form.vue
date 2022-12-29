@@ -1,6 +1,7 @@
 <template>
 
-  <div class="form-container">
+  <div class="form-container"
+   v-motion-slide-bottom>
 
    <div class="form-design">
     <img src="/assets/annie-spratt-1.jpg">
@@ -12,8 +13,7 @@
     </header>
 
     <form class="form-input-grid"
-     @submit.prevent="submitForm"
-     v-auto-animate>
+     @submit.prevent="submitForm">
 
      <div v-if="register">
       <label>FIRST NAME</label> 
