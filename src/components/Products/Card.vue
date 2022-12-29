@@ -5,7 +5,7 @@
    :id="product.id">
 
    <div class="image-cont">
-    <img :src="`assets/${product.images[1]}.png`">
+    <img :src="`/assets/${product.images[1]}.png`">
 
     <button 
      @click="showQuickView = !showQuickView"

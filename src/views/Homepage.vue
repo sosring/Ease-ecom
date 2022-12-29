@@ -68,7 +68,7 @@
 
   .product-banner {
     min-height: 450px;
-    background: url('assets/banner01.png')  no-repeat center;
+    background: url('/assets/banner01.png')  no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
