@@ -125,16 +125,17 @@
    }
 
   .product-details {
-     height: 20%;
+     height: 10%;
      @include flexCenter(none, center, column);
      font-size: .7rem;
 
+     font-family: monospace;
+
      @include screen-sm {
        font-size: .8rem;
+       height: 20%;
+       padding: .7rem;
      }
-
-     padding: .7rem;
-     font-family: monospace;
 
     .product-price {
       gap: .5rem;

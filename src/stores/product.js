@@ -39,6 +39,8 @@ export const useProductStore = defineStore('productStore', {
             products.push(product)
           });
           this.products = products
+
+          this.productLoaded = true
         });
       }
       catch (err){

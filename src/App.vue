@@ -4,8 +4,8 @@
     <Navbar />
   </header>
 
-  <main class="main-container">
-
+  <main class="main-container"
+   v-if="productStore.productLoaded">
    <router-view v-slot="{ Component, route }">
      <transition name="fade" mode="out-in">
        <div :key="route.name">  
@@ -50,10 +50,6 @@
 
     position: fixed;
     top: 6%;
-
-    @include screen-md {
-      top: 8%;
-    }
   }
 
  /* route */
