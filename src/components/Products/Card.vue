@@ -83,7 +83,7 @@
     margin: 0 auto;
 
     .image-cont {
-      height: 80%;
+      height: 90%;
       width: 100%;
 
       position: relative;
@@ -130,11 +130,10 @@
      font-size: .7rem;
 
      font-family: monospace;
+     padding: .7rem 0;
 
      @include screen-sm {
        font-size: .8rem;
-       height: 20%;
-       padding: .7rem;
      }
 
     .product-price {
