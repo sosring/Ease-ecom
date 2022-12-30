@@ -13,8 +13,9 @@
 
    <span 
     class="mobile-nav-btns">
-    <i class="fas 
-     fa-shopping-cart"
+
+    <i @click="gotoCart"
+     class="fas fa-shopping-cart"
      ref="NavBtnRef">
     </i> 
 
@@ -32,10 +33,12 @@
      @click="toggleNav"
      v-for="route in routes" 
      :to="{ name: route.path }">
-       {{ route.name }}
+
+      <p>{{ route.name }}</p>
     </RouterLink>
 
-    <button class="cart-btn">
+    <button class="cart-btn"
+     @click="$router.push({ name: 'cart' })">
       <p>Cart</p>
       <i class="fas fa-shopping-cart"></i>
     </button>
@@ -85,6 +88,11 @@
   const redirect = () => {
     showNav.value = false
     router.push({ name: 'home' })
+  }
+
+  const gotoCart = () => {
+    showNav.value = false
+    router.push({ name: 'cart' })
   }
 </script>
 
@@ -136,7 +144,6 @@
       i{
         display: inline-block;
         font-size: 1.1rem;
-        color: $text-light;
 
         &:active{
           transform: translate(0, 5%);
@@ -186,9 +193,11 @@
 
       color: $brown;
       border: $brown 1px solid;
-      font-size: 1rem;
 
+      font-size: 1rem;
       transition: all .15s;
+
+      i { -webkit-text-stroke: none; }
 
       &:hover{
         background: $brown;

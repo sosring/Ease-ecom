@@ -23,26 +23,32 @@
 
     position: absolute;
     top: calc(50% - 25px);
-    padding: .7rem;
+    height: 40px;
+    width: 40px;
 
     z-index: 1;
     font-size: 1.3rem;
 
     display: inline-block;
 
+    background: rgba(255, 255, 255, 0.6);
     color: rgba(0,0,0, 0.4);
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(4px);
 
-    @include screen-sm {
+    border-radius: 50%;
+
+    @include screen-base {
       font-size: 2rem;
+      height: 60px;
+      width: 60px;
     }
   }
   
   .left {
-    left: 0;
+    left: 1%
   }
 
   .right {
-    right: 0
+    right: 1% 
   }
 </style>

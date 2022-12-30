@@ -5,7 +5,8 @@
    :id="product.id">
 
    <div class="image-cont">
-    <img :src="`/assets/${product.images[1]}.png`">
+    <img :src="`/assets/${product.images[1]}.jpg`"
+     :alt="product.title">
 
     <button 
      @click="showQuickView = !showQuickView"
@@ -71,10 +72,6 @@
     min-height: 450px;
     width: 100%;
 
-    @include screen-base {
-      height: 650px;
-    }
-
     flex: none;
 
     line-height: 1.3;
@@ -95,7 +92,8 @@
         width: 100%;
 
         object-fit: cover;
-        position: absolute
+        position: absolute;
+        object-position: top;
       }
 
       .overview-btn {

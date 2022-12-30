@@ -127,7 +127,6 @@
       right: 4%;
       top: 2%;
       font-size: 1.5rem;
-      color: $text-light;
       z-index: 1;
 
       @include screen-md {

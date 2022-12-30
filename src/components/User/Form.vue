@@ -1,7 +1,6 @@
 <template>
 
-  <div class="form-container"
-   v-motion-slide-bottom>
+  <div class="form-container">
 
    <div class="form-design">
     <img src="/assets/annie-spratt-1.jpg">
@@ -18,7 +17,7 @@
      <div v-if="register">
       <label>FIRST NAME</label> 
 
-      <input 
+      <input :key="firstname" 
        :value="firstname"
        @input="$emit('update:firstname', $event.target.value)"
        class="form-inputs capitalize"
@@ -29,17 +28,18 @@
      <div v-if="register">
       <label>LAST NAME</label> 
 
-      <input 
+      <input :key="lastname" 
        :value="lastname"
        @input="$emit('update:lastname', $event.target.value)"
        class="form-inputs capitalize"
        type="text"
        placeholder="Doe">
      </div>
+
      <div>
       <label>EMAIL</label> 
 
-      <input 
+      <input :key="email"
        :value="email"
        @input="$emit('update:email', $event.target.value)"
        class="form-inputs"
@@ -51,7 +51,7 @@
       <label>PASSWORD</label> 
 
       <span class="password-input">
-        <input 
+        <input :key="password"
          :value="password"
          @input="$emit('update:password', $event.target.value)"
          :type="hidePassword ? 'password' : 'text'"
@@ -63,7 +63,8 @@
        </span>
     </div>
 
-    <input class="form-submit-btn btns"
+    <input :key="submit"
+     class="form-submit-btn btns"
      type="submit" value="SUBMIT">
 
 
@@ -328,5 +329,4 @@
       }
     }
   }
-
 </style>

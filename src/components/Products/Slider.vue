@@ -30,10 +30,6 @@
     padding: 0 .5rem;
     grid-gap: 2rem;
 
-    @include screen-sm {
-      grid-gap: 1rem;
-    }
-
     -ms-overflow-style: none;  
     scrollbar-width: none;  
   }

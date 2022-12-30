@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Homepage from '../views/Homepage.vue'
 import Authpage from '../views/Authpage.vue'
 import Productpage from '../views/Productpage.vue'
+import Cartpage from '../views/Cartpage.vue'
+import Wishlist from '../views/Wishlist.vue'
 
 const routes = [
     {
@@ -18,6 +20,16 @@ const routes = [
       path: '/products',
       name: 'products',
       component: Productpage 
+    },
+    {
+      path: '/wishlist',
+      name: 'wishlist',
+      component: Wishlist 
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cartpage 
     }
   ]
 

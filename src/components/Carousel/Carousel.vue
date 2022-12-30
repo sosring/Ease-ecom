@@ -10,11 +10,11 @@
      @switchSlide="switchSlide"/>
       
      <CarouselItem 
-       v-for="(image, index) in images"
-       :image="image"
-       :index="index"
-       :direction="direction"
-       :currentSlide="currentSlide"/>
+      v-for="(image, index) in images"
+      :image="image"
+      :index="index"
+      :direction="direction"
+      :currentSlide="currentSlide"/>
 
      <CarouselControls 
       @prev="prev"

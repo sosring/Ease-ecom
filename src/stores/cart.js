@@ -1,12 +1,15 @@
-<template>
+import { ref, computed } from 'vue'
+import { defineStore } from 'pinia'
 
-  slider
-</template>
+export const useCartStore = defineStore('cartStore', {
+  state: () => ({
+    isEmpty: null,
+    cartItems: [],
+    wishItems: []
+  }),
 
-<script setup>
-  
-</script>
-
-<style lang="scss" scoped>
-  
-</style>
+  actions: {
+    addToCart (id) {
+    }
+  }
+})

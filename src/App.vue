@@ -45,17 +45,21 @@
     height: 100%;
     overflow-y: scroll;
 
-    -ms-overflow-style: none;  
     scrollbar-width: none;  
+    scroll-behavior: smooth;
 
     position: fixed;
     top: 6%;
+
+    @include screen-md {
+      top: 8%;
+    }
   }
 
  /* route */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .5s ease;
+  transition: opacity .3s ease;
 }
 
 .fade-enter,

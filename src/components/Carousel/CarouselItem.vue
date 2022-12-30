@@ -5,7 +5,7 @@
      v-show="currentSlide === index"
      :key="index">
 
-      <img :src="`/assets/${image}.png`">
+      <img :src="`/assets/${image}.jpg`">
     </div>
   </transition>
 </template>
