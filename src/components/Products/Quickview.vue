@@ -20,10 +20,17 @@
         <h2 v-html="product.brand"></h2>
         
         <span class="price">
-          <p v-if="discountedPrice"> ₹ {{ discountedPrice }} </p>
+         <span>
+          <p v-if="discountedPrice"> ₹{{ discountedPrice }} </p>
+
           <p :class="{ 'discounted': product.discount }">
-           ₹ {{ product.price }}
+           ₹{{ product.price }}
           </p>
+         </span>
+
+          <h3 v-if="discountedPrice">
+            {{product.discount}}% discount 
+          </h3>
         </span>
 
         <p v-html="product.desc" class="desc"></p>
@@ -136,6 +143,7 @@
       
     @include screen-sm {
       font-size: 16px;
+      padding: 2rem;
     }
 
     @include screen-md {
@@ -165,6 +173,14 @@
 
       .price {
         font-family: monospace;
+        justify-content: space-between;
+
+        p { color: darken($brown, 20); }
+
+        h3 { 
+         color: $text-light;
+         font-family: $roboto;
+        }
       }
 
       .desc {

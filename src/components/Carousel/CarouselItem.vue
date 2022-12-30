@@ -3,8 +3,6 @@
   <transition :name="transitionEffect">
     <div class="carousel-item"
      v-show="currentSlide === index"
-     @mouseout="$emit('mouseout')"
-     @mouseenter="$emit('mouseenter')"
      :key="index">
 
       <img :src="`/assets/${image}.png`">
@@ -33,8 +31,6 @@
   const transitionEffect = computed(() => {
     return props.direction === 'right' ? 'slide-in' : 'slide-out'
   }) 
-
-  const emits = defineEmits(['mouseout', 'mouseenter'])
 </script>
 
 <style lang="scss" scoped>

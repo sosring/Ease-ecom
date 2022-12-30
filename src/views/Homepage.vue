@@ -16,10 +16,6 @@
     </div>
   </div>
 
-  <back-to-top bottom="50px" right="50px">
-    <button type="button" class="btn btn-info btn-to-top"></button>
-  </back-to-top>
-
   <Slider 
    :products="menFiltered"/>
 
@@ -108,7 +104,7 @@
     .product-btn {
       color: $pink;
       border: $pink 1px solid; 
-      font-size: .9rem;
+      font-size: 0.9rem;
 
       background-color: rgba(0, 0, 0, 0.2);
       -webkit-backdrop-filter: blur(5px);

@@ -14,9 +14,7 @@
        :image="image"
        :index="index"
        :direction="direction"
-       :currentSlide="currentSlide"
-       @mouseenter="stopInterval"
-       @mouseout="startInterval"/>
+       :currentSlide="currentSlide"/>
 
      <CarouselControls 
       @prev="prev"

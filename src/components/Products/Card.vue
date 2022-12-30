@@ -15,18 +15,21 @@
    </div>
 
    <div class="product-details">
+    <span>
      <h3 class="uppercase">{{ product.title }}</h3>
-     <p class="capitalize">{{ product.brand }}</p>
 
     <span class="product-price">
      <p :class="{ 'discounted': product.discount }">
-      ₹ {{ product.price }}
+      ₹{{ product.price }}
      </p>
 
      <p v-if="product.discount">
-      ₹ {{ discountedPrice }}
+      ₹{{ discountedPrice }}
      </p>
     </span>
+    </span>
+
+     <p class="capitalize">{{ product.brand }}</p>
    </div>
   </div>
 
@@ -65,12 +68,11 @@
   @import '@/styles/main';  
 
   .product-card-cont {
-    height: 550px;
+    min-height: 450px;
     width: 100%;
 
     @include screen-base {
       height: 650px;
-      width: 450px
     }
 
     flex: none;
@@ -80,7 +82,6 @@
 
     font-family: $work;
     font-weight: 400;
-    margin: 0 auto;
 
     .image-cont {
       height: 90%;
@@ -125,20 +126,35 @@
    }
 
   .product-details {
-     height: 10%;
      @include flexCenter(none, center, column);
-     font-size: .7rem;
 
-     font-family: monospace;
-     padding: .7rem 0;
+     padding: .5rem 0;
+
+     span {
+      justify-content: space-between;
+      
+      h3 {
+        color: $text-dark;
+        font-family: $oswald;
+      }
+     }
 
      @include screen-sm {
        font-size: .8rem;
+
+       p {
+        font-size: 1rem;
+       }
+
+       h3 {
+        font-size: 1.1rem;
+       }
      }
 
     .product-price {
       gap: .5rem;
-      letter-spacing: 1px;
+      font-family: monospace;
+      color: darken($brown, 20)
     }
    }
  }

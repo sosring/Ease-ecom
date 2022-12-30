@@ -1,6 +1,5 @@
 <template>
 
-
   <div class="slider-container">
 
    <Card v-for="product in products"
@@ -25,13 +24,15 @@
   .slider-container {
     margin: 2rem auto;
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 0 .5rem;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
 
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
+    padding: 0 .5rem;
+    grid-gap: 2rem;
+
+    @include screen-sm {
+      grid-gap: 1rem;
+    }
 
     -ms-overflow-style: none;  
     scrollbar-width: none;  
