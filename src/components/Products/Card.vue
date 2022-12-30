@@ -15,8 +15,8 @@
    </div>
 
    <div class="product-details">
-     <h3>{{ product.title }}</h3>
-     <p>{{ product.brand }}</p>
+     <h3 class="uppercase">{{ product.title }}</h3>
+     <p class="capitalize">{{ product.brand }}</p>
 
     <span class="product-price">
      <p :class="{ 'discounted': product.discount }">

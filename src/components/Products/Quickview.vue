@@ -16,7 +16,7 @@
 
       <div class="product-content">
        <div class="contents">
-        <h1 v-html="product.title"></h1>
+        <h1 v-html="product.title" class="uppercase"></h1>
         <h2 v-html="product.brand"></h2>
         
         <span class="price">

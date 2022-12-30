@@ -91,7 +91,7 @@
     max-width: 800px;
     padding: 1rem;
     overflow: hidden;
-    margin: 1rem auto;
+    margin: 2rem auto;
 
     @include screen-md {
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
