@@ -26,10 +26,7 @@
 
     display: grid;
     padding: .7rem;
-
-    @includes screen-md {
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    }
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 
     grid-gap: 2rem;
   }

@@ -1,7 +1,8 @@
 <template>
 
-  <div class="product-banner">
-    <div class="banner-tag" v-motion-slide-bottom>
+  <div class="hero-container">
+    <div class="banner-container"
+     v-motion-slide-bottom>
 
       <h1>Take the stress <br>
       out of fashion.</h1> <br>
@@ -62,9 +63,13 @@
 <style lang="scss" scoped>
   @import '@/styles/main';
 
-  .product-banner {
+  .hero-container {
     min-height: 450px;
-    background: url('/assets/banner01.jpg')  no-repeat center;
+
+    background: 
+    linear-gradient( rgba(0 0 0 / 0), rgba(0 0 0 / .2)),
+    url('/assets/banner01.jpg')  no-repeat center;
+
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -77,7 +82,7 @@
     }
   }
 
-  .banner-tag {
+  .banner-container {
     color: $pink;
     z-index: 1;
 

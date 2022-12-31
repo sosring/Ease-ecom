@@ -24,7 +24,7 @@
           <p v-if="discountedPrice"> ₹{{ discountedPrice }} </p>
 
           <p :class="{ 'discounted': product.discount }">
-           ₹{{ product.price }}
+           ₹{{ product.price }} 
           </p>
          </span>
 
@@ -37,10 +37,17 @@
        </div>
 
         <span class="btn-container">
-          <button class="cart-btn btns">
+          <button 
+           :class="product.stock >= 0 ? 'cart-btn' : 'disabled'" 
+           class="btns">
            ADD TO CART
           </button>
         </span>
+
+        <p class="stock-tracker">
+          {{ stockStatus }}
+        </p>
+
       </div>
     </div>
   </section>
@@ -48,10 +55,9 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, reactive, computed, onMounted } from 'vue'
   import Carousel from '@/components/Carousel/Carousel.vue'
   import { onClickOutside } from '@vueuse/core'
-
 
   const emits = defineEmits(['update:condition'])
 
@@ -63,7 +69,7 @@
       type: Boolean
     },
     discountedPrice: {
-      type: String
+      type: Number 
     }
   });
 
@@ -76,6 +82,16 @@
       emits('update:condition', false)
     }
   }
+
+  const stockStatus = computed(() => {
+    if(props.product.stock < 30) {
+      return `HURRY UP ONlY ${props.product.stock} OF THEM ARE LEFT`
+    }
+    else if(props.product.stock === 0) {
+      return `OUT OF STOCK!`
+    }
+    else { return ''}
+  })
 
   onMounted(() => document.addEventListener('keyup', handleKey))
 </script>
@@ -150,10 +166,10 @@
     }
 
     .contents {
-      line-height: 2rem;
+      line-height: 1.7;
 
       @include screen-md {
-        line-height: 3rem;
+        line-height: 2.5;
       }
 
       h1 {
@@ -188,12 +204,28 @@
     }
 
    .btn-container {
+      margin-top: 1rem;
+    
+      button {
+        width: 100%
+      }
 
     .cart-btn {
-      background: #1d1d1d;
+      background: $black;
       color: $bg-light;
-      width: 100%;
     }
    }
+  }
+
+  .stock-tracker {
+    text-align: center;
+
+    font-weight: 700;
+    font-family: $work;
+    color: $error
+  }
+
+  .image-scaler {
+    padding: 1rem;
   }
 </style>

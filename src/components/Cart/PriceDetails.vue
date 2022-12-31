@@ -166,6 +166,6 @@
  }
 
   .discount {
-    color: #388e3c
+    color: $success
   }
 </style>

@@ -6,12 +6,10 @@
        :class="{ 'active': isCartList }">
        Carlist
       </span>
-
-      <span @click="isCartList = false"
-       :class="{ 'active': !isCartList }">
-       Wishlist
-      </span>
     </header>
+
+    <section class="product-list-wrapper">
+    </section>
   </div>
 
 </template>
@@ -43,10 +41,6 @@
 
 
     header {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
 
       span {
         padding: 1rem;
@@ -55,12 +49,11 @@
         
         font-family: $work;
         font-size: 1.1rem; 
-        font-weight: 500; 
-      }
+        font-weight: 700; 
 
-      .active {
         border-bottom: $brown 2px solid;
         color: $brown;
       }
    }
+ }
 </style>
