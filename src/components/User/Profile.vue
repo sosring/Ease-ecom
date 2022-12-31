@@ -76,7 +76,7 @@
 
       span {
         justify-content: center;
-        background: lighten($brown, 30);
+        background: lighten($indigo, 30);
         border-radius: 6px;
 
         @include screen-sm {

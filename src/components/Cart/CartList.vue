@@ -1,14 +1,19 @@
 <template>
 
-  <div class="cart-product-wrapper">
+  <div class="cart-wrapper">
     <header>
-      <span @click="isCartList = true" 
-       :class="{ 'active': isCartList }">
+      <span class="active">
        Carlist
       </span>
     </header>
 
     <section class="product-list-wrapper">
+
+      <CartListItem 
+       v-for="(product, index) in cartItems"
+       :product="product"
+       :index="index"/>
+
     </section>
   </div>
 
@@ -16,29 +21,26 @@
 
 <script setup>
   import { ref } from 'vue'
-  import Carousel from '@/components/Carousel/Carousel.vue'
+  import CartListItem from '@/components/Cart/CartListItem.vue'
 
   const props = defineProps({
-    cartlist: {
+    cartItems: {
       type: Array
     }
   });
-
-  const isCartList = ref(true)
 </script>
 
 <style lang="scss" scoped>
   @import "@/styles/main";
   
-  .cart-product-wrapper {
-
-    box-shadow: 0 2px 4px 2px rgba(0,0,0,0.2);
+  .cart-wrapper {
     border-radius: 4px;
+    background: $bg-light;
 
-   @include screen-md {
+   @include screen-sm {
     grid-column: 1 / span 2;
+    margin-bottom: 5rem;
    }
-
 
     header {
 
@@ -51,9 +53,17 @@
         font-size: 1.1rem; 
         font-weight: 700; 
 
-        border-bottom: $brown 2px solid;
-        color: $brown;
+        background: lighten($indigo, 10);
+        border-radius: 4px;
+        color: $white;
       }
    }
+ }
+
+ .product-list-wrapper {
+   display: grid;
+   grid-gap: 1rem;
+   margin: 1rem 0;
+   padding: .5rem;
  }
 </style>

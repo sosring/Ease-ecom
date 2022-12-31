@@ -19,12 +19,15 @@
         <h1 v-html="product.title" class="uppercase"></h1>
         <h2 v-html="product.brand"></h2>
         
-        <span class="price">
+        <span class="product-price">
          <span>
-          <p v-if="discountedPrice"> ₹{{ discountedPrice }} </p>
-
           <p :class="{ 'discounted': product.discount }">
-           ₹{{ product.price }} 
+           ₹{{ formatting(product.price) }} 
+          </p>
+
+          <p v-if="discountedPrice" 
+           class="success">
+           ₹{{ formatting(discountedPrice) }} 
           </p>
          </span>
 
@@ -38,14 +41,16 @@
 
         <span class="btn-container">
           <button 
-           :class="product.stock >= 0 ? 'cart-btn' : 'disabled'" 
+           @click="addToCart"
+           :disabled="product.stock <= 0"
+           :class="product.stock <= 0 ? 'disabled' : 'cart-btn'" 
            class="btns">
            ADD TO CART
           </button>
         </span>
 
         <p class="stock-tracker">
-          {{ stockStatus }}
+          {{ stockUpdates(product.stock) }}
         </p>
 
       </div>
@@ -58,6 +63,17 @@
   import { ref, reactive, computed, onMounted } from 'vue'
   import Carousel from '@/components/Carousel/Carousel.vue'
   import { onClickOutside } from '@vueuse/core'
+  import { trackProductStock } from '@/composables/stock'
+  import { priceFormatter } from '@/composables/priceFormatter'
+  import { useCartStore } from '@/stores/cart'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+
+  const { formatting } = priceFormatter()
+  const { stockUpdates } = trackProductStock()
+
+  const useCart = useCartStore()
 
   const emits = defineEmits(['update:condition'])
 
@@ -73,6 +89,11 @@
     }
   });
 
+  const addToCart = () => {
+   useCart.addToCart(props.product.id)
+   router.push({ name: 'cart' })
+  }
+
   const overviewRef = ref('')
 
   onClickOutside(overviewRef, () => emits('update:condition', false))
@@ -82,16 +103,6 @@
       emits('update:condition', false)
     }
   }
-
-  const stockStatus = computed(() => {
-    if(props.product.stock < 30) {
-      return `HURRY UP ONlY ${props.product.stock} OF THEM ARE LEFT`
-    }
-    else if(props.product.stock === 0) {
-      return `OUT OF STOCK!`
-    }
-    else { return ''}
-  })
 
   onMounted(() => document.addEventListener('keyup', handleKey))
 </script>
@@ -186,11 +197,13 @@
         gap: 1rem;
       }
 
-      .price {
+      .product-price {
         font-family: monospace;
         justify-content: space-between;
 
-        p { color: darken($brown, 20); }
+        @include screen-md {
+          p { font-size: 1rem; }
+        }
 
         h3 { 
          color: $text-light;

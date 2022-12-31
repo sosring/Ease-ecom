@@ -17,20 +17,21 @@
 
    <div class="product-details">
     <span>
-     <h3 class="uppercase">{{ product.title }}</h3>
+     <h3 class="uppercase" v-html="product.title.slice(0, 15)"></h3>
 
-    <span class="product-price">
-     <p :class="{ 'discounted': product.discount }">
-      ₹{{ product.price }}
-     </p>
+      <span class="product-price">
+       <p :class="{ 'discounted': product.discount }">
+        ₹{{ formatting(product.price) }}
+       </p>
 
-     <p v-if="product.discount">
-      ₹{{ discountedPrice }}
-     </p>
+       <p v-if="product.discount"
+        class="success">
+        ₹{{ formatting(discounted) }}
+       </p>
+      </span>
     </span>
-    </span>
 
-     <p class="capitalize">{{ product.brand }}</p>
+     <p class="capitalize" v-html="product.brand"></p>
    </div>
   </div>
 
@@ -38,13 +39,20 @@
    v-if="showQuickView"
    v-model:condition="showQuickView"
    :product="product"
-   :discountedPrice="discountedPrice"/>
+   :discountedPrice="discounted"/>
 
 </template>
 
 <script setup>
   import { ref, computed } from 'vue'
   import Quickview from '@/components/Products/Quickview.vue'
+  import { discountValuation } from '@/composables/discount'
+  import { priceFormatter } from '@/composables/priceFormatter'
+
+  const { discountedPrice } = discountValuation() 
+  const discounted = discountedPrice(props.product.discount, props.product.price)
+
+  const { formatting } = priceFormatter()
     
   const props = defineProps({
     product: {
@@ -53,16 +61,6 @@
   });
 
   const showQuickView = ref(false)
-
-  const discountedPrice = computed(() => { 
-
-    if(props.product.discount !== null){
-      const discount = Number(props.product.price / props.product.discount)
-
-      return Number(props.product.price - discount)
-    }
-  })
-
 </script>
 
 <style lang="scss" scoped>
@@ -152,7 +150,6 @@
     .product-price {
       gap: .5rem;
       font-family: monospace;
-      color: darken($brown, 20)
     }
    }
  }

@@ -1,33 +1,64 @@
 <template>
 
-  <div class="cart-main-wrapper">
+  <div class="cart-main-wrapper"
+    v-if="!useCart.isEmpty">
+
     <CartList 
-     :cartlist="productStore.products"/>
+     :cartItems="useCart.cartItems"/>
 
     <PriceDetails 
-     :cartDetails="productStore.products"/>
+     v-if="useCart.isEmpty" 
+     :cartItems="useCart.cartItems"/>
   </div>
+
+    <section 
+     class="empty-indicator">
+
+      <img src="/empty-cart.jpg">
+      <h1>Your cart is empty!</h1>
+    </section>
 </template>
 
 <script setup>
+  import { onMounted } from 'vue'
   import PriceDetails from '@/components/Cart/PriceDetails.vue'
   import CartList from '@/components/Cart/CartList.vue'
-  import { useProductStore } from '@/stores/product'
+  import { useCartStore } from '@/stores/cart'
 
-  const productStore = useProductStore()
+  const useCart = useCartStore()
+
+  onMounted(() => useCart.emptyCheck())
 </script>
 
 <style lang="scss" scoped>
   @import "@/styles/main";
 
   .cart-main-wrapper {
-    max-width: 1450px;
-    margin: 2rem auto;
+    max-width: 1250px;
 
     display: grid;
-    padding: .7rem;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 
     grid-gap: 2rem;
+    padding: .7rem;
+
+    margin: 1rem auto;
+  }
+
+  .empty-indicator {
+    height: 100vh;
+    width: 100vw;
+
+    @include flexCenter(center, center, column);
+
+    img {
+      height: 40%;
+    }
+
+    h1 {
+      font-family: $work;
+      font-size: 1.7rem;
+      color: $error
+    }
   }
 </style>

@@ -9,8 +9,8 @@
 
     <span class="price-section-span">
       <p>Price
-        ({{ cartDetails.length }}
-        {{cartDetails.length > 1 ? "items" : "item"}})
+        ({{ cartItems.length }}
+        {{ cartItems.length > 1 ? "items" : "item"}})
       </p>
       <p>₹ {{ totalItemPrice }}</p>
     </span>
@@ -42,9 +42,12 @@
 
 <script setup>
   import { ref, reactive, computed } from 'vue'
+  import { priceFormatter } from '@/composables/priceFormatter'
+
+  const { formatting } = priceFormatter()
   
   const props = defineProps({
-    cartDetails: {
+    cartItems: {
       type: Array
     }
   });
@@ -68,7 +71,7 @@
   const deliveryFeeGenerator = () => {
 
     let totalCharge = 0;
-    props.cartDetails.forEach(() => {
+    props.cartItems.forEach(() => {
       const deliveryCharge = Math.floor(Math.random() * 1000)
 
       totalCharge += deliveryCharge
@@ -80,7 +83,7 @@
 
   const totalDiscountValue = computed(() => {
 
-    props.cartDetails.forEach(product => {
+    props.cartItems.forEach(product => {
       if(product.discount !== null) {
         priceDetials.totalDiscount += Number(product.price / product.discount)
       }
@@ -90,31 +93,19 @@
   })
 
   const totalItemPrice = computed(() => {
-    props.cartDetails.forEach(product => priceDetials.totalSum += Number(product.price))
+    props.cartItems.forEach(product => priceDetials.totalSum += Number(product.price))
     return priceDetials.totalSum
   })
-
-  const formatting = (num) => {
-    let  str = num.toString().split('.');
-
-    if (str[0].length >= 3) {
-      str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-    }
-    if (str[1] && str[1].length >= 3) {
-      str[1] = str[1].replace(/(\d{3})/g, '$1 ');
-    }
-
-    return str.join('.');
-  }
-
 </script>
 
 <style lang="scss" scoped>
   @import "@/styles/main";
 
   .price-details {
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     border-radius: 4px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+
+    background: $bg-light;
 
     font-family: $work;
     font-weight: 400;
@@ -130,7 +121,7 @@
     border-bottom: 2px $border solid;
 
     h3 {
-    color: lighten($text-light, 10);
+     color: lighten($text-light, 10);
     }
    }
 

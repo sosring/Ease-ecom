@@ -47,6 +47,11 @@
 
 .discounted {
   text-decoration: line-through 2px;
+  color: lighten($text-light, 10);
+}
+
+.success {
+  color: $success
 }
 
  ::-webkit-scrollbar { width: 0; }
