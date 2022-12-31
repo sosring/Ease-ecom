@@ -11,7 +11,7 @@
      :cartItems="useCart.cartItems"/>
   </div>
 
-    <section 
+    <section v-if="useCart.isEmpty" 
      class="empty-indicator">
 
       <img src="/empty-cart.jpg">
