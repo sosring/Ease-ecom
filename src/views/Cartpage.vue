@@ -50,7 +50,11 @@
     @include flexCenter(center, center, column);
 
     img {
-      height: 40%;
+      max-height: 20%;
+
+      @include screen-sm {
+        max-height: 40%;
+      }
     }
 
     h1 {
