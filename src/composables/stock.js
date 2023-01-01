@@ -10,6 +10,8 @@ export const trackProductStock = () => {
     else if(stock === 0) {
       return `OUT OF STOCK!`
     }
+
+    return null
   }
 
   return { stockUpdates }

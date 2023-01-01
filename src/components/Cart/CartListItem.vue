@@ -4,6 +4,8 @@
    :key="index">
 
    <div class="product-wrapper">
+
+   <span class="product-col-1">
     <div class="product-visuals">
 
      <div class="product-img-container">
@@ -28,10 +30,6 @@
       </p>
     </span>
 
-    <p class="stock-updates"> 
-     {{ stockUpdates(product.stock) }} 
-    </p>
-
     <span class="product-quantity-span">
       <button 
        @click="product.quantity++"
@@ -46,8 +44,12 @@
        class="fas fa-minus quantity-control">
       </button>
     </span>
-
     </div>
+   </span>
+
+    <p class="stock-updates">
+      {{ stockUpdates(product.stock) }}
+    </p>
    </div>
 
    <div class="product-btns">
@@ -104,7 +106,7 @@
       display: flex;
       flex-direction: column;
 
-      min-height: 190px; 
+      min-height: 210px; 
       background: inherit;
 
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
@@ -119,24 +121,30 @@
 
   .product-wrapper {
     display: flex;
+    flex-direction: column;
+
     height: 80%;
     border-bottom: 2px $border solid;
 
-    padding: .5rem;
+    padding: 0 .5rem;
     gap: .5rem;
 
     overflow-y: scroll;
     scroll-behavior: smooth;
 
+    .product-col-1 {
+      height: 100%;
+      width: 100%;
+    }
+
     .product-visuals {
-      width: 40%;
+      min-width: 40%;
       min-height: 100%;
 
       display: flex;
-      flex-direction: column;
+      position: relative;
       
       .product-img-container {
-        position: relative;
         height: 100%;
         width: 100%;
 
@@ -191,28 +199,47 @@
   }
    
   .stock-updates {
-    font-size: .8em;
+    height: 10%;
+
+    font-size: .9em;
     font-family: $work;
     font-weight: 800;
     color: darken($error, 10);
+    text-align: end;
   }
 
   .product-quantity-span {
     gap: 1rem;
+    color: $text-light;
+    width: 30px;
+    height: 30px;
+
+    @include screen-sm {
+      width: 40px;
+      height: 40px;
+    }
 
     .quantity-control {
-      height: 40px;
-      width: 40px;
-
-      border: 1px solid $border;
       border-radius: 50%;
+      color: inherit;
+      padding: .3rem;
+
+      border: 2px $border solid;
+
+      @include screen-sm {
+        padding: .5rem;
+      }
     }
 
     input {
-      height: 40px;
-      width: 40px;
-      border: 1px solid $border;;
       text-align: center;
+      color: inherit;
+      padding: inherit;
+
+      height: inherit;
+      width: inherit;
+
+      border: 2px $border solid;
     }
   }
 
