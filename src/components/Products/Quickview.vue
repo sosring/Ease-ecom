@@ -41,7 +41,7 @@
 
         <span class="btn-container">
           <button 
-           @click="addToCart"
+           @click="useCart.addToCart(props.product.id)"
            :disabled="product.stock <= 0"
            :class="product.stock <= 0 ? 'disabled' : 'cart-btn'" 
            class="btns">
@@ -66,9 +66,6 @@
   import { trackProductStock } from '@/composables/stock'
   import { priceFormatter } from '@/composables/priceFormatter'
   import { useCartStore } from '@/stores/cart'
-  import { useRouter } from 'vue-router'
-
-  const router = useRouter()
 
   const { formatting } = priceFormatter()
   const { stockUpdates } = trackProductStock()
@@ -88,11 +85,6 @@
       type: Number 
     }
   });
-
-  const addToCart = () => {
-   useCart.addToCart(props.product.id)
-   router.push({ name: 'cart' })
-  }
 
   const overviewRef = ref('')
 

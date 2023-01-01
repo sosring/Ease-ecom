@@ -86,7 +86,7 @@
   ] 
 
   const redirect = () => {
-    showNav.value = false
+    screenWidth.value <= 900 ? showNav.value = false : showNav.value = true
     router.push({ name: 'home' })
   }
 

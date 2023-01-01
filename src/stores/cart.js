@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
 import { useProductStore } from '@/stores/product'
+import { useAuthStore } from '@/stores/auth'
 
 export const useCartStore = defineStore('cartStore', {
   state: () => ({
@@ -12,8 +13,8 @@ export const useCartStore = defineStore('cartStore', {
   actions: {
 
     addToCart (id) {
-      const productStore = useProductStore()
 
+      const productStore = useProductStore()
       const product = productStore.products.filter(product => product.id === id)[0]
 
       if(this.cartItems.find(item => item.id === id)){
@@ -27,6 +28,7 @@ export const useCartStore = defineStore('cartStore', {
       product.quantity = 1
       this.cartItems.push(product)
       this.emptyCheck()
+      this.router.push({ name: 'cart' })
     },
 
     removeItem (id) {

@@ -15,9 +15,10 @@
        View products
       </button> 
     </div>
-  </div>
+  </div> 
 
   <Slider 
+   heading="Men Clothes ."
    :products="menFiltered"/>
 
   <div class="about">
@@ -35,6 +36,7 @@
   </div>
 
   <Slider 
+   heading="Women Clothes ."
    :products="womenFiltered"/>
 
   <footer class="homepage-footer">
@@ -52,14 +54,14 @@
   const productStore = useProductStore() 
 
   const menFiltered = computed(() => {
-    return productStore.products.filter(product => product.gender === 'men').slice(0, 4)
+    const maped = productStore.products.filter(product => product.gender === 'men')
+    return maped.filter(product => product.discount !== null)
   })
 
   const womenFiltered = computed(() => {
-    return productStore.products.filter(product => product.gender === 'women').slice(0, 4)
+    const maped = productStore.products.filter(product => product.gender === 'women')
+    return maped.filter(product => product.discount !== null)
   })
-
-  onMounted(() => window.scrollTo(0,0))
 </script>
 
 <style lang="scss" scoped>
@@ -135,16 +137,16 @@
     max-width: 1450px;
     font-weight: 500;
     font-size: 16px;
+    margin: .5rem auto;
 
     display: grid;
     gap: 1rem;
     
     padding: 2rem 1rem;
-    margin: .5rem auto;
+    text-align: center;
 
     .about-title {
       @include fontStyle($roboto, 1.2em);
-      text-align: center;
       letter-spacing: 3px;
     }
     
@@ -155,6 +157,7 @@
 
     @include screen-base {
       font-size: 18px;
+      text-align: left;
 
       grid-template-columns: repeat(2, 1fr);
 
