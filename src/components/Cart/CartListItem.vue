@@ -19,7 +19,7 @@
       <h3 v-html="product.title.slice(0, 10)" class="uppercase"></h3>
       <p v-html="product.brand"></p>
      </div>
-
+  
     <span class="product-price-span">
       <p :class="{ 'discounted': product.discount }">
        ₹{{ formatting(product.price) }} 
@@ -32,15 +32,17 @@
 
     <span class="product-quantity-span">
       <button 
-       @click="product.quantity++"
+       :disabled="product.stock <= 0"
+       :class="{ 'disabled': product.stock <=0 }"
+       @click="addProduct"
        class="fas fa-add quantity-control">
       </button>
 
-      <input type="number" 
-       :value="product.quantity">
+      <input type="number" disabled
+       :value="product.quantity" >
 
       <button 
-       @click="product.quantity--"
+       @click="subProduct"
        class="fas fa-minus quantity-control">
       </button>
     </span>
@@ -83,6 +85,20 @@
   const { stockUpdates } = trackProductStock()
   const { discountedPrice } = discountValuation() 
   const { formatting } = priceFormatter()
+
+  const addProduct = e => {
+      props.product.quantity++
+      props.product.stock--
+  }
+
+  const subProduct = () => {
+    props.product.quantity--
+    props.product.stock++
+
+    if(props.product.quantity <= 1){
+      useCart.removeItem(props.product.id)
+    }
+  }
 
   const props = defineProps({
     product: {

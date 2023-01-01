@@ -50,10 +50,6 @@
 
     position: fixed;
     top: 6%;
-
-    @include screen-md {
-      top: 8%;
-    }
   }
 
  /* route */

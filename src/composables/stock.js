@@ -4,14 +4,12 @@ export const trackProductStock = () => {
 
     if(stock === null) { return ''}
 
-    if(stock < 30) {
+    if(stock <= 30 && stock >= 1) {
       return `HURRY UP ONlY ${stock} OF THEM ARE LEFT`
     }
-    else if(stock === 0) {
-      return `OUT OF STOCK!`
+    if(stock === 0) {
+      return `OUT OF STOCK !`
     }
-
-    return null
   }
 
   return { stockUpdates }
