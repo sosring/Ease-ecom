@@ -176,9 +176,10 @@
       }
 
       h1 {
-        font-size: 1.4em;
+        font-size: 1.7em;
         font-family: $oswald;
         letter-spacing: 2px;
+        color: $text-dark;
       }
 
       h2 {
