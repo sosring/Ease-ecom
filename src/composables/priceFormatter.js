@@ -1,6 +1,4 @@
-import { ref, computed } from 'vue'
-
-const priceFormatter = () => {
+export const priceFormatter = () => {
 
   const formatting = (num) => {
     let  str = num.toString().split('.');
@@ -17,5 +15,3 @@ const priceFormatter = () => {
 
   return { formatting }
 }
-
-export { priceFormatter }

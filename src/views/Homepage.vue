@@ -58,6 +58,8 @@
   const womenFiltered = computed(() => {
     return productStore.products.filter(product => product.gender === 'women').slice(0, 4)
   })
+
+  onMounted(() => window.scrollTo(0,0))
 </script>
 
 <style lang="scss" scoped>

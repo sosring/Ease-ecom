@@ -32,6 +32,10 @@
      {{ stockUpdates(product.stock) }} 
     </p>
 
+    <span class="product-quantity-span">
+      <input type="number" :value="product.quantity">
+    </span>
+
     </div>
    </div>
 
@@ -44,6 +48,7 @@
       </button>
 
       <button
+       @click="useCart.removeItem(product.id)"
        :disabled="product.stock <= 0"
        class="remove-btn btn">
        REMOVE
@@ -55,9 +60,12 @@
 
 <script setup>
   import { computed } from 'vue'
+  import { useCartStore } from '@/stores/cart'
   import { discountValuation } from '@/composables/discount'
   import { trackProductStock } from '@/composables/stock'
   import { priceFormatter } from '@/composables/priceFormatter'
+
+  const useCart = useCartStore()
 
   const { stockUpdates } = trackProductStock()
   const { discountedPrice } = discountValuation() 

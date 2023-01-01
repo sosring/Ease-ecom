@@ -26,13 +26,16 @@ export const useCartStore = defineStore('cartStore', {
 
       product.quantity = 1
       this.cartItems.push(product)
+      this.emptyCheck()
     },
 
     removeItem (id) {
+      this.cartItems = this.cartItems.filter(item => item.id !== id)
+      this.emptyCheck()
     },
 
     emptyCheck () {
-      this.cartItems.length <= 0 ? this.isEmpty = true : this.isEmpty = false
+      this.cartItems.length === 0 ? this.isEmpty = true : this.isEmpty = false
       console.log(this.isEmpty)
     }
   }

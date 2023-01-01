@@ -7,11 +7,11 @@
      :cartItems="useCart.cartItems"/>
 
     <PriceDetails 
-     v-if="useCart.isEmpty" 
      :cartItems="useCart.cartItems"/>
   </div>
 
-    <section v-if="useCart.isEmpty" 
+    <section 
+     v-if="useCart.isEmpty" 
      class="empty-indicator">
 
       <img src="/empty-cart.jpg">
@@ -20,14 +20,12 @@
 </template>
 
 <script setup>
-  import { onMounted } from 'vue'
+  import { watch } from 'vue'
   import PriceDetails from '@/components/Cart/PriceDetails.vue'
   import CartList from '@/components/Cart/CartList.vue'
   import { useCartStore } from '@/stores/cart'
 
   const useCart = useCartStore()
-
-  onMounted(() => useCart.emptyCheck())
 </script>
 
 <style lang="scss" scoped>

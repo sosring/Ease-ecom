@@ -1,6 +1,4 @@
-import { ref, computed } from 'vue'
-
-const discountValuation = () => {
+export const discountValuation = () => {
 
   const discountedPrice = (discount, price) => { 
 
@@ -13,5 +11,3 @@ const discountValuation = () => {
 
   return { discountedPrice }
 }
-
-export { discountValuation }

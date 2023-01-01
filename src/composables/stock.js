@@ -1,6 +1,4 @@
-import { ref, computed } from 'vue'
-
-const trackProductStock = () => {
+export const trackProductStock = () => {
 
   const stockUpdates = (stock) => {
 
@@ -16,5 +14,3 @@ const trackProductStock = () => {
 
   return { stockUpdates }
 }
-
-export { trackProductStock }

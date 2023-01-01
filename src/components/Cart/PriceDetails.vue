@@ -12,29 +12,32 @@
         ({{ cartItems.length }}
         {{ cartItems.length > 1 ? "items" : "item"}})
       </p>
-      <p>₹ {{ totalItemPrice }}</p>
+      <p>₹ {{ totalProductPrice }}</p>
     </span>
 
     <span class="price-section-span">
       <p>Discount</p>
+
       <p class="discount"> 
-       -₹ {{ totalDiscountValue }}
+       -₹ {{ totalDiscount }}
       </p>
     </span>
 
     <span class="price-section-span">
       <p>Delivery charges</p>
-      <p>₹ {{ deliveryFeeGenerator() }}</p>
+      <p>₹ {{ deliveryChargeGenerator }}</p>
     </span>
   </section>
 
     <footer>
       <span class="total-price">
         <p>Total Amount</p>
-        <p>₹ {{ actualTotalPrice }}</p>
+        <p>₹ {{ totalAmount }}</p>
       </span>
 
-       <p class="discount">You will save -₹ {{ totalDiscountValue }} on this order.</p>
+       <p class="discount">
+        You will save -₹ {{ totalDiscount }} on this order.
+       </p>
     </footer>
   </aside>
 
@@ -52,49 +55,54 @@
     }
   });
 
-  const priceDetials = reactive({
-    totalDiscount: null,
-    totalSum: null,
-    totalFees: null,
-    addedFeeAmount: null
-  }) 
-
-  const actualTotalPrice = computed(() => {
-
-    const discounted = priceDetials.totalSum - priceDetials.totalDiscount
-
-    priceDetials.addedFeeAmount = discounted +  priceDetials.totalFees 
-
-    return formatting(priceDetials.addedFeeAmount)
+  const details = reactive({
+    deliveryFee: '',
+    totalPrice: ''
   })
 
-  const deliveryFeeGenerator = () => {
-
-    let totalCharge = 0;
-    props.cartItems.forEach(() => {
-      const deliveryCharge = Math.floor(Math.random() * 1000)
-
-      totalCharge += deliveryCharge
-    })
-
-    priceDetials.totalFees = totalCharge
-    return formatting(totalCharge)
-  }
-
-  const totalDiscountValue = computed(() => {
-
+  const totalProductPrice = computed(() => {
+    let totalPrice = 0;
     props.cartItems.forEach(product => {
-      if(product.discount !== null) {
-        priceDetials.totalDiscount += Number(product.price / product.discount)
+
+      if(product.discount !== null ){
+        const discounted = Number(product.price / product.discount) 
+        totalPrice += Number(product.price - discounted)
+      }
+      else {
+        totalPrice += Number(product.price)
       }
     })
 
-    return formatting(priceDetials.totalDiscount)
+    details.totalPrice = totalPrice
+    return totalPrice
   })
 
-  const totalItemPrice = computed(() => {
-    props.cartItems.forEach(product => priceDetials.totalSum += Number(product.price))
-    return priceDetials.totalSum
+  const totalDiscount = computed(() => {
+
+    let totalDiscount = 0;
+    props.cartItems.forEach(product => {
+      if(product.discount !== null ){
+        const discounts = Number(product.price / product.discount) 
+
+        totalDiscount += discounts
+      }
+    })
+    return totalDiscount 
+  })
+
+  const deliveryChargeGenerator = computed(() => {
+    let totalCharge = 0;
+
+    props.cartItems.forEach(() => {
+      totalCharge += Math.floor(Math.random() * 1000)
+    })
+
+    details.deliveryFee = totalCharge
+    return totalCharge 
+  })
+
+  const totalAmount = computed(() => {
+    return details.deliveryFee + details.totalPrice 
   })
 </script>
 
@@ -102,8 +110,9 @@
   @import "@/styles/main";
 
   .price-details {
-    border-radius: 4px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+    margin-bottom: 3rem;
 
     background: $bg-light;
 

@@ -197,7 +197,7 @@
 
     .form-input-container {
       padding: 1rem;
-      font-size: 1.4rem; 
+      font-size: 1.2rem; 
 
       h1 {
         @include fontStyle($libre, 1.7rem);
