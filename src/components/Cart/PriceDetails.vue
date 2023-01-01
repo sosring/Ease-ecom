@@ -12,31 +12,31 @@
         ({{ cartItems.length }}
         {{ cartItems.length > 1 ? "items" : "item"}})
       </p>
-      <p>₹ {{ totalProductPrice }}</p>
+      <p>₹ {{ formatting(totalProductPrice) }}</p>
     </span>
 
     <span class="price-section-span">
       <p>Discount</p>
 
       <p class="discount"> 
-       -₹ {{ totalDiscount }}
+       -₹ {{ formatting(totalDiscount) }}
       </p>
     </span>
 
     <span class="price-section-span">
       <p>Delivery charges</p>
-      <p>₹ {{ deliveryChargeGenerator }}</p>
+      <p>₹ {{ formatting(deliveryChargeGenerator) }}</p>
     </span>
   </section>
 
     <footer>
       <span class="total-price">
         <p>Total Amount</p>
-        <p>₹ {{ totalAmount }}</p>
+        <p>₹ {{ formatting(totalAmount) }}</p>
       </span>
 
        <p class="discount">
-        You will save -₹ {{ totalDiscount }} on this order.
+        You will save -₹ {{ formatting(totalDiscount) }} on this order.
        </p>
     </footer>
   </aside>
@@ -98,11 +98,11 @@
     })
 
     details.deliveryFee = totalCharge
-    return totalCharge 
+    return totalCharge
   })
 
   const totalAmount = computed(() => {
-    return details.deliveryFee + details.totalPrice 
+    return details.deliveryFee + details.totalPrice
   })
 </script>
 
