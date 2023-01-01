@@ -66,10 +66,10 @@
 
       if(product.discount !== null ){
         const discounted = Number(product.price / product.discount) 
-        totalPrice += Number(product.price - discounted)
+        totalPrice += Number(product.price - discounted) * product.quantity
       }
       else {
-        totalPrice += Number(product.price)
+        totalPrice += Number(product.price) * product.quantity
       }
     })
 
@@ -84,7 +84,7 @@
       if(product.discount !== null ){
         const discounts = Number(product.price / product.discount) 
 
-        totalDiscount += discounts
+        totalDiscount += discounts * product.quantity
       }
     })
     return totalDiscount 
@@ -93,8 +93,10 @@
   const deliveryChargeGenerator = computed(() => {
     let totalCharge = 0;
 
-    props.cartItems.forEach(() => {
+    props.cartItems.forEach(product => {
       totalCharge += Math.floor(Math.random() * 1000)
+
+      totalCharge * product.quantity
     })
 
     details.deliveryFee = totalCharge

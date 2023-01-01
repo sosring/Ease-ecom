@@ -33,7 +33,18 @@
     </p>
 
     <span class="product-quantity-span">
-      <input type="number" :value="product.quantity">
+      <button 
+       @click="product.quantity++"
+       class="fas fa-add quantity-control">
+      </button>
+
+      <input type="number" 
+       :value="product.quantity">
+
+      <button 
+       @click="product.quantity--"
+       class="fas fa-minus quantity-control">
+      </button>
     </span>
 
     </div>
@@ -184,6 +195,25 @@
     font-family: $work;
     font-weight: 800;
     color: darken($error, 10);
+  }
+
+  .product-quantity-span {
+    gap: 1rem;
+
+    .quantity-control {
+      height: 40px;
+      width: 40px;
+
+      border: 1px solid $border;
+      border-radius: 50%;
+    }
+
+    input {
+      height: 40px;
+      width: 40px;
+      border: 1px solid $border;;
+      text-align: center;
+    }
   }
 
   .product-btns {
