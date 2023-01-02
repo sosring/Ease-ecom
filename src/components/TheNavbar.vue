@@ -14,8 +14,14 @@
    <span 
     class="mobile-nav-btns">
 
+    <i 
+     @click="$router.push({name: 'auth'})"
+     class="user fas fa-user"
+     ref="NavBtnRef">
+    </i> 
+
     <i @click="gotoCart"
-     class="fas fa-shopping-cart"
+     class="cart fas fa-shopping-cart"
      ref="NavBtnRef">
     </i> 
 
@@ -152,6 +158,14 @@
 
      .mobile-nav-btns {
       gap: 1rem;
+
+      .user {
+        color: $error;
+      }
+
+      .cart {
+        color: darken($indigo, 10);
+      }
 
       i{
         display: inline-block;
