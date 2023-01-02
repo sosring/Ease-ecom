@@ -274,7 +274,7 @@
       right: 3%;
       z-index: 1;
       color: $error;
-      font-size: 1em;
+      font-size: .9em;
 
       position: absolute;
       cursor: pointer;
