@@ -46,7 +46,7 @@
     scrollbar-width: none;  
     scroll-behavior: smooth;
 
-    padding-top: 60px;
+    padding-top: 3rem;
   }
 
  /* route */

@@ -115,18 +115,19 @@
     margin-bottom: 3rem;
 
     @include screen-md {
-      border-radius: 2px;
+      border-radius: 4px;
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
     }
 
     font-family: $work;
     font-weight: 400;
+    font-size: clamp(1rem, 5vw, 1.1rem);
     padding: 0 1rem;
 
     height: 380px;
 
     position: sticky;
-    top: 2%;
+    top: 4%;
 
    header {
     padding: 1rem 0;
@@ -134,6 +135,7 @@
 
     h3 {
      color: lighten($text-light, 10);
+     font-size: 1.2em;
     }
    }
 
@@ -147,7 +149,7 @@
     grid-gap: 1rem;
 
     .price-section-span {
-      font-size: .9rem;
+      font-size: 1.1em;
       justify-content: space-between;
       
       line-height: 1.5;
@@ -163,7 +165,7 @@
 
       font-family: $source;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.3em;
     }
   }
  }

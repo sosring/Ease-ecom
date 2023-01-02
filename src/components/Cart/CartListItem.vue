@@ -5,10 +5,6 @@
 
    <div class="product-wrapper">
 
-   <p class="stock-updates">
-     {{ stockUpdates(product.stock) }}
-   </p>
-
    <span class="product-col-1">
     <div class="product-visuals">
 
@@ -53,7 +49,12 @@
     </span>
     </div>
    </span>
+
+   <p class="stock-updates">
+     {{ stockUpdates(product.stock) }}
+   </p>
    </div>
+
 
    <div class="product-btns">
       <button
@@ -154,7 +155,6 @@
     border-bottom: 2px $border solid;
 
     padding: 0 .5rem;
-    gap: .5rem;
 
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -164,7 +164,7 @@
     }
 
     .product-visuals {
-      min-width: 50%;
+      min-width: 40%;
       min-height: 100%;
 
       display: flex;
@@ -191,7 +191,7 @@
 
       line-height: 1.4;
       color: $text-light;
-      font-size: clamp(.9rem, 5vw, 1.1rem);
+      font-size: clamp(1rem, 5vw, 1.4rem);
 
     .product-brand {
 
@@ -222,7 +222,7 @@
    
   .stock-updates {
 
-    font-size: .9em;
+    font-size: 1em;
     font-family: $work;
     font-weight: 800;
 
@@ -282,6 +282,7 @@
     }
 
     .btn {
+      font-size: 1.1rem;
       font-family: $work;
       font-weight: 800;
       transition: background .3s ease;

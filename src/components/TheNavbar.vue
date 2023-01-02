@@ -169,23 +169,37 @@
       @include flexCenter(end, start, column);
 
       .search-bar {
-        width: 100%;
-        border-radius: 4px;
-        border: $brown 1px solid;
-        padding: .7rem 1rem; 
+        width: min(400px, 100vw);
 
-        @include screen-md {
-          width: 350px;
-        }
+        border: $brown 1px solid;
+        border-radius: 2px;
 
         position: relative;
         color: $text-light;
 
+        input { 
+         color: inherit;
+         padding: .7rem 1rem; 
+         width: 90%;
+
+         font-size: 1.1rem;
+        }
+
         i {
-          z-index: 1;
           position: absolute;
-          right: 3%;
+          right: 0;
           cursor: pointer;
+          z-index: 1;
+
+          height: 100%;
+          padding: 0 1rem;
+          font-size: 1rem; 
+
+          color: $bg-light;
+          background: lighten($brown, 5);
+          border-radius: 2px;
+
+          @include flexCenter(center, center, row);
         }
       }
 

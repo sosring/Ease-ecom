@@ -16,7 +16,7 @@
 
    <div class="product-details">
     <span>
-     <h3 class="uppercase" v-html="product.title.slice(0, 10)"></h3>
+     <h3 class="uppercase" v-html="product.title.slice(0, 15)"></h3>
 
       <span class="product-price">
        <p :class="{ 'discounted': product.discount }">
@@ -103,6 +103,7 @@
        padding: .7rem 1rem; 
 
        background: rgba(255 255 255 / .8);
+       font-size: 1.1rem;
 
        backdrop-filter: blur(2px);
        z-index: 1;

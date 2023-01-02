@@ -93,7 +93,7 @@
     text-align: center;
     padding: 2rem;
 
-    font-size: clamp(1.3rem, 5vw, 2.4rem);
+    font-size: clamp(1.5rem, 5vw, 3rem);
 
     h1, p {
       text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
@@ -137,7 +137,7 @@
     min-height: 200px;
 
     font-weight: 500;
-    font-size: clamp(1rem, 5vw, 1.2rem);
+    font-size: clamp(1rem, 5vw, 1.4rem);
 
     margin: .5rem auto;
 

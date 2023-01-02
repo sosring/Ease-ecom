@@ -17,7 +17,7 @@
       <div class="product-content">
        <div class="contents">
 
-        <h1 v-html="product.title" class="uppercase"></h1>
+        <h1 v-html="product.title.slice(0, 10)" class="uppercase"></h1>
         <h2 v-html="product.brand"></h2>
         
         <span class="product-price">
@@ -37,7 +37,7 @@
           </h3>
         </span>
 
-        <p v-html="product.desc" class="desc"></p>
+        <p v-html="product.desc.slice(0, 200)" class="desc"></p>
        </div>
 
         <span class="btn-container">
@@ -146,7 +146,7 @@
       position: absolute;
       right: 4%;
       top: 2%;
-      font-size: 1.5rem;
+      font-size: clamp(1.7rem, 5vw, 2rem);
       z-index: 1;
 
       @include screen-md {
@@ -159,18 +159,14 @@
     padding: 1rem;
     display: grid;
 
-    font-size: clamp(.8rem, 5vw, 1.3rem);
+    font-size: clamp(1.3rem, 5vw, 1.7rem);
       
     @include screen-sm {
       padding: 2rem;
     }
 
     .contents {
-      line-height: 1.7;
-
-      @include screen-md {
-        line-height: 2.5;
-      }
+      line-height: clamp(1.7rem, 5vw, 3rem);
 
       h1 {
         font-size: 1em;
@@ -218,6 +214,7 @@
     .cart-btn {
       background: $black;
       color: $bg-light;
+      font-size: .9em
     }
    }
  }

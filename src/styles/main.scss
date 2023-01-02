@@ -4,23 +4,6 @@
 @import 'resets';
 @import 'mixins';
 
-.form-inputs {
-  width: 100%;
-  color: $text-light;
-  padding: .8rem 1rem; 
-  border-radius: 4px;
-  border: $brown 1px solid;
-
-  &:focus {
-    background: lighten($brown, 30%);
-    outline: none;
-  }
-
-  @include screen-sm {
-    padding: .7rem 1rem; 
-  }
-}
-
 .disabled {
   cursor: not-allowed;
   background: lighten($text-light, 20);
@@ -28,9 +11,12 @@
 }
 
 .btns {
-  padding: .9rem 0;
+  padding: 1rem 0;
   border-radius: 4px;
   transition: all .15s ease-in;
+
+  font-family: $work;
+  font-weight: 700;
 
   &:active {
     transform: translate(0, 5%)

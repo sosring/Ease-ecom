@@ -50,7 +50,8 @@
      <div>
       <label>PASSWORD</label> 
 
-      <span class="password-input">
+      <span
+       class="password-input">
         <input 
          :value="password"
          @input="$emit('update:password', $event.target.value)"
@@ -67,15 +68,16 @@
      class="form-submit-btn btns"
      type="submit" value="SUBMIT">
 
-
-     <span v-if="register"> 
+     <span class="question-span" 
+      v-if="register"> 
       <p>Already have an account 
       <b @click="register = !register">
        Sign in ?</b>
       </p>
      </span>
 
-     <span v-if="!register"> 
+     <span class="question-span"
+      v-if="!register"> 
       <p>Create a new account
       <b @click="register = !register">
        Sign up ? </b>
@@ -159,12 +161,22 @@
 <style lang="scss" scoped>
   @import '@/styles/main';
 
-  .form-container {
-    width: min(1400px, 100%);
+  input {
+    font-size: 1rem;
+  }
 
-    margin: 1rem auto;
+  .form-container {
+    width: min(1350px, 100%);
+    height: min(700px, 100%);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     overflow: hidden;
-    @include flexCenter(none, none, column);
+
+    display: flex;
+    flex-direction: column;
 
     .form-design {
       width: 40%;
@@ -180,14 +192,10 @@
       }
     }
 
-    @include screen-md {
+    @include screen-lg {
+      flex-direction: row;
 
-      height: 700px;
-      margin-top: 2rem;
       border-radius: 8px;
-
-      @include flexCenter(none, none, row);
-
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
       0 6px 20px 0 rgba(0,0,0,0.19);
     }
@@ -195,41 +203,35 @@
 
     .form-input-container {
       padding: 1rem;
-      font-size: 1.2rem; 
+
+      width: min(650px, 100%);
+      margin: 4rem auto;
+      font-size: clamp(1rem, 5vw, 1.4rem); 
 
       h1 {
-        @include fontStyle($libre, 1.7rem);
+        @include fontStyle($libre, 1.7em);
+        font-weight: 400;
+
         color: lighten($text-dark, 10%);
         text-decoration: underline 2px;
         margin: 0 0 1rem;
 
+        font-size: 2.3em
       }
 
       label {
         display: block;
         margin: .5rem 0;
 
-        color: $brown;
-        font-size: 1rem;
+        color: $error;
         font-weight: 800;
+        font-size: .9em;
       }
 
-      @include screen-md {
-        margin: 3rem auto; 
-
-        h1{
-          font-size: 2.5rem;
-        }
-
-        label {
-          font-size: 1.1rem;
-        }
-      }
-
-      span {
+      .question-span {
         justify-content: center;
         color: $text-light;
-        font-size: 1rem;
+        font-size: .9em;
         cursor: pointer;
 
         b {
@@ -247,17 +249,20 @@
     width: 100%;
     color: $text-light;
     border-radius: 4px;
-    border: $brown 1px solid;
 
     position: relative;
 
     input {
       width: 100%;
       height: 100%;
-      padding: .7rem 1rem; 
+      color: inherit;
+
+      padding: .9rem 1rem; 
+      border-radius: 4px;
+      border: $error 1px solid;
 
       &:focus {
-        background: lighten($brown, 30%);
+        background: lighten($error, 40%);
         outline: none;
       }
     }
@@ -273,22 +278,38 @@
   .form-input-grid {
      gap: .5rem;
 
+    .form-inputs {
+      width: 100%;
+      color: $text-light;
+      padding: .9rem 1rem; 
+      border-radius: 4px;
+      border: $error 1px solid;
+
+      &:focus {
+        background: lighten($error, 40%);
+        outline: none;
+      }
+    }
+
+
     .form-submit-btn {
       color: $white;
-      background: darken($brown, 10);
+      background: $error;
       transition: all .15s;
       cursor: pointer;
+
+      font-size: 1.1rem;
 
       margin: 1rem 0;
       width: 100%;
 
       &:hover {
-        background: darken($brown, 7);
+        background: darken($error, 10);
         box-shadow: 0 0px 8px 0 rgba(0,0,0,0.1)
       }
     }
 
-    @include screen-base {
+    @include screen-sm {
       gap: 1rem;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -308,6 +329,8 @@
     grid-template-columns: repeat(2, 1fr);
     margin: 1rem 0;
     grid-gap: 1rem;
+
+    font-size: 1rem;
 
     .google-btn{
       color: $white;
