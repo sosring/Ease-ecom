@@ -25,17 +25,9 @@
     </i> 
    </span>
   </div>
-  
+    
   <div v-if="showNav"
    class="secoundary-nav">
-
-   <span class="search-bar">
-    <input type="text" 
-     class="capitalize"
-     placeholder="search products">
-
-     <i class="fas fa-magnifying-glass"></i>
-   </span>
 
     <RouterLink 
      class="links"
@@ -46,10 +38,25 @@
       <p>{{ route.name }}</p>
     </RouterLink>
 
+     <span class="search-bar">
+      <input type="text" 
+       class="capitalize"
+       placeholder="search products">
+
+       <i class="fas fa-magnifying-glass"></i>
+     </span>
+
+
+    <button class="account-btn"
+     @click="$router.push({ name: 'auth' })">
+      <i class="fas fa-user"></i>
+      <p>My Account</p>
+    </button>
+
     <button class="cart-btn"
      @click="$router.push({ name: 'cart' })">
-      <p>Cart</p>
       <i class="fas fa-shopping-cart"></i>
+      <p>Cart</p>
     </button>
   </div>
 
@@ -90,8 +97,7 @@
 
   const routes = [
     { name: 'Home', path: 'home' },
-    { name: 'Product', path: 'products' },
-    { name:  'Account'   , path: 'auth' }
+    { name: 'Product', path: 'products' }
   ] 
 
   const redirect = () => {
@@ -230,33 +236,33 @@
       }
     }
 
+    .account-btn,
     .cart-btn {
       display: none;
 
       color: $white;
       padding: .8rem 1rem; 
-      border-radius: 4px;
+      border-radius: 50%;
 
-      color: $error;
-      border: $error 1px solid;
+      color: $text-dark;
 
-      font-size: 1.1em;
+      font-size: .9em;
       font-family: $work;
+
       transition: all .15s;
 
-      i { -webkit-text-stroke: none; }
-
-      &:hover{
-        background: $error;
-        color: $white;
+      i {
+        color: transparent;
+       -webkit-text-stroke: 2px $text-dark; 
       }
 
-      &:active{
-        transform: translate(0, 5%);
+      &:hover{
+        color: $error;
+        i {-webkit-text-stroke: 2px $error; }
       }
 
       @include screen-md {
-        display: flex;
+        display: inline-block;
         gap: .5rem;
       }
     }

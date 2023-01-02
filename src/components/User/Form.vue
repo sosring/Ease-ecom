@@ -273,6 +273,7 @@
     i {
       right: 3%;
       z-index: 1;
+
       color: $error;
       font-size: .9em;
 
