@@ -243,7 +243,7 @@
       padding: .8rem 1rem; 
       border-radius: 50%;
 
-      color: $text-dark;
+      color: $text-light;
 
       font-size: .9em;
       font-family: $work;
