@@ -71,7 +71,7 @@
     min-height: 450px;
 
     background: 
-    linear-gradient( rgba(0 0 0 / 0), rgba(0 0 0 / .2)),
+    linear-gradient( rgba(0 0 0 / .2), rgba(0 0 0 / .3)),
     url('/assets/banner01.jpg')  no-repeat center;
 
     -webkit-background-size: cover;
@@ -105,14 +105,14 @@
     }
 
     p {
-      @include fontStyle('arial', 1.1em);
+      @include fontStyle($source, 1.1em);
       letter-spacing: 3px;
     }
 
     .product-btn {
       color: $pink;
       border: $pink 1px solid; 
-      font-size: 1rem;
+      font-size: .9rem;
 
       background-color: rgba(0, 0, 0, 0.2);
       -webkit-backdrop-filter: blur(5px);
