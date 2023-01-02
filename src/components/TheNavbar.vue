@@ -46,7 +46,6 @@
        <i class="fas fa-magnifying-glass"></i>
      </span>
 
-
     <button class="account-btn"
      @click="$router.push({ name: 'auth' })">
       <i class="fas fa-user"></i>
