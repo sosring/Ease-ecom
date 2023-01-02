@@ -108,7 +108,7 @@
   @import "@/styles/main";
 
   .nav-container {
-    font-size: clamp(16px, 5vw, 18px);
+    font-size: clamp(1rem, 5vw, 1.2rem);
     font-weight: 600;
     border-bottom: 1px solid $border;
     z-index: 2;
@@ -123,8 +123,9 @@
 
   .inner-nav-cont {
     padding: .7rem; 
-    @include flexCenter(none, space-between, column);
-
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 
     max-width: 1540px;
     margin: 0 auto;
@@ -148,7 +149,7 @@
 
       i{
         display: inline-block;
-        font-size: 1.1rem;
+        font-size: 1.1em;
 
         &:active{
           transform: translate(0, 5%);
@@ -169,20 +170,24 @@
       @include flexCenter(end, start, column);
 
       .search-bar {
-        width: min(400px, 100vw);
+        width: 100%;
 
-        border: $brown 1px solid;
-        border-radius: 2px;
+        border: darken($border, 10) 1px solid;
+        border-radius: 2rem;
 
         position: relative;
-        color: $text-light;
+        color: $error;
+
+        @include screen-sm {
+          width: 400px;
+        }
 
         input { 
          color: inherit;
          padding: .7rem 1rem; 
          width: 90%;
 
-         font-size: 1.1rem;
+         font-size: .9em;
         }
 
         i {
@@ -193,11 +198,10 @@
 
           height: 100%;
           padding: 0 1rem;
-          font-size: 1rem; 
+          font-size: 1em; 
 
-          color: $bg-light;
-          background: lighten($brown, 5);
-          border-radius: 2px;
+          color: inherit;
+          border-radius: 2rem;
 
           @include flexCenter(center, center, row);
         }
@@ -205,7 +209,7 @@
 
       a {
         color: $text-light;
-        font-size: clamp(.7rem, 5vw, 1.1rem);
+        font-size: 1.1em;
 
         &.router-link-exact-active {
           color: $brown;
@@ -229,19 +233,19 @@
       display: none;
 
       color: $white;
-      padding: .7rem 1rem; 
+      padding: .8rem 1rem; 
       border-radius: 4px;
 
-      color: $brown;
-      border: $brown 1px solid;
+      color: $error;
+      border: $error 1px solid;
 
-      font-size: 1rem;
+      font-size: 1em;
       transition: all .15s;
 
       i { -webkit-text-stroke: none; }
 
       &:hover{
-        background: $brown;
+        background: $error;
         color: $white;
       }
 

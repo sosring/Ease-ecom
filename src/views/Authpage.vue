@@ -1,42 +1,11 @@
 <template>
 
 <div class="auth-wrapper" v-auto-animate>
-<Form v-if="!useAuth.user.id" 
+ <Form v-if="!useAuth.user.id" 
    v-model:firstname="credentials.firstname"
    v-model:lastname="credentials.lastname"
    v-model:email="credentials.email"
    v-model:password="credentials.password"/>
-
-  <div v-if="useAuth.user.id" 
-   class="profile-container">
-    
-    <header>
-      <span @click="previousRoute">
-        <i class="fas fa-chevron-left"></i>
-        <p class="capitalize">
-          {{ editUserProfile ? 'Edit Profile' : greetings }}
-        </p>
-      </span>
-
-       <div v-if="!editUserProfile"
-        class="profile-img">
-        <img :src="useAuth.user.img">
-       </div>
-    </header>
-
-  <div class="user-wrapper">
-   <Profile
-    key="profile"
-    v-if="!editUserProfile"
-    v-model:editProfile="editUserProfile"/>
-
-   <Editprofile 
-    key="editProfile"
-    v-if="editUserProfile"
-    v-model:editProfile="editUserProfile"/>
-  </div>
-
- </div>
 </div>
 
 </template>
@@ -47,7 +16,6 @@
   import { vAutoAnimate } from '@formkit/auto-animate'
   import Form from '@/components/User/Form.vue'
   import Profile from '@/components/User/Profile.vue'
-  import Editprofile from '@/components/User/Editprofile.vue'
 
   import { useAuthStore } from '@/stores/auth'
 
