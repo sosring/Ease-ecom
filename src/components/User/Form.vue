@@ -8,7 +8,8 @@
     
    <div class="form-input-container">
     <header>
-      <h1>{{ formInfo }}</h1> 
+      <h1 v-html="formInfo" 
+       class="form-heading"></h1> 
     </header>
 
     <form class="form-input-grid"
@@ -208,12 +209,14 @@
       margin: 4rem auto;
       font-size: clamp(1rem, 5vw, 1.4rem); 
 
-      h1 {
+      .form-heading {
         @include fontStyle($libre, 1.7em);
         font-weight: 400;
 
-        color: lighten($text-dark, 10%);
+        color: $text-dark;
+
         text-decoration: underline 2px;
+        text-underline-offset: 8px;
         margin: 0 0 1rem;
 
         font-size: 2.3em
@@ -268,9 +271,12 @@
     }
 
     i {
-      z-index: 1;
-      position: absolute;
       right: 3%;
+      z-index: 1;
+      color: $error;
+      font-size: 1em;
+
+      position: absolute;
       cursor: pointer;
     }
   }

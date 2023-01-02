@@ -136,8 +136,9 @@
     max-width: 1450px;
     min-height: 200px;
 
-    font-weight: 500;
+    font-weight: 700;
     font-size: clamp(1rem, 5vw, 1.4rem);
+    line-height: 1.2;
 
     margin: .5rem auto;
 
@@ -148,13 +149,14 @@
     text-align: center;
 
     .about-title {
-      @include fontStyle($roboto, 1.2em);
+      font-size: 1.2em;
       letter-spacing: 3px;
+      border-bottom: 2px $border solid;
     }
     
     .about-desc {
-      line-height: 1.2;
-      @include fontStyle($work, .8em);
+      color: $text-light;
+      font-size: .9em;
     }
 
     @include screen-md {
@@ -168,6 +170,7 @@
       
       .about-title {
         border-right: 2px $border solid;
+        border-bottom: none;
       }
     }
   }
