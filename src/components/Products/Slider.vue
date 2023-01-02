@@ -37,13 +37,10 @@
     color: $text-light;
 
     h1 {
-      font-size: 3rem;
       font-family: $work;
       color: inherit;
 
-      @include screen-md {
-        font-size: 4rem;
-      }
+      font-size: clamp(2rem, 5vw, 4rem);
     }
   }
 
@@ -53,7 +50,7 @@
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
 
-    grid-gap: 2rem;
+    grid-gap: 3rem;
 
     -ms-overflow-style: none;  
     scrollbar-width: none;  

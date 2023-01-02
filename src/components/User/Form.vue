@@ -12,12 +12,12 @@
     </header>
 
     <form class="form-input-grid"
-     @submit.prevent="submitForm">
+      @submit.prevent="submitForm">
 
      <div v-if="register">
       <label>FIRST NAME</label> 
 
-      <input :key="firstname" 
+      <input 
        :value="firstname"
        @input="$emit('update:firstname', $event.target.value)"
        class="form-inputs capitalize"
@@ -28,7 +28,7 @@
      <div v-if="register">
       <label>LAST NAME</label> 
 
-      <input :key="lastname" 
+      <input 
        :value="lastname"
        @input="$emit('update:lastname', $event.target.value)"
        class="form-inputs capitalize"
@@ -39,7 +39,7 @@
      <div>
       <label>EMAIL</label> 
 
-      <input :key="email"
+      <input 
        :value="email"
        @input="$emit('update:email', $event.target.value)"
        class="form-inputs"
@@ -51,7 +51,7 @@
       <label>PASSWORD</label> 
 
       <span class="password-input">
-        <input :key="password"
+        <input 
          :value="password"
          @input="$emit('update:password', $event.target.value)"
          :type="hidePassword ? 'password' : 'text'"
@@ -63,7 +63,7 @@
        </span>
     </div>
 
-    <input :key="submit"
+    <input 
      class="form-submit-btn btns"
      type="submit" value="SUBMIT">
 
@@ -107,8 +107,6 @@
 <script setup>
   import { ref, reactive, computed } from 'vue' 
   import { useAuthStore } from '@/stores/auth'
-  import { vAutoAnimate } from '@formkit/auto-animate'
-
 
   const useAuth = useAuthStore()
 
@@ -162,8 +160,7 @@
   @import '@/styles/main';
 
   .form-container {
-    height: auto;
-    max-width: 1400px;
+    width: min(1400px, 100%);
 
     margin: 1rem auto;
     overflow: hidden;
@@ -186,10 +183,11 @@
     @include screen-md {
 
       height: 700px;
-      width: 90%;
       margin-top: 2rem;
       border-radius: 8px;
+
       @include flexCenter(none, none, row);
+
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
       0 6px 20px 0 rgba(0,0,0,0.19);
     }

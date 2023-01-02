@@ -5,8 +5,7 @@
      v-show="currentSlide === index"
      :key="index">
 
-      <img @mousemove="imageCordinates"
-       :src="`/assets/${image}.jpg`">
+      <img :src="`/assets/${image}.jpg`">
     </div>
   </transition>
 </template>
@@ -29,8 +28,6 @@
     }
   });
 
-  const imageCordinates = e => console.log(e) 
-
   const transitionEffect = computed(() => {
     return props.direction === 'right' ? 'slide-in' : 'slide-out'
   }) 
@@ -47,6 +44,7 @@
     img {
       object-fit: cover;
       object-position: top;
+
       height: 100%;
       width: 100%;
     }

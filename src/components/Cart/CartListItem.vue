@@ -5,10 +5,15 @@
 
    <div class="product-wrapper">
 
+   <p class="stock-updates">
+     {{ stockUpdates(product.stock) }}
+   </p>
+
    <span class="product-col-1">
     <div class="product-visuals">
 
-     <div class="product-img-container">
+     <div class="product-img-container"
+      @click="showQuickView = !showQuickView">
       <img :src="`/assets/${product.images[0]}.jpg`">
      </div>
     </div>
@@ -32,26 +37,22 @@
 
     <span class="product-quantity-span">
       <button 
-       :disabled="product.stock <= 0"
-       :class="{ 'disabled': product.stock <=0 }"
-       @click="addProduct"
-       class="fas fa-add quantity-control">
+       @click="subProduct"
+       class="fas fa-minus quantity-control">
       </button>
 
       <input type="number" disabled
        :value="product.quantity" >
 
       <button 
-       @click="subProduct"
-       class="fas fa-minus quantity-control">
+       :disabled="product.stock <= 0"
+       :class="{ 'disabled': product.stock <=0 }"
+       @click="addProduct"
+       class="fas fa-add quantity-control">
       </button>
     </span>
     </div>
    </span>
-
-    <p class="stock-updates">
-      {{ stockUpdates(product.stock) }}
-    </p>
    </div>
 
    <div class="product-btns">
@@ -64,27 +65,35 @@
 
       <button
        @click="useCart.removeItem(product.id)"
-       :disabled="product.stock <= 0"
        class="remove-btn btn">
        REMOVE
       </button>
    </div>
   </article>
 
+  <Quickview 
+   v-if="showQuickView"
+   v-model:condition="showQuickView"
+   :product="product"
+   :discountedPrice="discounted"/>
+
 </template>
 
 <script setup>
-  import { computed } from 'vue'
+  import { ref, computed } from 'vue'
   import { useCartStore } from '@/stores/cart'
   import { discountValuation } from '@/composables/discount'
   import { trackProductStock } from '@/composables/stock'
   import { priceFormatter } from '@/composables/priceFormatter'
+  import Quickview from '@/components/Products/Quickview.vue'
 
   const useCart = useCartStore()
 
   const { stockUpdates } = trackProductStock()
   const { discountedPrice } = discountValuation() 
   const { formatting } = priceFormatter()
+
+  const showQuickView = ref(false)
 
   const addProduct = e => {
       props.product.quantity++
@@ -122,11 +131,11 @@
       display: flex;
       flex-direction: column;
 
-      min-height: 210px; 
+      min-height: 220px; 
       background: inherit;
 
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
-      border-radius: 6px;
+      border-radius: 3px;
       overflow: hidden;
 
       @include screen-sm {
@@ -139,6 +148,8 @@
     display: flex;
     flex-direction: column;
 
+    overflow: hidden;
+
     height: 80%;
     border-bottom: 2px $border solid;
 
@@ -150,16 +161,15 @@
 
     .product-col-1 {
       height: 100%;
-      width: 100%;
     }
 
     .product-visuals {
-      min-width: 40%;
+      min-width: 50%;
       min-height: 100%;
 
       display: flex;
       position: relative;
-      
+
       .product-img-container {
         height: 100%;
         width: 100%;
@@ -176,16 +186,12 @@
     }
 
     .product-content-details {
-      width: 60%;
+      min-width: 60%;
       padding: .5rem;
 
       line-height: 1.4;
       color: $text-light;
-      font-size: .9rem;
-
-      @include screen-sm {
-        font-size: 1.1rem;
-      }
+      font-size: clamp(.9rem, 5vw, 1.1rem);
 
     .product-brand {
 
@@ -215,13 +221,13 @@
   }
    
   .stock-updates {
-    height: 10%;
 
     font-size: .9em;
     font-family: $work;
     font-weight: 800;
+
     color: darken($error, 10);
-    text-align: end;
+    text-align: start;
   }
 
   .product-quantity-span {

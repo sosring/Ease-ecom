@@ -21,7 +21,7 @@
    heading="Men Clothes ."
    :products="menFiltered"/>
 
-  <div class="about">
+  <article class="about">
    <div class="about-title">
       <h3>MADE FOR THE <br> MORDERN CLOTHINGS</h3>
    </div>
@@ -33,7 +33,7 @@
     finds the perfect outfit to add some spice to her life.
     </p>
    </div> 
-  </div>
+  </article>
 
   <Slider 
    heading="Women Clothes ."
@@ -92,9 +92,8 @@
 
     text-align: center;
     padding: 2rem;
-    font-size: 24px;
-    @include screen-md { font-size: 28px; }
-    @include screen-md { font-size: 40px; }
+
+    font-size: clamp(1.3rem, 5vw, 2.4rem);
 
     h1, p {
       text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
@@ -113,7 +112,7 @@
     .product-btn {
       color: $pink;
       border: $pink 1px solid; 
-      font-size: 0.9rem;
+      font-size: 1rem;
 
       background-color: rgba(0, 0, 0, 0.2);
       -webkit-backdrop-filter: blur(5px);
@@ -135,8 +134,11 @@
 
   .about {
     max-width: 1450px;
+    min-height: 200px;
+
     font-weight: 500;
-    font-size: 16px;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+
     margin: .5rem auto;
 
     display: grid;
@@ -155,8 +157,7 @@
       @include fontStyle($work, .8em);
     }
 
-    @include screen-base {
-      font-size: 18px;
+    @include screen-md {
       text-align: left;
 
       grid-template-columns: repeat(2, 1fr);
@@ -169,23 +170,9 @@
         border-right: 2px $border solid;
       }
     }
-
-    @include screen-md {
-      font-size: 22px;
-      height: 200px;
-    }
   }
 
   .homepage-footer {
     height: 500px
   }
-
-  .btn-to-top {
-  width: 60px;
-  height: 60px;
-  padding: 10px 16px;
-  border-radius: 50%;
-  font-size: 22px;
-  line-height: 22px;
-}
 </style>

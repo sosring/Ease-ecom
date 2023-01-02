@@ -1,6 +1,7 @@
 <template>
 
-  <div class="product-card-cont"
+  <div @click="showQuickView = !showQuickView"
+   class="product-card-cont"
    :key="product.id" 
    :id="product.id">
 
@@ -8,16 +9,14 @@
     <img :src="`/assets/${product.images[1]}.jpg`"
      :alt="product.title">
 
-    <button 
-     @click="showQuickView = !showQuickView"
-     class="overview-btn">
-     Quick view
-    </button>
+     <button class="quickview-btn">
+       Quick view
+     </button>
    </div>
 
    <div class="product-details">
     <span>
-     <h3 class="uppercase" v-html="product.title.slice(0, 15)"></h3>
+     <h3 class="uppercase" v-html="product.title.slice(0, 10)"></h3>
 
       <span class="product-price">
        <p :class="{ 'discounted': product.discount }">
@@ -94,37 +93,36 @@
         object-position: top;
       }
 
-      .overview-btn {
-        @include screen-md { opacity: 0; }
+     .quickview-btn {
+       opacity: 0;
 
-        font-size: .9rem;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       padding: .7rem 1rem; 
 
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+       background: rgba(255 255 255 / .8);
 
-        background-color: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(5px);
+       backdrop-filter: blur(2px);
+       z-index: 1;
 
-        padding: .7rem;
-        transition: opacity .2s ease-out , background-color .15s ease;
-
-
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.8);
-        }
-      }
-
-      &:hover .overview-btn {
-        opacity: 1;
+       transition: all .3s ease-in; 
+     }
+     
+      @include screen-md {
+       &:hover .quickview-btn {
+         opacity: 1;
+       }
       }
    }
+
 
   .product-details {
      @include flexCenter(none, center, column);
 
      padding: .5rem 0;
+     font-size: clamp(1rem, 5vw, 1.4rem);
 
      span {
       justify-content: space-between;
@@ -132,24 +130,16 @@
       h3 {
         color: $text-dark;
         font-family: $oswald;
+        font-size: 1em;
       }
+
      }
-
-     @include screen-sm {
-       font-size: .8rem;
-
-       p {
-        font-size: 1rem;
-       }
-
-       h3 {
-        font-size: 1.1rem;
-       }
-     }
+     p { font-size: .9em; }
 
     .product-price {
-      gap: .5rem;
+      gap: 1rem;
       font-family: monospace;
+      font-size: .9em; 
     }
    }
  }

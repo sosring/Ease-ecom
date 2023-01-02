@@ -1,8 +1,6 @@
 <template>
 
-  <header>
-    <Navbar />
-  </header>
+  <Navbar />
 
   <main class="main-container"
    v-if="productStore.productLoaded">
@@ -48,8 +46,7 @@
     scrollbar-width: none;  
     scroll-behavior: smooth;
 
-    position: fixed;
-    top: 6%;
+    padding-top: 70px;
   }
 
  /* route */

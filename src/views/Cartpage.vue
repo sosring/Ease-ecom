@@ -14,7 +14,7 @@
      v-if="useCart.isEmpty" 
      class="empty-indicator">
 
-      <img src="/empty-cart.jpg">
+      <img src="/empty.jpg">
       <h1>Your cart is empty!</h1>
     </section>
 </template>
@@ -32,35 +32,34 @@
   @import "@/styles/main";
 
   .cart-main-wrapper {
-    max-width: 1250px;
+    width: min(1250px, 100%);
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 
     grid-gap: 2rem;
-    padding: .7rem;
 
-    margin: 1rem auto;
+    margin: 0 auto;
+    padding-top: 3rem;
   }
 
   .empty-indicator {
-    height: 100vh;
-    width: 100vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     @include flexCenter(center, center, column);
 
     img {
-      max-height: 20%;
-
-      @include screen-sm {
-        max-height: 40%;
-      }
+      width: min(90vw, 650px);
     }
 
     h1 {
+      color: $error;
+
       font-family: $work;
-      font-size: 1.7rem;
-      color: $error
+      font-size: clamp(1.2rem, 5vw,1.7rem)
     }
   }
 </style>

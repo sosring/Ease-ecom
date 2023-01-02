@@ -1,9 +1,9 @@
 <template>
 
-  <nav class="nav-container"
+  <header class="nav-container"
    ref="NavbarRef">
 
-  <div class="inner-nav-cont"
+  <nav class="inner-nav-cont"
    v-auto-animate>
 
   <div class="primary-nav">
@@ -29,6 +29,14 @@
   <div v-if="showNav"
    class="secoundary-nav">
 
+   <span class="search-bar">
+    <input type="text" 
+     class="capitalize"
+     placeholder="search products">
+
+     <i class="fas fa-magnifying-glass"></i>
+   </span>
+
     <RouterLink 
      @click="toggleNav"
      v-for="route in routes" 
@@ -44,8 +52,8 @@
     </button>
   </div>
 
-  </div>
- </nav>
+  </nav>
+ </header>
 </template>
 
 <script setup>
@@ -100,7 +108,7 @@
   @import "@/styles/main";
 
   .nav-container {
-    font-size: 16px;
+    font-size: clamp(16px, 5vw, 18px);
     font-weight: 600;
     border-bottom: 1px solid $border;
     z-index: 2;
@@ -109,11 +117,8 @@
 
     position: fixed;
     top: 0;
-    width: 100%;
-
-    @include screen-sm {
-     font-size: 18px;
-    }
+    left: 0;
+    right: 0;
   }
 
   .inner-nav-cont {
@@ -163,8 +168,30 @@
 
       @include flexCenter(end, start, column);
 
+      .search-bar {
+        width: 100%;
+        border-radius: 4px;
+        border: $brown 1px solid;
+        padding: .7rem 1rem; 
+
+        @include screen-md {
+          width: 350px;
+        }
+
+        position: relative;
+        color: $text-light;
+
+        i {
+          z-index: 1;
+          position: absolute;
+          right: 3%;
+          cursor: pointer;
+        }
+      }
+
       a {
         color: $text-light;
+        font-size: clamp(.7rem, 5vw, 1.1rem);
 
         &.router-link-exact-active {
           color: $brown;

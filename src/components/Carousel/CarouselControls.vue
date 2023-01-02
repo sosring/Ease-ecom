@@ -1,11 +1,15 @@
 <template>
 
-  <button @click="$emit('prev')" 
+  <button 
+   v-if="index !== 0"
+   @click="$emit('prev')" 
    class="carousel-btn left
    fa-solid fa-chevron-left">
   </button>
 
-  <button @click="$emit('next')" 
+  <button
+   v-if="index !== slides.length - 1"
+   @click="$emit('next')" 
    class="carousel-btn right
    fa-solid fa-chevron-right">
   </button>
@@ -14,6 +18,8 @@
 
 <script setup>
   const emits = defineEmits(['prev', 'next'])
+
+  const props = defineProps(['slides', 'index']);
 </script>
 
 <style lang="scss" scoped>

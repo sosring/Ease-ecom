@@ -1,15 +1,17 @@
 <template>
 
-<main>
+<section>
   <div class="primary-grid">
-   <span>
+
+   <span class="btns"
+    @click="$router.push({ name: 'cart' })">
       <i class="cart fas fa-shopping-cart"></i>
       <p>CartList</p>
     </span>
 
-    <span>
-      <i class="heart fas fa-heart"></i>
-      <p>WishList</p>
+    <span class="btns">
+      <i class="heart fas fa-box"></i>
+      <p>Your Orders</p>
     </span>
   </div>
 
@@ -32,7 +34,7 @@
     </span>
 
   </div>
-</main>
+</section>
 
 </template>
 

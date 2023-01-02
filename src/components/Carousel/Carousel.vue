@@ -17,6 +17,8 @@
       :currentSlide="currentSlide"/>
 
      <CarouselControls 
+      :slides="images"
+      :index="currentSlide"
       @prev="prev"
       @next="next"/>
 

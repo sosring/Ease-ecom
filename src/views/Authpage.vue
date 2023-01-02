@@ -1,6 +1,6 @@
 <template>
 
-<div v-auto-animate>
+<div class="auth-wrapper" v-auto-animate>
 <Form v-if="!useAuth.user.id" 
    v-model:firstname="credentials.firstname"
    v-model:lastname="credentials.lastname"
@@ -88,7 +88,7 @@
   }
 
  .profile-container {
-    max-width: 800px;
+    width: min(800px, 100%);
     padding: 1rem;
     overflow: hidden;
     margin: 2rem auto;
@@ -104,12 +104,8 @@
      margin-bottom: 1rem;
 
       span {
-       font-size: 1.2rem;
+       font-size: clamp(1.2rem, 5vw, 1.4rem);
        padding: .8rem 0;
-
-       @include screen-sm {
-         font-size: 1.4rem;
-       }
       }
 
       .profile-img {

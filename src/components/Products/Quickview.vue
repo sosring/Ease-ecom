@@ -16,6 +16,7 @@
 
       <div class="product-content">
        <div class="contents">
+
         <h1 v-html="product.title" class="uppercase"></h1>
         <h2 v-html="product.brand"></h2>
         
@@ -157,15 +158,11 @@
   .product-content {
     padding: 1rem;
     display: grid;
-    font-size: 14px;
+
+    font-size: clamp(.8rem, 5vw, 1.3rem);
       
     @include screen-sm {
-      font-size: 16px;
       padding: 2rem;
-    }
-
-    @include screen-md {
-      font-size: 18px;
     }
 
     .contents {
@@ -176,7 +173,7 @@
       }
 
       h1 {
-        font-size: 1.7em;
+        font-size: 1em;
         font-family: $oswald;
         letter-spacing: 2px;
         color: $text-dark;
@@ -184,6 +181,7 @@
 
       h2 {
         color: $text-light;
+        font-size: .9em;
       }
 
       span {
@@ -194,18 +192,19 @@
         font-family: monospace;
         justify-content: space-between;
 
-        @include screen-md {
-          p { font-size: 1rem; }
-        }
+        p { font-size: .8em; }
 
         h3 { 
          color: $text-light;
          font-family: $roboto;
+         font-size: .9em
         }
       }
 
       .desc {
-        line-height: 1.5;
+        line-height: 1.3;
+        font-size: .8em;
+        margin-top: .5rem;
       }
     }
 
@@ -221,13 +220,14 @@
       color: $bg-light;
     }
    }
-  }
+ }
 
   .stock-tracker {
     text-align: center;
+    font-size: .9em;
 
-    font-weight: 700;
-    font-family: $work;
+    font-weight: 900;
+    font-family: $source;
     color: $error
   }
 

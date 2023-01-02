@@ -36,6 +36,7 @@
   .cart-wrapper {
     border-radius: 4px;
     background: $bg-light;
+    padding: .5rem;
 
    @include screen-sm {
     grid-column: 1 / span 2;
@@ -50,12 +51,14 @@
         cursor: pointer;
         
         font-family: $work;
-        font-size: 1.1rem; 
-        font-weight: 700; 
+        font-weight: 800; 
+        font-size: clamp(1.3rem, 5vw, 1.7rem); 
 
-        background: lighten($indigo, 10);
-        border-radius: 4px;
+        background: rgb(102 126 234 / .6);
         color: $white;
+
+        backdrop-filter: blur(4px);
+        border-radius: 4px;
       }
    }
  }
@@ -64,6 +67,5 @@
    display: grid;
    grid-gap: 1rem;
    margin: 1rem 0;
-   padding: .5rem;
  }
 </style>
