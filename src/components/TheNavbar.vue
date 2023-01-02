@@ -38,6 +38,7 @@
    </span>
 
     <RouterLink 
+     class="links"
      @click="toggleNav"
      v-for="route in routes" 
      :to="{ name: route.path }">
@@ -90,7 +91,7 @@
   const routes = [
     { name: 'Home', path: 'home' },
     { name: 'Product', path: 'products' },
-    { name:  'Profile'   , path: 'auth' }
+    { name:  'Account'   , path: 'auth' }
   ] 
 
   const redirect = () => {
@@ -183,8 +184,8 @@
         }
 
         input { 
-         color: inherit;
-         padding: .7rem 1rem; 
+         color: $text-light;
+         padding: .7em 1em; 
          width: 90%;
 
          font-size: .9em;
@@ -207,12 +208,12 @@
         }
       }
 
-      a {
+      .links {
         color: $text-light;
         font-size: 1.1em;
 
         &.router-link-exact-active {
-          color: $brown;
+          color: $error;
         } 
 
         &:hover {
@@ -239,7 +240,8 @@
       color: $error;
       border: $error 1px solid;
 
-      font-size: 1em;
+      font-size: 1.1em;
+      font-family: $work;
       transition: all .15s;
 
       i { -webkit-text-stroke: none; }

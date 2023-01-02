@@ -1,25 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Homepage from '@/views/Homepage.vue'
+import Authpage from '@/views/Authpage.vue'
+import Productpage from '@/views/Productpage.vue'
+import Cartpage from '@/views/Cartpage.vue'
 
 const routes = [
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/Homepage.vue')
+      component: Homepage
     },
     {
       path: '/auth',
       name: 'auth',
-      component: () => import('@/views/Authpage.vue')
+      component: Authpage
     },
     {
       path: '/products',
       name: 'products',
-      component: () => import('@/views/Productpage.vue')
+      component: Productpage
     },
     {
       path: '/cart',
       name: 'cart',
-      component: () => import('@/views/Cartpage.vue')
+      component: Cartpage
     }
   ]
 
