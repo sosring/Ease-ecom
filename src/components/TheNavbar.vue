@@ -7,20 +7,20 @@
    v-auto-animate>
 
   <div class="primary-nav">
-    <h1 @click="redirect">
+    <h1 class="brand"
+     @click="redirect">
      Ease
     </h1>
 
    <span 
     class="mobile-nav-btns">
 
-    <i 
-     @click="$router.push({name: 'auth'})"
+    <i @click="gotoRouting('auth')"
      class="user fas fa-user"
      ref="NavBtnRef">
     </i> 
 
-    <i @click="gotoCart"
+    <i @click="gotoRouting('cart')"
      class="cart fas fa-shopping-cart"
      ref="NavBtnRef">
     </i> 
@@ -45,20 +45,21 @@
     </RouterLink>
 
      <span class="search-bar">
-      <input type="text" 
+      <input
+       type="text" 
        class="capitalize"
        placeholder="search products">
 
        <i class="fas fa-magnifying-glass"></i>
      </span>
 
-    <button class="account-btn"
+    <button type="button" class="account-btn"
      @click="$router.push({ name: 'auth' })">
       <i class="fas fa-user"></i>
       <p>My Account</p>
     </button>
 
-    <button class="cart-btn"
+    <button type="button" class="cart-btn"
      @click="$router.push({ name: 'cart' })">
       <i class="fas fa-shopping-cart"></i>
       <p>Cart</p>
@@ -70,7 +71,7 @@
 </template>
 
 <script setup>
-  import { ref,  } from 'vue'
+  import { ref } from 'vue'
   import { onClickOutside } from '@vueuse/core'
   import { vAutoAnimate } from '@formkit/auto-animate'
   import { useAuthStore } from '@/stores/auth'
@@ -84,6 +85,7 @@
 
   const NavbarRef = ref('')
   const NavBtnRef = ref('')
+  const searchRef = ref('')
 
   const toggleNav = () => {
     screenWidth.value <= 900 ? showNav.value = !showNav.value : showNav.value 
@@ -91,7 +93,7 @@
 
   onClickOutside( NavbarRef, () => {
     screenWidth.value <= 900 ? showNav.value = false : showNav.value
-  }, { ignore: [NavBtnRef] })
+  }, { ignore: [NavBtnRef, searchRef] })
 
   const checkScreen = () => {
     screenWidth.value = window.innerWidth
@@ -110,9 +112,9 @@
     router.push({ name: 'home' })
   }
 
-  const gotoCart = () => {
+  const gotoRouting = (route) => {
     showNav.value = false
-    router.push({ name: 'cart' })
+    router.push({ name: route })
   }
 </script>
 
@@ -149,9 +151,10 @@
     .primary-nav {
       @include flexCenter(center, space-between, row);
       
-      h1 {
+      .brand {
         cursor: pointer;
         color: $text-dark;
+
         font-family: $libre;
         font-style: italic;
       }

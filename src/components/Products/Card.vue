@@ -69,6 +69,7 @@
     min-height: 450px;
     width: 100%;
 
+    margin-bottom: 2rem;
     flex: none;
 
     line-height: 1.3;

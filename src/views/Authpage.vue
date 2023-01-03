@@ -6,6 +6,8 @@
    v-model:lastname="credentials.lastname"
    v-model:email="credentials.email"
    v-model:password="credentials.password"/>
+
+ <Profile v-if="useAuth.user.id"/>
 </div>
 
 </template>

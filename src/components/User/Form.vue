@@ -207,7 +207,7 @@
 
       width: min(650px, 100%);
       margin: 4rem auto;
-      font-size: clamp(1rem, 5vw, 1.4rem); 
+      font-size: clamp(1rem, 5vw, 1.3rem); 
 
       .form-heading {
         @include fontStyle($libre, 1.7em);
@@ -219,7 +219,7 @@
         text-underline-offset: 8px;
         margin: 0 0 1rem;
 
-        font-size: 2.3em
+        font-size: 2.2em
       }
 
       label {
@@ -228,6 +228,7 @@
 
         color: $error;
         font-weight: 800;
+
         font-size: .9em;
       }
 

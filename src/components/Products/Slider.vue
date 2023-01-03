@@ -31,7 +31,7 @@
   @import '@/styles/main';  
 
   .slider-wrapper {
-    padding: 1rem .5rem;
+    padding: 1rem;
     margin: 1rem 0;
 
     color: $text-light;
@@ -45,12 +45,11 @@
   }
 
   .slider-container {
-    margin: 2rem auto;
 
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
 
-    grid-gap: 3rem;
+    grid-gap: 1rem;
 
     -ms-overflow-style: none;  
     scrollbar-width: none;  

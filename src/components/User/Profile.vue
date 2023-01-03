@@ -1,5 +1,12 @@
 <template>
 
+  <section>
+    <aside>
+    </aside>
+
+    <article>
+    </article>
+  </section>
 </template>
 
 <script setup>
@@ -22,4 +29,8 @@
 
 <style lang="scss" scoped>
   @import '@/styles/main';
+
+  button {
+    font-size: 3rem;
+  }
 </style>

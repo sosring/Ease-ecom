@@ -1,29 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Homepage from '@/views/Homepage.vue'
-import Authpage from '@/views/Authpage.vue'
-import Productpage from '@/views/Productpage.vue'
-import Cartpage from '@/views/Cartpage.vue'
+
+function lazyLoad(view){
+  return() => import(`@/views/${view}.vue`)
+}
 
 const routes = [
     {
       path: '/',
       name: 'home',
-      component: Homepage
+      component: lazyLoad('Homepage')
     },
     {
       path: '/auth',
       name: 'auth',
-      component: Authpage
+      component: lazyLoad('Authpage')
     },
     {
       path: '/products',
       name: 'products',
-      component: Productpage
+      component: lazyLoad('Productpage')
     },
     {
       path: '/cart',
       name: 'cart',
-      component: Cartpage
+      component: lazyLoad('Cartpage')
     }
   ]
 
