@@ -64,7 +64,7 @@
 
     <TheSearchList 
      @click="closeSearchList"
-     v-for="product in searchList(searchEngine)"
+     v-for="product in searchList"
      :product="product"/>
    </div>
   </span>
@@ -141,11 +141,9 @@
   const searchEngine = ref('')
 
   const searchList = computed(() => {
-    return title => {
-      return productStore.products.filter(product => {
-        return product.title.toLowerCase().includes(title)
-      })
-    }
+    return productStore.products.filter(product => {
+      return product.title.toLowerCase().includes(searchEngine.value)
+    })
   })
 
   const searchBarRef = ref('')

@@ -7,7 +7,7 @@
 
 <script setup>
   import { computed } from 'vue'
-  import { useProductStore } from '@/stores/product '
+  import { useProductStore } from '@/stores/product'
 
   const productStore = useProductStore() 
 
