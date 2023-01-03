@@ -151,7 +151,7 @@
   const searchBarRef = ref('')
   const closeSearchList = () => {
    searchEngine.value = ''
-   showNav.value = false
+   screenWidth.value <= 900 ? showNav.value = false : showNav.value
   }
 </script>
 
