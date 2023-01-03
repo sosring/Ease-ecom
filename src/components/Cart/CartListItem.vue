@@ -1,6 +1,8 @@
 <template>
 
-  <article class="product-article"
+  <article @click="$router.push({ name: 'productDetails',
+   params: { id: product.id }})"
+   class="product-article"
    :key="index">
 
    <div class="product-wrapper">
@@ -8,8 +10,7 @@
    <span class="product-col-1">
     <div class="product-visuals">
 
-     <div class="product-img-container"
-      @click="showQuickView = !showQuickView">
+     <div class="product-img-container">
       <img :src="`/assets/${product.images[0]}.jpg`">
      </div>
     </div>
@@ -72,13 +73,6 @@
    </div>
   </article>
 
-  <Quickview 
-   v-if="showQuickView"
-   v-model:condition="showQuickView"
-   buttonText="MORE DETAILS"
-   :product="product"
-   :discountedPrice="discounted"/>
-
 </template>
 
 <script setup>
@@ -87,7 +81,6 @@
   import { discountValuation } from '@/composables/discount'
   import { trackProductStock } from '@/composables/stock'
   import { priceFormatter } from '@/composables/priceFormatter'
-  import Quickview from '@/components/Products/Quickview.vue'
 
   const useCart = useCartStore()
 
@@ -96,8 +89,6 @@
   const { formatting } = priceFormatter()
 
   const discounted = discountedPrice(props.product.discount, props.product.price)
-
-  const showQuickView = ref(false)
 
   const addProduct = e => {
       props.product.quantity++
@@ -229,7 +220,7 @@
     font-family: $work;
     font-weight: 800;
 
-    color: darken($error, 10);
+    color: $error;
     text-align: start;
   }
 

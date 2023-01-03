@@ -67,10 +67,14 @@
   .carousel {
     display: flex;
     justify-content: center;
+    height: 100%;
+    width: 100%; 
+
 
    .carousel-inner {
     height: 100%;
     width: 100%; 
+
     overflow: hidden;
     position: relative;
 

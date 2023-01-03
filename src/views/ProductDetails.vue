@@ -4,7 +4,8 @@
    
    <section class="product-image">
     <div class="img-wrapper">
-      <img :src="`/assets/${product.images[currentSlide]}.jpg`">
+     <Carousel 
+      :images="product.images"/>
     </div>
 
     <span class="image-slider">
@@ -66,6 +67,7 @@
 
 <script setup>
   import { ref, computed } from 'vue'
+  import Carousel from '@/components/Carousel/Carousel.vue'
   import { useProductStore } from '@/stores/product'
   import { useCartStore } from '@/stores/cart'
 
@@ -83,7 +85,12 @@
   })
 
   const currentSlide = ref(0)
-  const changeSlide = index => currentSlide.value = index
+
+  const changeSlide = index => {
+    setTimeout(() => {
+     currentSlide.value = index
+    }, 300)
+  }
 
 
   const { formatting } = priceFormatter()
@@ -118,6 +125,7 @@
 
  .product-image {
    height: 50%;
+
    @include screen-sm {
     height: 100%; 
    }

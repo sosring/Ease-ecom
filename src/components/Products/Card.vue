@@ -1,6 +1,7 @@
 <template>
 
-  <div @click="showQuickView = !showQuickView"
+  <div @click="$router.push({ name: 'productDetails',
+   params: { id: product.id }})"
    class="product-card-cont"
    :key="product.id" 
    :id="product.id">
@@ -34,17 +35,10 @@
    </div>
   </div>
 
-  <Quickview 
-   v-if="showQuickView"
-   v-model:condition="showQuickView"
-   :product="product"
-   :discountedPrice="discounted"/>
-
 </template>
 
 <script setup>
   import { ref, computed } from 'vue'
-  import Quickview from '@/components/Products/Quickview.vue'
   import { discountValuation } from '@/composables/discount'
   import { priceFormatter } from '@/composables/priceFormatter'
 
