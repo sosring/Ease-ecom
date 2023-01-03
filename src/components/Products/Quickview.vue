@@ -46,7 +46,7 @@
            :disabled="product.stock <= 0"
            :class="product.stock <= 0 ? 'disabled' : 'cart-btn'" 
            class="btns">
-           ADD TO CART
+            {{buttonText}}
           </button>
         </span>
 
@@ -81,6 +81,10 @@
     },
     discountedPrice: {
       type: Number 
+    },
+    buttonText: {
+      type: String,
+      default: 'ADD TO CART'
     }
   });
 
@@ -143,7 +147,7 @@
       position: absolute;
       right: 4%;
       top: 2%;
-      font-size: clamp(1.7rem, 5vw, 2rem);
+      font-size: clamp(1.7rem, 2.5vw, 2rem);
       z-index: 1;
       color: $text-light;
 

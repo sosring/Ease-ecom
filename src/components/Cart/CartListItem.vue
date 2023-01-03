@@ -75,6 +75,7 @@
   <Quickview 
    v-if="showQuickView"
    v-model:condition="showQuickView"
+   buttonText="MORE DETAILS"
    :product="product"
    :discountedPrice="discounted"/>
 

@@ -1,6 +1,8 @@
 export const trackProductStock = () => {
 
-  const stockUpdates = (stock) => {
+  const stockUpdates = (num) => {
+
+    let stock = Number(num)
 
     if(stock === null) { return ''}
 
