@@ -27,7 +27,7 @@
       </p>
 
       <p v-if="product.discount" class="success">
-        ₹{{formatting(discountedPrice(product.discount, product.price))}} 
+        ₹{{ formatting(discounted) }}
       </p>
     </span>
 
@@ -93,6 +93,8 @@
   const { stockUpdates } = trackProductStock()
   const { discountedPrice } = discountValuation() 
   const { formatting } = priceFormatter()
+
+  const discounted = discountedPrice(props.product.discount, props.product.price)
 
   const showQuickView = ref(false)
 
@@ -191,7 +193,7 @@
 
       line-height: 1.4;
       color: $text-light;
-      font-size: clamp(1rem, 5vw, 1.4rem);
+      font-size: clamp(1rem, 5vh, 1.2rem);
 
     .product-brand {
 

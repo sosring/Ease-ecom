@@ -145,6 +145,7 @@
       top: 2%;
       font-size: clamp(1.7rem, 5vw, 2rem);
       z-index: 1;
+      color: $text-light;
 
       @include screen-md {
         right: 1%;

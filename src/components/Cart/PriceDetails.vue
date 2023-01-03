@@ -121,7 +121,7 @@
 
     font-family: $work;
     font-weight: 400;
-    font-size: clamp(1rem, 5vw, 1.1rem);
+    font-size: 1rem;
     padding: 0 1rem;
 
     height: 380px;
