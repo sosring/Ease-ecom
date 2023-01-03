@@ -41,6 +41,7 @@
       color: inherit;
 
       font-size: clamp(2rem, 5vw, 4rem);
+      margin-bottom: 2rem;
     }
   }
 

@@ -7,17 +7,15 @@
    v-model:email="credentials.email"
    v-model:password="credentials.password"/>
 
- <Profile v-if="useAuth.user.id"/>
 </div>
 
 </template>
 
 <script setup>
-  import { ref, computed, reactive, watch } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { ref, computed, reactive } from 'vue'
   import { vAutoAnimate } from '@formkit/auto-animate'
   import Form from '@/components/User/Form.vue'
-  import Profile from '@/components/User/Profile.vue'
+  import UserDesktopProfile from '@/components/User/UserDesktopProfile.vue'
 
   import { useAuthStore } from '@/stores/auth'
 
@@ -28,20 +26,9 @@
     lastname: '',
     email: '',
     password: ''
-  })  
+  })
 
   const greetings = computed(() =>  `Hey! ${useAuth.user.name}`)
-
-  const editUserProfile = ref(false) 
-  const router = useRouter()
-
-  const previousRoute = () => {
-    if(editUserProfile.value){
-      editUserProfile.value = false 
-      return 
-    }
-    router.go(-1)
-  }
 </script>
 
 <style lang="scss" scoped>

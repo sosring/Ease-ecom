@@ -44,14 +44,30 @@
       <p>{{ route.name }}</p>
     </RouterLink>
 
-     <span class="search-bar">
-      <input
-       type="text" 
-       class="capitalize"
-       placeholder="search products">
+  <span
+   class="search-engine-wrapper">
 
-       <i class="fas fa-magnifying-glass"></i>
-     </span>
+   <span
+    class="search-bar">
+
+    <input
+     type="text" 
+     class="capitalize"
+     v-model="searchEngine"
+     placeholder="search products">
+
+     <i class="fas fa-magnifying-glass"></i>
+   </span>
+
+   <div v-if="searchEngine"
+    class="search-product-list">
+
+    <TheSearchList 
+     @click="closeSearchList"
+     v-for="product in searchList(searchEngine)"
+     :product="product"/>
+   </div>
+  </span>
 
     <button type="button" class="account-btn"
      @click="$router.push({ name: 'auth' })">
@@ -62,7 +78,7 @@
     <button type="button" class="cart-btn"
      @click="$router.push({ name: 'cart' })">
       <i class="fas fa-shopping-cart"></i>
-      <p>Cart</p>
+      <p>Cart {{useCart.cartItems.length}}</p>
     </button>
   </div>
 
@@ -71,21 +87,26 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import { onClickOutside } from '@vueuse/core'
   import { vAutoAnimate } from '@formkit/auto-animate'
+  import TheSearchList from '@/components/TheSearchList.vue'
   import { useAuthStore } from '@/stores/auth'
+  import { useProductStore } from '@/stores/product'
+  import { useCartStore } from '@/stores/cart'
   import { useRouter } from 'vue-router'
 
   const router = useRouter()
+
   const useAuth = useAuthStore()
+  const useCart = useCartStore()
+  const productStore = useProductStore()
 
   const showNav = ref(null)
   const screenWidth = ref(null)
 
   const NavbarRef = ref('')
   const NavBtnRef = ref('')
-  const searchRef = ref('')
 
   const toggleNav = () => {
     screenWidth.value <= 900 ? showNav.value = !showNav.value : showNav.value 
@@ -93,7 +114,7 @@
 
   onClickOutside( NavbarRef, () => {
     screenWidth.value <= 900 ? showNav.value = false : showNav.value
-  }, { ignore: [NavBtnRef, searchRef] })
+  }, { ignore: [NavBtnRef] })
 
   const checkScreen = () => {
     screenWidth.value = window.innerWidth
@@ -115,6 +136,22 @@
   const gotoRouting = (route) => {
     showNav.value = false
     router.push({ name: route })
+  }
+
+  const searchEngine = ref('')
+
+  const searchList = computed(() => {
+    return title => {
+      return productStore.products.filter(product => {
+        return product.title.toLowerCase().includes(title)
+      })
+    }
+  })
+
+  const searchBarRef = ref('')
+  const closeSearchList = () => {
+   searchEngine.value = ''
+   showNav.value = false
   }
 </script>
 
@@ -192,44 +229,6 @@
 
       @include flexCenter(end, start, column);
 
-      .search-bar {
-        width: 100%;
-
-        border: darken($border, 10) 1px solid;
-        border-radius: 2rem;
-
-        position: relative;
-        color: $error;
-
-        @include screen-sm {
-          width: 400px;
-        }
-
-        input { 
-         color: $text-light;
-         padding: .7em 1em; 
-         width: 90%;
-
-         font-size: .9em;
-        }
-
-        i {
-          position: absolute;
-          right: 0;
-          cursor: pointer;
-          z-index: 1;
-
-          height: 100%;
-          padding: 0 1rem;
-          font-size: 1em; 
-
-          color: inherit;
-          border-radius: 2rem;
-
-          @include flexCenter(center, center, row);
-        }
-      }
-
       .links {
         color: $text-light;
         font-size: 1.1em;
@@ -282,5 +281,74 @@
         gap: .5rem;
       }
     }
+  }
+
+  .search-engine-wrapper {
+    width: 100%;
+
+    position: relative;
+
+
+    @include screen-sm {
+      display: flex;
+      flex-direction: column;
+      
+      width: 400px;
+    }
+
+  }
+
+  .search-bar {
+    width: 100%;
+
+    border: darken($border, 10) 1px solid;
+    border-radius: 2rem;
+
+    position: relative;
+    color: $error;
+
+    input { 
+     color: $text-light;
+     padding: .7em 1em; 
+     width: 90%;
+
+     font-size: .9em;
+    }
+
+    i {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      z-index: 1;
+
+      height: 100%;
+      padding: 0 1rem;
+      font-size: 1em; 
+
+      color: inherit;
+      border-radius: 2rem;
+
+      @include flexCenter(center, center, row);
+    }
+  }
+
+  .search-product-list {
+    position: absolute; 
+    top: 120%;
+
+    display: grid;
+    grid-gap: 1rem;
+
+    width: 100%;
+    max-height: 80vh;
+    background: $bg-light;
+    border-radius: 4px;
+
+    overflow-y: scroll;
+    box-shadow: rgba(0 0 0 / .4)
+  }
+
+  .search-product-list::-webkit-scrollbar {
+    width: 0; 
   }
 </style>

@@ -42,7 +42,7 @@
 
         <span class="btn-container">
           <button 
-           @click="useCart.addToCart(props.product.id)"
+           @click="$router.push({ name: 'productDetails', params: { id: product.id }})"
            :disabled="product.stock <= 0"
            :class="product.stock <= 0 ? 'disabled' : 'cart-btn'" 
            class="btns">
@@ -66,12 +66,9 @@
   import { onClickOutside } from '@vueuse/core'
   import { trackProductStock } from '@/composables/stock'
   import { priceFormatter } from '@/composables/priceFormatter'
-  import { useCartStore } from '@/stores/cart'
 
   const { formatting } = priceFormatter()
   const { stockUpdates } = trackProductStock()
-
-  const useCart = useCartStore()
 
   const emits = defineEmits(['update:condition'])
 

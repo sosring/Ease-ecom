@@ -24,6 +24,12 @@ const routes = [
       path: '/cart',
       name: 'cart',
       component: lazyLoad('Cartpage')
+    },
+    {
+      path: '/products/:id',
+      name: 'productDetails',
+      component: lazyLoad('ProductDetails'),
+      props: true
     }
   ]
 
