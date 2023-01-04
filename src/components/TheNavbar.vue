@@ -21,7 +21,7 @@
     </i> 
 
     <i @click="gotoRouting('cart')"
-     class="cart fas fa-shopping-cart"
+     class="fas fa-shopping-cart"
      ref="NavBtnRef">
     </i> 
 
@@ -44,7 +44,7 @@
       <p>{{ route.name }}</p>
     </RouterLink>
 
-  <span
+  <span ref="searchBarRef" 
    class="search-engine-wrapper">
 
    <span
@@ -59,15 +59,15 @@
      <i class="fas fa-magnifying-glass"></i>
    </span>
 
-   <div v-if="searchEngine"
-    class="search-product-list">
+    <div v-if="searchEngine"
+     class="search-product-list">
 
-    <TheSearchList 
-     @click="closeSearchList"
-     v-for="product in searchList"
-     :product="product"/>
-   </div>
-  </span>
+     <TheSearchList 
+      @click="closeSearchList"
+      v-for="product in searchList"
+      :product="product"/>
+    </div>
+   </span>
 
     <button type="button" class="account-btn"
      @click="$router.push({ name: 'auth' })">
@@ -107,6 +107,7 @@
 
   const NavbarRef = ref('')
   const NavBtnRef = ref('')
+  const searchBarRef = ref('')
 
   const toggleNav = () => {
     screenWidth.value <= 900 ? showNav.value = !showNav.value : showNav.value 
@@ -114,7 +115,7 @@
 
   onClickOutside( NavbarRef, () => {
     screenWidth.value <= 900 ? showNav.value = false : showNav.value
-  }, { ignore: [NavBtnRef] })
+  }, { ignore: [NavBtnRef, searchBarRef] })
 
   const checkScreen = () => {
     screenWidth.value = window.innerWidth
@@ -146,11 +147,11 @@
     })
   })
 
-  const searchBarRef = ref('')
   const closeSearchList = () => {
    searchEngine.value = ''
    screenWidth.value <= 900 ? showNav.value = false : showNav.value
   }
+  onClickOutside(searchBarRef , () => searchEngine.value = '' )
 </script>
 
 <style lang="scss" scoped>
@@ -201,10 +202,6 @@
         color: $error;
       }
 
-      .cart {
-        color: darken($indigo, 10);
-      }
-
       i{
         display: inline-block;
         font-size: 1.1em;
@@ -242,11 +239,9 @@
 
       @include screen-md {
         margin: 0;
-      }
-
-      @include screen-md {
         @include flexCenter(center, none, row);
       }
+
     }
 
     .account-btn,
@@ -304,13 +299,18 @@
 
     position: relative;
     color: $error;
+    overflow: hidden;
 
     input { 
      color: $text-light;
      padding: .7em 1em; 
-     width: 90%;
+     width: 100%;
 
      font-size: .9em;
+
+     &:focus {
+      background: lighten($error, 40)
+     }
     }
 
     i {
@@ -324,8 +324,6 @@
       font-size: 1em; 
 
       color: inherit;
-      border-radius: 2rem;
-
       @include flexCenter(center, center, row);
     }
   }
@@ -339,11 +337,14 @@
 
     width: 100%;
     max-height: 80vh;
-    background: $bg-light;
+
+    background: rgba(255 255 255 / .8);
+    backdrop-filter: blur(4px);
     border-radius: 4px;
 
     overflow-y: scroll;
-    box-shadow: rgba(0 0 0 / .4)
+    box-shadow: rgba(0 0 0 / .4);
+    z-index: 1;
   }
 
   .search-product-list::-webkit-scrollbar {

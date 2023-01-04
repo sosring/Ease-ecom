@@ -1,8 +1,15 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { collection, setDoc,
+query, where, onSnapshot, orderBy,
+updateDoc, doc, deleteDoc } from "firebase/firestore"; 
 
 import { useProductStore } from '@/stores/product'
 import { useAuthStore } from '@/stores/auth'
+import { db } from '@/js/firebase'
+
+let cartCollection;
+let queryCartCollection;
 
 export const useCartStore = defineStore('cartStore', {
   state: () => ({
@@ -12,32 +19,55 @@ export const useCartStore = defineStore('cartStore', {
 
   actions: {
 
-    addToCart (id) {
+    init(){
+      const useAuth = useAuthStore()
+      cartCollection = collection(db, "customer", useAuth.user.id, "cart")
 
-      const productStore = useProductStore()
-      const product = productStore.products.filter(product => product.id === id)[0]
+      queryCartCollection = query(cartCollection,  orderBy("product.quantity"))
 
-      if(this.cartItems.find(item => item.id === id)){
+      this.fetchUserCart()
+    },
 
-        const index = this.cartItems.findIndex(item => item.id === id)
+    async fetchUserCart () {
+      try {
+        onSnapshot(queryCartCollection, (querySnapshot) => {
+          const cartItems = [];
+          const docId = []
 
-        this.cartItems[index].quantity++
-        return
+          querySnapshot.forEach((doc) => {
+
+            cartItems.push(doc.data().product)
+            docId.push(doc.id)
+          });
+
+          this.cartItems = cartItems
+          this.emptyCheck()
+        });
       }
+      catch (err) {
+        alert(err.message)
+      }
+    },
 
+    async addToCart (product) {
       product.quantity = 1
-      this.cartItems.push(product)
+
+      await setDoc(doc(cartCollection, product.id) , {
+        product
+      })
+
       this.emptyCheck()
       this.router.push({ name: 'cart' })
     },
 
-    removeItem (id) {
+    async removeItem (id) {
       this.cartItems = this.cartItems.filter(item => item.id !== id)
+      await deleteDoc(doc(cartCollection, id));
       this.emptyCheck()
     },
 
     emptyCheck () {
-      this.cartItems.length === 0 ? this.isEmpty = true : this.isEmpty = false
+      this.cartItems.length <= 0 ? this.isEmpty = true : this.isEmpty = false
     }
   }
 })

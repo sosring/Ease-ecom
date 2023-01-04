@@ -1,7 +1,6 @@
 <template>
 
-  <article @click="$router.push({ name: 'productDetails',
-   params: { id: product.id }})"
+  <article 
    class="product-article"
    :key="index">
 
@@ -11,7 +10,9 @@
     <div class="product-visuals">
 
      <div class="product-img-container">
-      <img :src="`/assets/${product.images[0]}.jpg`">
+      <img @click="$router.push({ name: 'productDetails',
+      params: { id: product.id }})"
+      :src="`/assets/${product.images[0]}.jpg`">
      </div>
     </div>
 
@@ -126,7 +127,7 @@
       display: flex;
       flex-direction: column;
 
-      min-height: 220px; 
+      min-height: 200px; 
       background: inherit;
 
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
@@ -144,11 +145,11 @@
     flex-direction: column;
 
     overflow: hidden;
+    padding: 0 1rem;
 
     height: 80%;
     border-bottom: 2px $border solid;
 
-    padding: 0 .5rem;
 
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -185,7 +186,7 @@
 
       line-height: 1.4;
       color: $text-light;
-      font-size: clamp(1rem, 5vh, 1.2rem);
+      font-size: clamp(1rem, 4.5vw, 1.4rem);
 
     .product-brand {
 
@@ -238,12 +239,13 @@
     .quantity-control {
       border-radius: 50%;
       color: inherit;
-      padding: .3rem;
+      padding: .4rem;
 
       border: 2px $border solid;
+      font-size: .8em;
 
       @include screen-sm {
-        padding: .5rem;
+        padding: .6rem;
       }
     }
 
@@ -254,6 +256,7 @@
 
       height: inherit;
       width: inherit;
+      font-size: .7em;
 
       border: 2px $border solid;
     }

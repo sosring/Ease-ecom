@@ -48,7 +48,7 @@
   .slider-container {
 
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
+    grid-template-columns: repeat( auto-fit, minmax(330px, 1fr) );
 
     grid-gap: 1rem;
 

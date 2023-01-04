@@ -35,27 +35,30 @@
   const props = defineProps({
     images: {
       type: Array 
+    },
+    currentSlide: {
+      type: Number
     }
   });
-
-  const currentSlide = ref(0)
+  
+  const emits = defineEmits(['update:currentSlide'])
 
   const direction = ref('right')
 
   const setCurrenSlide = index => {
-    currentSlide.value = index
+    emits('update:currentSlide', index)
   }
 
   const switchSlide = index => setCurrenSlide(index)
   
   const next = (step = 1) => {
-    const index = currentSlide.value < props.images.length - step ? currentSlide.value + step : 0;
+    const index = props.currentSlide < props.images.length - step ? props.currentSlide + step : 0;
     setCurrenSlide(index);
     direction.value = 'right'
   }
 
   const prev = (step = -1) => {
-    const index = currentSlide.value > 0 ? currentSlide.value + step : props.images.length - 1; 
+    const index = props.currentSlide > 0 ? props.currentSlide + step : props.images.length - 1; 
     setCurrenSlide(index);
     direction.value = 'left'
   }

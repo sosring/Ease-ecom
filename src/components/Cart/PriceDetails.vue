@@ -127,7 +127,7 @@
     height: 380px;
 
     position: sticky;
-    top: 4%;
+    top: 6%;
 
    header {
     padding: 1rem 0;

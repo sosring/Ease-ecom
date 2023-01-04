@@ -3,7 +3,7 @@
   <div class="cart-wrapper">
     <header>
       <span class="active">
-       Carlist
+       Carlist ...
       </span>
     </header>
 
@@ -36,7 +36,7 @@
   .cart-wrapper {
     border-radius: 4px;
     background: $bg-light;
-    padding: .5rem;
+    padding: 1rem;
 
    @include screen-sm {
     grid-column: 1 / span 2;
@@ -44,18 +44,18 @@
    }
 
     header {
+     border-bottom: 2px $border solid;
+     padding: 1rem 0;
 
       span {
-        padding: 1rem;
-        justify-content: center;
+        justify-content: start;
         cursor: pointer;
         
         font-family: $work;
         font-weight: 800; 
-        font-size: clamp(1.3rem, 5vw, 1.7rem); 
+        font-size: clamp(2.4rem, 5vw, 4rem); 
 
-        background: rgb(102 126 234 / .6);
-        color: $white;
+        color: $text-light;
 
         backdrop-filter: blur(4px);
         border-radius: 4px;

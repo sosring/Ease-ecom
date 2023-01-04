@@ -8,6 +8,8 @@ sendEmailVerification, sendPasswordResetEmail }
 from "firebase/auth";
 import { auth } from '@/js/firebase'
 
+import { useCartStore } from '@/stores/cart'
+
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
     user: {}
@@ -27,6 +29,9 @@ export const useAuthStore = defineStore('authStore', {
             emailVerified: user.emailVerified, 
             creationTime : user.metadata.creationTime
           }
+
+          const useCart = useCartStore()
+          useCart.init()
         } else {
           this.clearUser()
         }
@@ -92,7 +97,6 @@ export const useAuthStore = defineStore('authStore', {
     },
 
     deactivateUser () {
-
       deleteUser(auth.currentUser)
       .then(() => {
       })
@@ -123,7 +127,7 @@ export const useAuthStore = defineStore('authStore', {
 
     updateUserProfile (credentials) {
 
-      const { firstname, lastname, email, confirmation } = credentials 
+      const { firstname, lastname, email } = credentials 
 
       updateProfile(auth.currentUser, {
         displayName: `${firstname} ${lastname}`,

@@ -1,11 +1,12 @@
 <template>
 
   <div class="product-detail-wrraper">
-   
+
    <section class="product-image">
     <div class="img-wrapper">
      <Carousel 
-      :images="product.images"/>
+      :images="product.images"
+      v-model:currentSlide="currentSlide"/>
     </div>
 
     <span class="image-slider">
@@ -21,7 +22,7 @@
 
    <section class="product-content">
     <div class="content-heading">
-     <h1 v-html="product.title"></h1>
+     <h1 v-html="product.title" class="capitalize"></h1>
      <h3 v-html="product.brand"></h3>
 
       <span class="product-price">
@@ -56,7 +57,7 @@
       <button class="order btns">
        Order
       </button>
-      <button @click="useCart.addToCart(product.id)"
+      <button @click="addToCart"
        class="cart btns">
        Add to Card
       </button>
@@ -67,22 +68,36 @@
 
 <script setup>
   import { ref, computed } from 'vue'
+  import { useRouter } from 'vue-router'
   import Carousel from '@/components/Carousel/Carousel.vue'
   import { useProductStore } from '@/stores/product'
   import { useCartStore } from '@/stores/cart'
+  import { useAuthStore } from '@/stores/auth'
 
   import { trackProductStock } from '@/composables/stock'
   import { discountValuation } from '@/composables/discount'
   import { priceFormatter } from '@/composables/priceFormatter'
 
+  const router = useRouter()
+
   const productStore = useProductStore() 
   const useCart = useCartStore()
+  const useAuth = useAuthStore()
 
   const props = defineProps(['id']);
 
   const product = computed(() => {
     return productStore.products.filter(product => product.id === props.id )[0]
   })
+
+  const addToCart = () => {
+    if(useAuth.user.id){
+      useCart.addToCart(product.value)
+      return 
+    }
+    
+    router.push({ name: 'auth' })
+  }
 
   const currentSlide = ref(0)
 
@@ -105,29 +120,29 @@
 
  .product-detail-wrraper {
     position: fixed;
-    top: 10%;
     left: 50%;
     transform: translateX(-50%);
 
     @include screen-md {
       display: grid;
       grid-gap: 1rem;
+      top: 10%;
 
       grid-template-columns: repeat(2, 1fr);
     }
 
     width: min(1400px, 100%);
-    height: 90%;
+    height: 100%;
     padding: 1rem;
 
     overflow-y: scroll;
  }
 
  .product-image {
-   height: 50%;
+   height: 60%;
 
    @include screen-sm {
-    height: 100%; 
+    height: 90%; 
    }
 
   .image-slider {

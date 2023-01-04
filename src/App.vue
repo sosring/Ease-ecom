@@ -4,6 +4,7 @@
 
   <main class="main-container"
    v-if="productStore.productLoaded">
+
    <router-view v-slot="{ Component, route }">
      <transition name="fade" mode="out-in">
        <div :key="route.name">  
@@ -11,7 +12,6 @@
        </div>
      </transition>
    </router-view>
-
   </main>
 </template>
 
