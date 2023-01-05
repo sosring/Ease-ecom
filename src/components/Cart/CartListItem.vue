@@ -92,17 +92,10 @@
   const discounted = discountedPrice(props.product.discount, props.product.price)
 
   const addProduct = e => {
-      props.product.quantity++
-      props.product.stock--
   }
 
   const subProduct = () => {
-    props.product.quantity--
-    props.product.stock++
-
-    if(props.product.quantity <= 1){
-      useCart.removeItem(props.product.id)
-    }
+    useCart.removeItem(props.product.id)
   }
 
   const props = defineProps({

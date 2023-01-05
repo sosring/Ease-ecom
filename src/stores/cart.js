@@ -2,7 +2,8 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { collection, setDoc,
 query, where, onSnapshot, orderBy,
-updateDoc, doc, deleteDoc } from "firebase/firestore"; 
+updateDoc, doc, deleteDoc,
+increment } from "firebase/firestore"; 
 
 import { useProductStore } from '@/stores/product'
 import { useAuthStore } from '@/stores/auth'
@@ -50,8 +51,10 @@ export const useCartStore = defineStore('cartStore', {
     },
 
     async addToCart (product) {
-      product.quantity = 1
 
+      const checkItem = this.cartItems.filter(item => item.id.includes(product.id))
+
+      product.quantity = 1
       await setDoc(doc(cartCollection, product.id) , {
         product
       })
