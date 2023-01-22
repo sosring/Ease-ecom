@@ -37,7 +37,7 @@
     color: $text-light;
 
     h1 {
-      font-family: $work;
+      font-family: $raleway;
       color: inherit;
 
       font-size: clamp(2rem, 5vw, 4rem);

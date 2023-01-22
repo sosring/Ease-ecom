@@ -210,7 +210,7 @@
       font-size: clamp(1rem, 5vw, 1.3rem); 
 
       .form-heading {
-        @include fontStyle($libre, 1.7em);
+        @include fontStyle('libre bodoni', 1.7em);
         font-weight: 400;
 
         color: $text-dark;
@@ -226,7 +226,7 @@
         display: block;
         margin: .5rem 0;
 
-        color: $error;
+        color: $secoundary;
         font-weight: 800;
 
         font-size: .9em;
@@ -263,10 +263,10 @@
 
       padding: .9rem 1rem; 
       border-radius: 4px;
-      border: $error 1px solid;
+      border: $secoundary 1px solid;
 
       &:focus {
-        background: lighten($error, 40%);
+        background: lighten($secoundary, 40%);
         outline: none;
       }
     }
@@ -275,7 +275,7 @@
       right: 3%;
       z-index: 1;
 
-      color: $error;
+      color: $secoundary;
       font-size: .9em;
 
       position: absolute;
@@ -291,18 +291,18 @@
       color: $text-light;
       padding: .9rem 1rem; 
       border-radius: 4px;
-      border: $error 1px solid;
+      border: $secoundary 1px solid;
 
       &:focus {
-        background: lighten($error, 40%);
+        background: lighten($secoundary, 40%);
         outline: none;
       }
     }
 
 
     .form-submit-btn {
-      color: $white;
-      background: $error;
+      color: $primary;
+      background: $secoundary;
       transition: all .15s;
       cursor: pointer;
 
@@ -312,7 +312,7 @@
       width: 100%;
 
       &:hover {
-        background: darken($error, 10);
+        background: darken($secoundary, 10);
         box-shadow: 0 0px 8px 0 rgba(0,0,0,0.1)
       }
     }
@@ -341,7 +341,7 @@
     font-size: 1rem;
 
     .google-btn{
-      color: $white;
+      color: $primary;
       background: darken($indigo, 10);
 
       &:hover {
@@ -351,7 +351,7 @@
 
     .demo-btn{
       background: lighten($text-dark, 10);
-      color: $white;
+      color: $primary;
       
       &:hover {
         background: lighten($text-dark, 5);

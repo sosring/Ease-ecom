@@ -1,10 +1,9 @@
 <template>
 
-  <header class="nav-container"
-   ref="NavbarRef">
+  <header class="nav-container">
 
   <nav class="inner-nav-cont"
-   v-auto-animate>
+   ref="NavbarRef" v-auto-animate>
 
   <div class="primary-nav">
     <h1 class="brand"
@@ -69,17 +68,17 @@
     </div>
    </span>
 
-    <button type="button" class="account-btn"
-     @click="$router.push({ name: 'auth' })">
+    <RouterLink class="account-btn"
+     :to="{ name: 'auth' }">
       <i class="fas fa-user"></i>
       <p>My Account</p>
-    </button>
+    </RouterLink>
 
-    <button type="button" class="cart-btn"
-     @click="$router.push({ name: 'cart' })">
+    <RouterLink class="cart-btn"
+     :to="{ name: 'cart' }">
       <i class="fas fa-shopping-cart"></i>
       <p>Cart {{useCart.cartItems.length}}</p>
-    </button>
+    </RouterLink>
   </div>
 
   </nav>
@@ -110,8 +109,9 @@
   const searchBarRef = ref('')
 
   const toggleNav = () => {
+    console.log('toggle')
     screenWidth.value <= 900 ? showNav.value = !showNav.value : showNav.value 
-  } 
+  }
 
   onClickOutside( NavbarRef, () => {
     screenWidth.value <= 900 ? showNav.value = false : showNav.value
@@ -158,12 +158,11 @@
   @import "@/styles/main";
 
   .nav-container {
-    font-size: clamp(1rem, 5vw, 1.2rem);
+    font-size: clamp(1rem, 5vw, 1.1rem);
     font-weight: 600;
-    border-bottom: 1px solid $border;
     z-index: 2;
 
-    background: $bg-light;
+    background: darken($secoundary, 5);
 
     position: fixed;
     top: 0;
@@ -189,18 +188,16 @@
       
       .brand {
         cursor: pointer;
-        color: $text-dark;
+        color: $primary;
 
-        font-family: $libre;
+        font-family: 'dancing script';
+        font-size: clamp(2rem, 2.5vw, 2.5rem);
         font-style: italic;
       }
 
      .mobile-nav-btns {
       gap: 1rem;
-
-      .user {
-        color: $error;
-      }
+      color: $primary;
 
       i{
         display: inline-block;
@@ -225,15 +222,16 @@
       @include flexCenter(end, start, column);
 
       .links {
-        color: $text-light;
+        color: $primary;
         font-size: 1.1em;
+        text-underline-offset: 4px;
 
         &.router-link-exact-active {
-          color: $error;
+          text-decoration: underline 2px;
         } 
 
         &:hover {
-          text-decoration: underline;
+          text-decoration: underline 2px;
         }
       }
 
@@ -248,29 +246,28 @@
     .cart-btn {
       display: none;
 
-      color: $white;
+      color: $primary;
       padding: .8rem 1rem; 
       border-radius: 50%;
 
-      color: $text-light;
+      color: $primary;
 
-      font-size: .9em;
-      font-family: $work;
+      font-size: 1em;
+      font-family: $roboto;
 
       transition: all .15s;
 
       i {
+        font-size: 1em;
         color: transparent;
-       -webkit-text-stroke: 2px $text-dark; 
-      }
-
-      &:hover{
-        color: $error;
-        i {-webkit-text-stroke: 2px $error; }
+       -webkit-text-stroke: 2px $primary; 
+       text-decoration: none;
       }
 
       @include screen-md {
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: .5rem;
       }
     }
@@ -293,23 +290,22 @@
 
   .search-bar {
     width: 100%;
-
-    border: darken($border, 10) 1px solid;
     border-radius: 2rem;
 
     position: relative;
-    color: $error;
+    color: $secoundary;
     overflow: hidden;
+    background: $primary;
 
     input { 
      color: $text-light;
-     padding: .7em 1em; 
+     padding: .8em 1em; 
      width: 100%;
 
      font-size: .9em;
 
      &:focus {
-      background: lighten($error, 40)
+      background: lighten($secoundary, 40)
      }
     }
 
@@ -330,7 +326,7 @@
 
   .search-product-list {
     position: absolute; 
-    top: 120%;
+    top: 170%;
 
     display: grid;
     grid-gap: 1rem;

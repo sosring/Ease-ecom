@@ -43,23 +43,27 @@
     <div class="btn-wrapper">
      <input class="submit-btn btns"
       type="submit" value="SUBMIT"> <br>
+    </div>
+   </form>
 
+    <div class="deactivated-btn-wrapper">
      <button class="deactivated-btn"
-      @click="useAuth.deactivateUser">
-        Deactivated Account
+       @click="deactivatedUser = !deactivatedUser">
+        Deactivated Account 
      </button>
     </div>
-
-    </form>
-
    </article>
   </section>
+
+  <DeactivateUser 
+   v-model:condition="deactivatedUser" />
 
 </template>
 
 <script setup>
-  import { reactive } from 'vue'
+  import { ref, reactive } from 'vue'
   import { useAuthStore } from '@/stores/auth'
+  import DeactivateUser from '@/components/User/DeactivateUser.vue'
 
   const useAuth = useAuthStore()
 
@@ -85,6 +89,8 @@
     useAuth.updateUserProfile(credentials)
     emits('update:currentTab', 0)
   }
+
+  const deactivatedUser = ref(false)
 </script>
 
 <style lang="scss" scoped>
@@ -173,9 +179,16 @@
     }
   }
 
+  .deactivated-btn-wrapper {
+    text-align: end;
+    margin-bottom: 1rem;
+  }
+
   .deactivated-btn {
-    color: $error;
-    font-family: $source;
+    color: $secoundary;
+
+    font-family: $raleway;
+    font-weight: 800;
     font-size: clamp(1rem, 4.5vw, 1.3rem);
   }
 </style>

@@ -119,7 +119,7 @@
       box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
     }
 
-    font-family: $work;
+    font-family: 'work sans';
     font-weight: 400;
     font-size: 1rem;
     padding: 0 1rem;
@@ -127,7 +127,7 @@
     height: 380px;
 
     position: sticky;
-    top: 6%;
+    top: 12%;
 
    header {
     padding: 1rem 0;
@@ -163,7 +163,7 @@
     .total-price {
       justify-content: space-between;
 
-      font-family: $source;
+      font-family: $roboto;
       font-weight: 600;
       font-size: 1.3em;
     }

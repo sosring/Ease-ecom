@@ -71,8 +71,8 @@
     gap: 1rem;
    } 
 
-    font-family: $work;
-    background: $bg-light
+    font-family: $raleway;
+    background: $primary
   }
 
   .profile-aside-tools {

@@ -41,11 +41,6 @@
   .main-container {
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
-
-    scrollbar-width: none;  
-    scroll-behavior: smooth;
-
     padding-top: 3rem;
   }
 

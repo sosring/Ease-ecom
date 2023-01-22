@@ -141,11 +141,6 @@
     padding: 0 1rem;
 
     height: 80%;
-    border-bottom: 2px $border solid;
-
-
-    overflow-y: scroll;
-    scroll-behavior: smooth;
 
     .product-col-1 {
       height: 100%;
@@ -185,7 +180,7 @@
 
       h3 {
         color: $text-dark;
-        font-family: $work;
+        font-family: $raleway;
         font-weight: 800;
         font-size: 1em;
       }
@@ -211,10 +206,10 @@
   .stock-updates {
 
     font-size: 1em;
-    font-family: $work;
+    font-family: $raleway;
     font-weight: 800;
 
-    color: $error;
+    color: $secoundary;
     text-align: start;
   }
 
@@ -262,18 +257,18 @@
     grid-template-columns: repeat(2, 1fr);
 
     .order-btn{
-      background: lighten($indigo, 10);
-      color: $white;
+      background: lighten($black, 10);
+      color: $primary;
     }
 
     .remove-btn{
-      background: $bg-light;
-      color: $indigo;
+      background: $primary;
+      color: $black;
     }
 
     .btn {
       font-size: 1.1rem;
-      font-family: $work;
+      font-family: $raleway;
       font-weight: 800;
       transition: background .3s ease;
     }

@@ -57,6 +57,7 @@
       <button class="order btns">
        Order
       </button>
+
       <button @click="addToCart"
        class="cart btns">
        Add to Card
@@ -126,7 +127,7 @@
     @include screen-md {
       display: grid;
       grid-gap: 1rem;
-      top: 10%;
+      top: 12%;
 
       grid-template-columns: repeat(2, 1fr);
     }
@@ -155,7 +156,6 @@
     width: 100%;
 
     border: 1px solid $border;
-
     position: relative;
 
     img {
@@ -185,7 +185,7 @@
    gap: .5rem;
 
    h1 {
-     font-family: $work;
+     font-family: $raleway;
      font-size: clamp(2rem, 5vw, 4rem);
    }
 
@@ -218,8 +218,8 @@
   font-size: clamp(.9rem, 5vw, 1.5rem);
 
   font-weight: 900;
-  font-family: $source;
-  color: $error
+  font-family: $roboto;
+  color: $secoundary
 }
 
 .btn-span-wrapper {
@@ -230,13 +230,13 @@
   grid-gap: 1rem;
 
   .order {
-    background: $error;
-    color: $bg-light; 
+    background: $secoundary;
+    color: $primary; 
   }
 
   .cart {
     background: $black;
-    color: $bg-light; 
+    color: $primary; 
   }
 }
 </style>

@@ -56,9 +56,9 @@
     }
 
     h1 {
-      color: $error;
+      color: $secoundary;
 
-      font-family: $work;
+      font-family: $raleway;
       font-size: clamp(1.2rem, 5vw,1.7rem)
     }
   }

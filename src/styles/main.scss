@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Bodoni+Moda:opsz@6..96&family=Dancing+Script:wght@700&family=EB+Garamond:wght@400;500&family=Inconsolata:wght@300&family=Libre+Bodoni&family=Montserrat&family=Noto+Sans+JP:wght@100&family=Open+Sans:ital@1&family=Oswald:wght@600&family=Poppins&family=Roboto:wght@300&family=Source+Sans+Pro:wght@700&family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Barlow+Condensed:wght@500&family=Bodoni+Moda:opsz@6..96&family=Dancing+Script:wght@700&family=EB+Garamond:wght@400;500&family=Inconsolata:wght@300&family=Libre+Bodoni&family=Montserrat&family=Noto+Sans+JP:wght@100&family=Nunito:wght@400;500&family=Open+Sans:ital@1&family=Oswald:wght@600&family=Poppins&family=Raleway:wght@500&family=Roboto:wght@300&family=Source+Sans+Pro:wght@700&family=Work+Sans&display=swap');
 
 @import 'variables';
 @import 'resets';
@@ -7,7 +7,7 @@
 .disabled {
   cursor: not-allowed;
   background: lighten($text-light, 20);
-  color: $bg-light
+  color: $primary
 }
 
 .btns {
@@ -15,7 +15,7 @@
   border-radius: 4px;
   transition: all .15s ease-in;
 
-  font-family: $work;
+  font-family: $raleway;
   font-weight: 700;
 
   &:active {

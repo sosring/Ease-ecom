@@ -35,7 +35,7 @@
   
   .cart-wrapper {
     border-radius: 4px;
-    background: $bg-light;
+    background: $primary;
     padding: 1rem;
 
    @include screen-sm {
@@ -51,7 +51,7 @@
         justify-content: start;
         cursor: pointer;
         
-        font-family: $work;
+        font-family: $raleway;
         font-weight: 800; 
         font-size: clamp(2.4rem, 5vw, 4rem); 
 

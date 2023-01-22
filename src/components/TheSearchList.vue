@@ -52,6 +52,7 @@
 
   .main-wrapper {
     padding: .5rem .7rem;
+    z-index: 1;
 
     height: 120px;
     width: 100%;

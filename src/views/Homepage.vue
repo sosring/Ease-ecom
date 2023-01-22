@@ -1,19 +1,19 @@
 <template>
 
   <div class="hero-container">
-    <div class="banner-container"
-     v-motion-slide-bottom>
 
-      <h1>Take the stress <br>
-      out of fashion.</h1> <br>
-
+    <div class="banner-container">
+      <h1>
+        Take the stress <br>
+        out of fashion.
+      </h1> <br>
       <p>Best fashion deals with ease.</p><br>
 
-      <button
+      <Button
        @click="$router.push({ name: 'products' })"
        class="product-btn btns">
        View products
-      </button> 
+      </Button> 
     </div>
   </div> 
 
@@ -49,18 +49,27 @@
   import { useProductStore } from '@/stores/product'
   import { vAutoAnimate } from '@formkit/auto-animate'
   import Slider from '@/components/Products/Slider.vue'
-  import BackToTop from 'vue-backtotop'
 
   const productStore = useProductStore() 
 
   const menFiltered = computed(() => {
     const maped = productStore.products.filter(product => product.gender === 'men')
-    return maped.filter(product => product.discount !== null)
+    return maped.filter(product => product.discount !== null).slice(0, 2)
   })
 
   const womenFiltered = computed(() => {
     const maped = productStore.products.filter(product => product.gender === 'women')
     return maped.filter(product => product.discount !== null)
+  })
+
+  import gsap from 'gsap'
+
+  onMounted(() => {
+    gsap.from('.banner-container', {
+      y: 120,
+      opacity: 0,
+      duration: .7
+    })
   })
 </script>
 
@@ -72,7 +81,7 @@
 
     background: 
     linear-gradient( rgba(0 0 0 / .2), rgba(0 0 0 / .3)),
-    url('/assets/banner01.jpg')  no-repeat center;
+    url('/assets/banner.jpg')  no-repeat center;
 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -87,7 +96,7 @@
   }
 
   .banner-container {
-    color: $pink;
+    color: $primary;
     z-index: 1;
 
     text-align: center;
@@ -101,20 +110,20 @@
     }
 
     h1 {
-      @include fontStyle($source, 1.5em) 
+      @include fontStyle($raleway, 1.5em) 
     }
 
     p {
-      @include fontStyle($source, 1.1em);
+      @include fontStyle($raleway, 1.1em);
       letter-spacing: 3px;
     }
 
     .product-btn {
-      color: $pink;
-      border: $pink 1px solid; 
+      color: $primary;
+      border: $primary 1px solid; 
       font-size: .9rem;
 
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba( 255 255 255 / .2);
       -webkit-backdrop-filter: blur(5px);
       backdrop-filter: blur(5px);
 

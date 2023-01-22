@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, onMounted, computed } from 'vue'
   import { discountValuation } from '@/composables/discount'
   import { priceFormatter } from '@/composables/priceFormatter'
 
@@ -69,7 +69,7 @@
     line-height: 1.3;
     color: $text-light;
 
-    font-family: $work;
+    font-family: $raleway;
     font-weight: 400;
 
     .image-cont {

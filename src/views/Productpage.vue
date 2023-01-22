@@ -7,6 +7,7 @@
 
    <div class="product-slides">
     <Slider 
+     class="products"
      :products="productStore.products"/>
    </div>
 
